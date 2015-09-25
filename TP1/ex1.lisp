@@ -34,3 +34,12 @@
 	((and (null e1) (null e2))
 	                T)
 	('T 'nil)))
+
+
+;;; Exercice 3
+
+(defun my-assoc (list elem)
+  (setq value nil)
+  (dolist (x list value)
+    (if ( equal (car x) elem) (setq value (cdr x)))))
+
