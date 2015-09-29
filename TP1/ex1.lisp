@@ -8,6 +8,18 @@
 (defun firstn (n l)
   (if (> n 0) (append (list (car l)) (firstn (- n 1) (cdr l)))))
 
+;;; Question 1 ( iteratif )
+
+(defun firstn-ite (n l)
+  (let ((listeEntiere l))
+    (setq liste ())
+  (dotimes (x n liste)
+    (setq liste (append liste (list (car listeEntiere))))
+    (setq listeEntiere (cdr listeEntiere))
+    )))
+
+
+
 ;;; Question 2
 (defun inter (l1 l2) (if (null (car l1)) () (if (member (car l1) l2)
 			 (append (list (car l1)) (inter (cdr l1) l2))
