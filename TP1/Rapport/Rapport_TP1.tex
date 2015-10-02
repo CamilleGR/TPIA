@@ -1,0 +1,138 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+
+% Title Page
+\title{IA01 : TP1}
+\author{Par Camille Gerin-Roze et Thomas Perrin}
+
+
+
+\renewcommand{\footrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}} 	
+\fancyfoot[L]{}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{flushright}
+  \includegraphics[scale = 0.2]{logo_utc.jpg}
+\end{flushright}
+\vspace*{5cm}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \LARGE \bfseries  IA01 : Rapport du TP1}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Auteurs:}\\
+Camille \textsc{Gerin-Roze} \newline
+Thomas \textsc{Perrin} 
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+
+\end{minipage}\\[1.3cm]
+
+
+{\large Le 2 Octobre 2015} % Date, change the \today to a set date if you want to be precise
+
+\end{titlepage}
+\tableofcontents
+
+\chapter{Exercice 1}
+  \section{Donner les premiers N éléments}
+  \subsection{Version récursive}
+  \begin{lstlisting}[language=Lisp]
+    (defun firstn (n l)
+  (if (> n 0) (append (list (car l)) (firstn (- n 1) (cdr l)))))
+  \end{lstlisting}
+
+  La fonction prend deux arguments :
+  \begin{itemize}
+   \item Le nombre de \textbf{n} d'éléments à prélever dans la liste
+   \item La liste \textbf{l} dans laquelle nous allons prélever les éléments
+  \end{itemize}
+  On prend le premier argument de la liste l, et on construit une nouvelle liste avec un appel récursif de la fonction avec \textbf{n-1} éléments, jusqu'à ce que n soit égale à 0. \newline
+    \subsection{Version itérative}
+  \begin{lstlisting}[language=Lisp]
+    
+(defun firstn-ite (n l)
+  (let ((listeEntiere l))
+    (setq liste ())
+  (dotimes (x n liste)
+    (setq liste (append liste (list (car listeEntiere))))
+    (setq listeEntiere (cdr listeEntiere))
+    )))))
+  \end{lstlisting}
+  
+  La fonction itérative se déroule différement. On crée une nouvelle liste dans laquelle on va copier les n premiers éléments. On doit donc utiliser deux listes différentes. La fonction dans son format itératif utilise donc plus de mémoire.
+    \newpage
+    \section{Intersection de 2 listes}
+      \subsection{Version récursive}
+	\begin{lstlisting}
+(defun inter (l1 l2)
+  (if (not (null (car l1)))
+      (if (member (car l1) l2)
+	 (append (list (car l1)) (inter (cdr l1) l2)) ;;; Si
+	(inter (cdr l1) l2)) )) ;;; Sinon
+	
+	
+	\end{lstlisting}
+
+      La fonction prend en paramètre deux listes (l1 et l2). Les appels récursif continue jusqu'à ce que le car de la première liste ( celle sur laquelle nous allons itérer )
+      Si le car de l1 est un membre de la liste l2, alors on va concaténer la liste contenant le car de l1 et le résultat de l'appel récursif sur le cdr de l1 et l2. Sinon
+      on fera juste l'appel récursif. \newline
+      
+      
+      \subsection{Version itérative}
+      
+	\begin{lstlisting}
+(defun inter-iteratif (l1 l2)
+    (mapcan #'(lambda (x) (if (member x l2) (list x))) l1))
+
+    
+    \end{lstlisting}
+
+      La version itérative est plus simple car en utilisant mapcan ( qui renvoie une nouvelle liste ) on peut tout simplement itérer sur la première liste et vérifier que chaque élément et dans la deuxième.
+      Si l'élément est dans la liste, alors on retourne l'élément, sinon on retourne nil. Grâce au mapcan qui utilise \textbf{cons} pour concaténer les résultats, les nil ne seront pas membre de la liste retourner par la fonction.
+      
+       \section{Elimination des doublons d'une liste}
+      \subsection{Version récursive}
+	\begin{lstlisting}
+(defun inter (l1 l2)
+  (if (not (null (car l1)))
+      (if (member (car l1) l2)
+	 (append (list (car l1)) (inter (cdr l1) l2)) ;;; Si
+	(inter (cdr l1) l2)) )) ;;; Sinon
+	
+	
+	\end{lstlisting}
+      
+      
+
+\end{document}          
