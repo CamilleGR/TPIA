@@ -6,3 +6,8 @@
 \contentsline {section}{\numberline {1.2}Intersection de 2 listes}{3}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Version r\IeC {\'e}cursive}{3}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Version it\IeC {\'e}rative}{3}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Elimination des doublons d'une liste}{3}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Version r\IeC {\'e}cursive}{3}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Version it\IeC {\'e}rative}{4}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Compteur de feuille}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Impl\IeC {\'e}mentation de la m\IeC {\'e}thode EQUAL}{4}{section.1.5}
