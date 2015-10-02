@@ -23,13 +23,29 @@
 ;;; Question 2
 (defun inter (l1 l2) (if (null (car l1)) () (if (member (car l1) l2)
 			 (append (list (car l1)) (inter (cdr l1) l2))
-		       (inter (cdr l1) l2)) ))
+			 (inter (cdr l1) l2)) ))
+
+;;; Question 2 Iteratif
+
+(defun inter-iteratif (l1 l2)
+  (mapcan #'(lambda (x) (if (member x l2) (list x))) l1))
+
+
 ;;; Question 3
 (defun elim (l1)
 (if (null (car l1)) ()
   (if (member (car l1) (cdr l1))
       (elim (cdr l1))
     (append (list (car l1)) (elim (cdr l1))))))
+
+;;; Question 3 Itératif
+
+(defun elim-ite (l1)
+  (let ((listResult ()))
+    (dolist (x l1 listResult)
+      (if (and (member x l1) (not (member x listResult)))
+	  (setq listResult (cons x listResult))))))
+
 
 ;;; Question 4
 (defun nbfeuilles (l1) (if (null (car l1))
