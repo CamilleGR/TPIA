@@ -47,6 +47,11 @@
 (inter-iteratif '(1 2 3) '(2 3))
 (inter-iteratif '(1 2 3 (4 5 6)) '(1 2 3 (4 5 6)))
 
+
+
+
+
+
 ;;; Question 3
 (defun elim (l1)
 (if (null (car l1)) ()
@@ -70,13 +75,16 @@
 (elim-ite '(1 2 3 4 5 6 6 5 4 3 2))
 (elim-ite '(1 2 3 4))
 
-
-
-
 ;;; Question 4
 (defun nbfeuilles (l1) (if (null (car l1))
 			   0
 			 (if (listp (car l1)) (+ (nbfeuilles (car l1)) (nbfeuilles (cdr l1))) (+ 1 (nbfeuilles (cdr l1))))))
+
+;;; Jeu de test
+
+(nbFeuilles '( r (( t )) y ( g h ) ( j m l ) p ))
+(nbFeuilles '( a b c ))
+'( a b c (d e) nil ))
 
 ;;; Question 5
 
@@ -89,6 +97,13 @@
 	                T)
 	('T 'nil)))
 
+;;; Jeu de test
+
+(monequal 'LUC 'LUC)
+(monequal 'LUC 'DANIEL)
+(monequal '(d p f t r) '(d p f t r))
+(monequal (car '(do re)) (cadr '(mi do sol)))
+
 
 ;;; Exercice 3
 
@@ -97,8 +112,19 @@
   (dolist (x list value)
     (if ( equal (car x) elem) (setq value (cdr x)))))
 
+;;; Jeu de test
+
+(setq base '((a 1) (b 2) (c 3) (abc (1 2 3)) (abab ((1 2) (1 2)))))
+(my-assoc base 'a)
+(my-assoc base 'b)
+(my-assoc base 'c)
+(my-assoc base 'abab)
+(my-assoc base 'abc)
+(my-assoc base 'notHere)
 
 
+
+;;; Mymember
 
 
 (defun myMember (x l)

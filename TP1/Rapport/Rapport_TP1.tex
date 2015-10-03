@@ -344,12 +344,17 @@ La seconde version de cette fonction met en avant l’avantage du mapcar en comp
 	  \begin{lstlisting}[language=lisp]
 (setq base '((a 1) (b 2) (c 3) (abc (1 2 3)) (abab ((1 2) (1 2)))))
 (my-assoc base 'a)
+1
 (my-assoc base 'b)
+2
 (my-assoc base 'c)
+3
 (my-assoc base 'abab)
+((1 2) (1 2))
 (my-assoc base 'abc)
+(1 2 3)
 (my-assoc base 'notHere)
-
+NIL
 	  \end{lstlisting}
 Pendant les tests, on voit que la valeur retournée est la bonne même si celle-ci est une liste. Dans le cas où la clé n'existe pas, la valeur NIL sera retournée.
 	  
