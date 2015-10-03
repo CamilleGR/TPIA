@@ -18,6 +18,15 @@
     (setq listeEntiere (cdr listeEntiere))
     )))
 
+;;; Jeu de test
+
+(firstn 3 '( 1 5 6 4 8))
+(firstn 3 '( 1 5))
+(firstn 3 '( 1 5 6 4 8))
+(firstn 3 '( 1 5 6 4 8))
+
+
+
 
 
 ;;; Question 2
@@ -30,6 +39,13 @@
 (defun inter-iteratif (l1 l2)
   (mapcan #'(lambda (x) (if (member x l2) (list x))) l1))
 
+;;; Jeu de test
+(inter '(1 2 3) '())
+(inter '(1 2 3) '(2 3))
+(inter '(1 2 3 (4 5 6)) '(1 2 3 (4 5 6)))
+(inter-iteratif '(1 2 3) '())
+(inter-iteratif '(1 2 3) '(2 3))
+(inter-iteratif '(1 2 3 (4 5 6)) '(1 2 3 (4 5 6)))
 
 ;;; Question 3
 (defun elim (l1)
@@ -45,6 +61,16 @@
     (dolist (x l1 listResult)
       (if (and (member x l1) (not (member x listResult)))
 	  (setq listResult (cons x listResult))))))
+
+;;; Jeu de test
+(elim '(1 2 3 4 5 6 6 5 4 3 2))
+(elim '(1 2 3 4))
+(elim '(1 2 3 4 (1 2) (1 2)))
+(elim-ite '(1 2 3 4 (1 2) (1 2)))
+(elim-ite '(1 2 3 4 5 6 6 5 4 3 2))
+(elim-ite '(1 2 3 4))
+
+
 
 
 ;;; Question 4
@@ -71,3 +97,10 @@
   (dolist (x list value)
     (if ( equal (car x) elem) (setq value (cdr x)))))
 
+
+
+
+
+(defun myMember (x l)
+  (if (not (null l))
+      (if (equal x (car l)) l (myMember x (cdr l)))))
