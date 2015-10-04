@@ -85,7 +85,7 @@ Thomas \textsc{Perrin}
 
   La fonction prend deux arguments :
   \begin{itemize}
-   \item Le nombre de \textbf{n} d'éléments à prélever dans la liste
+   \item Le nombre d'éléments \textbf{n} à prélever dans la liste
    \item La liste \textbf{l} dans laquelle nous allons prélever les éléments
   \end{itemize}
   On prend le premier argument de la liste l, et on construit une nouvelle liste avec un appel récursif de la fonction avec \textbf{n-1} éléments, 
@@ -106,6 +106,7 @@ Thomas \textsc{Perrin}
   
   La fonction itérative se déroule différement. On crée une nouvelle liste dans laquelle on va copier les n premiers éléments. 
   On doit donc utiliser deux listes différentes. La fonction dans son format itératif utilise donc plus de mémoire. 
+  
 	  \subsection{Jeu de tests}
 	  	\begin{lstlisting}[language=Lisp]
 (firstn 3 '( 1 5))
@@ -125,7 +126,7 @@ NIL
     \newpage
     \section{Intersection de 2 listes}
     
-    La méthode member ne prend pas les sous-liste en compte car elle utilise EQL et non EQUAL. On définit donc un méthode \textbf{mymember} qui utilisera equal à la place de eql :
+    La méthode member ne prend pas les sous-liste en compte car elle utilise EQL et non EQUAL. On définit donc un méthode \textbf{mymember} qui utilisera EQUAL à la place de EQL :
 \begin{lstlisting}[language=Lisp]
 (defun myMember (x l)
   (if (not (null l))
@@ -144,7 +145,7 @@ NIL
 	
 	\end{lstlisting}
 
-      La fonction prend en paramètre deux listes (l1 et l2). Les appels récursif continue jusqu'à ce que le car de la première liste ( celle sur laquelle nous allons itérer )
+      La fonction prend en paramètre deux listes (l1 et l2). Les appels récursifs continuent jusqu'à ce que le car de la première liste (celle sur laquelle nous allons itérer).
       Si le car de l1 est un membre de la liste l2, alors on va concaténer la liste contenant le car de l1 et le résultat de l'appel récursif sur le cdr de l1 et l2. Sinon
       on fera juste l'appel récursif. \newline
       
@@ -158,7 +159,7 @@ NIL
     
     \end{lstlisting}
 
-      La version itérative est plus simple car en utilisant mapcan ( qui renvoie une nouvelle liste ) on peut tout simplement itérer sur la première liste et vérifier que chaque élément et dans la deuxième.
+      La version itérative est plus simple car en utilisant mapcan (qui renvoie une nouvelle liste) on peut tout simplement itérer sur la première liste et vérifier que chaque élément et dans la deuxième.
       Si l'élément est dans la liste, alors on retourne l'élément, sinon on retourne nil. Grâce au mapcan qui utilise \textbf{cons} pour concaténer les résultats, les nil ne seront pas membre de la liste retourner par la fonction.
       \vspace{1cm}
 	  \subsection{Jeu de tests}
@@ -178,7 +179,7 @@ NIL
 		 \end{lstlisting}
 
       \section{Elimination des doublons d'une liste}
-      On utilisera encore une fois la fonction mymember aulieu de member pour pouvoir gérer les sous-listes.
+      On utilisera encore une fois la fonction mymember à la place de member pour pouvoir gérer les sous-listes.
       \subsection{Version récursive}
 	\begin{lstlisting}[language=Lisp]
 (defun elim (l1)
@@ -205,7 +206,7 @@ NIL
 	
 	\end{lstlisting}
 
-	pour la version itérative de la fonction, on va simplement définir une nouvelle liste contenant le résultat. Puis on va itérer sur tous les éléments de notre list passée en 
+	Pour la version itérative de la fonction, on va simplement définir une nouvelle liste contenant le résultat. Puis on va itérer sur tous les éléments de notre liste passée en 
 	paramètre en ajoutant à notre listResult uniquement les éléments ne s'y trouvant pas déjà.\newline
 	Cet algorithme est plus simple à réaliser mais il demande plus de mémoire car on va devoir stocker le résultat dans une autre liste.
 	   \subsection{Jeu de tests}
@@ -237,8 +238,9 @@ NIL
 
 	Ici nous avons développé seulement une version récursive de l'algorithme car la représentation d'un arbre sous forme de liste entraine forcément la formation de sous-arbres et donc l'utilisation
 	de la même fonction pour les traiter, un algorithme itératif ici ne serait donc pas naturel. Si la liste est nulle, la fonction retourne 0 et ne fait pas d'appel récursif,
-	si elle contient une liste, on additionera les résultats des appels récursifs sur le car et le cdr. Si l'élément n'est pas une liste, alors nous avons atteint une feuilles
+	si elle contient une liste, on additionera les résultats des appels récursifs sur le car et le cdr. Si l'élément n'est pas une liste, alors nous avons atteint une feuille
 	donc on retourne le résultat de la fonction appliquée au cdr plus un pour la feuille que nous avons atteint.
+	
 	  \subsection{Jeu de tests}
 	\begin{lstlisting}[language=Lisp]
 (nbFeuilles '( r (( t )) y ( g h ) ( j m l ) p ))
@@ -284,7 +286,7 @@ T
 	  \chapter{Exercice 2}
 	  
 	  
-	    La finalité de cet exercice est de créer une fonction list-paire retourner une liste des éléments par paire de deux listes précisées en paramètre.
+	    La finalité de cet exercice est de créer une fonction list-paire qui retourne une liste des éléments par paire de deux listes précisées en paramètre.
 	  \section{Implémentation}
 	  \begin{lstlisting}[language=Lisp]
 -- Premiere solution : Avec le mapcar
@@ -338,6 +340,7 @@ La seconde version de cette fonction met en avant l’avantage du mapcar en comp
 	  \end{lstlisting}
 
 	  Nous allons donc parcourir la liste grâce à la méthode \textbf{dolist} et on remplira la valeur de retour \textbf{value} si la clé du couple est celle passée en paramètre de la fonction.
+	  
 	  
 	  \section{Jeu de tests}
 	  
