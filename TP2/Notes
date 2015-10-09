@@ -1,0 +1,28 @@
+Liste des états possibles :
+ABCD 
+ABDC 
+ACBD 
+ACDB 
+ADBC 
+ADCB 
+BACD
+BADC 
+BCAD
+CABD
+CADB
+CBAD
+
+Liste des états non-autorisés :
+
+BCDA
+BDAC
+BDCA
+CBDA
+CDAB
+CDBA
+DABC
+DACB
+DBAC
+DBCA
+DCAB
+DCBA
