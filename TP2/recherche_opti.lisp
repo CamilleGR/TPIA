@@ -2,20 +2,7 @@
 (load "distance.lisp")
 
 
-;;;; --------------------------------------------------------------------
-;;;;                        MYMEMBER
-;;;;
-;;;; Cette fonction permet de vérifier que la liste x est bien membre de la 
-;;;; liste l. c'est tout simplement une autre implémentation de la méthode
-;;;; member qui utilise EQUAL à la place de EQL
-;;;;
-;;;; ---------------------------------------------------------------------
 
-
-
-(defun myMember (x l)
-  (if (not (null l))
-      (if (equal x (car l)) l (myMember x (cdr l)))))
 
 
 
@@ -49,15 +36,17 @@
 
 
 
-(DEFUN recherche_opti ( etatCourrant etatFinal &optional etatsParcourus) ;;;; etatsParcourus est optionnel
+(DEFUN recherche_opti ( etatCourrant etatFinal &optional etatsParcourus etatIncorrect) ;;;; etatsParcourus est optionnel
   (dotimes (i (list-length etatsParcourus)) ;;;; On fait la boucle autant de fois qu'il y'a détats parcourus
     (format t "~T"))                        ;;;; On affiche une tabulation 
-  (format t "~A~%" etatCourrant)            ;;;; On affiche en suite l'état courrant
+  (format t "~A incorrect : ~%" etatCourrant etatIncorrect)            ;;;; On affiche en suite l'état courrant
   (IF (EQUAL etatCourrant etatFinal)
       (append etatsParcourus (list etatCourrant)) ;;;; Si l'état courrant est l'état final, alors on a trouvé le chemin
-      (if (NOT (MYMEMBER (choixEtat etatFinal (successeurs etatCourrant)) etatsParcourus))
-	  (SETQ sol (recherche_opti (choixEtat etatFinal (successeurs etatCourrant)) etatFinal (append etatsParcourus (list etatCourrant))))
-	(SETQ sol (recherche_opti (choixEtat etatFinal (successeurs etatCourrant)) etatFinal etatsParcourus))
+      (let ((etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatIncorrect)))
+      (if (NOT (MYMEMBER etatPrometteur etatsParcourus))
+	  (SETQ sol (recherche_opti etatPrometteur etatFinal (append etatsParcourus (list etatCourrant)) etatIncorrect))
+	(SETQ sol (recherche_opti etatPrometteur etatFinal etatsParcourus (append etatIncorrect (list etatPrometteur))))
 	)
+      )
       )
   )

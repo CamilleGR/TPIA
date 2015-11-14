@@ -55,7 +55,7 @@
   (let ((minDist)(minEtat))
     (dolist (e liste minEtat)
       (if (and (NOT (myMember e etatsIncorrects))  
-      	(or (nil minDist) (<= (distance etat e) minDist)))
+      	(or (null minDist) (<= (distance etat e) minDist)))
 	  (progn
 	    (setq minDist (distance etat e))
 	    (setq minEtat e)
