@@ -46,7 +46,7 @@
       (if (NULL etatPrometteur)
       	(let ((lastEtat (last etatsParcourus)))
 	  (SETQ sol
-		(recherche_opti lastEtat etatPrometteur etatFinal (remove lastEtat etatsParcourus) (append etatIncorrect (list etatPrometteur))))
+		(recherche_opti lastEtat etatFinal (remove lastEtat etatsParcourus) (append etatIncorrect (list etatPrometteur))))
 	  )
       	(if (NOT (MYMEMBER etatPrometteur etatsParcourus))
 		  (SETQ sol (recherche_opti etatPrometteur etatFinal (append etatsParcourus (list etatCourrant)) etatIncorrect))
