@@ -1,4 +1,15 @@
 
+;;;; --------------------------------------------------------------------
+;;;;                        GET_SYMBOL
+;;;;
+;;;; Cette fonction permet de donner le x ème symbole de etat
+;;;;
+;;;; Exemple : (get_symbol '(A B C D) 2)
+;;;;           >B
+;;;;
+;;;; ---------------------------------------------------------------------
+
+
 
 (defun get_symbol (etat x)
   (cond
@@ -6,7 +17,15 @@
    ((EQUAL x 1) (car etat))
    (T  (get_symbol (cdr etat) (- x 1)))
   )
-)
+  )
+
+;;;; --------------------------------------------------------------------
+;;;;                        ECHANGE
+;;;;
+;;;; Cette fonction permet d'échanger le x ème symbole et le y ème symbole
+;;;; de l'état etat.
+;;;;
+;;;; ---------------------------------------------------------------------
 
 (defun echange(etat x y)
   (if (AND (> x 0) (> y 0) (< x 5) (< y 5))
@@ -60,6 +79,14 @@
        (member 'D e)) T NIL))
 
 
+;;;; --------------------------------------------------------------------
+;;;;                        SUCCESSEURS
+;;;;
+;;;; Fonction qui permet de renvoyer les successeurs valides d'un état
+;;;; etat.
+;;;;
+;;;; ---------------------------------------------------------------------
+
 (defun successeurs (etat)
   (let ((value ()))
   (loop for i in (list 1 3 4)
@@ -99,7 +126,16 @@
   )
 
 
-
+;;;; --------------------------------------------------------------------
+;;;;                        DISTANCE
+;;;;
+;;;; La distance entre deux états peux être définie par le nombre de 
+;;;; symboles qu'il n'ont pas en commun. En effet, plus ils ont de symboles
+;;;; différents, plus les états sont éloigné.
+;;;;    Avec l'énnoncé, nous ométerons le deuxième symbole qui bougera à 
+;;;; chaque changement d'états, ce qui fait qu'il n'est pas pertinent
+;;;; de le compter dans la distance.
+;;;; ---------------------------------------------------------------------
 
 
 (defun distance (etatA etatB)
@@ -113,6 +149,18 @@
     dist
     )
   )
+
+
+;;;; --------------------------------------------------------------------
+;;;;                        CHOIXETAT
+;;;;
+;;;; Un etat est considéré comme étant le meilleur état si il respecte 
+;;;; plusieurs conditions :
+;;;;    - Sa distance avec l'état final est la plus petite.
+;;;;    - Il n'a pas déjà été parcouru.
+;;;;    - Il possède d'autres états successeurs que son prédecesseur
+;;;;
+;;;; ---------------------------------------------------------------------
 
 
 (defun choixEtat (etat liste parcouru)
@@ -133,6 +181,15 @@
     minEtat
     )
   )
+
+
+;;;; --------------------------------------------------------------------
+;;;;                        RECHERCHE_OPTI
+;;;;
+;;;; Voici notre nouvel algorithme de recherche qui selectionne à chaque
+;;;; fois l'état le plus proche de notre état d'arrivée.
+;;;;
+;;;; ---------------------------------------------------------------------
 
 
 (DEFUN recherche_opti ( etatCourrant etatFinal &optional etatsParcourus) ;;;; etatsParcourus est optionnel
