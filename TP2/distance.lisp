@@ -29,7 +29,22 @@
     (dolist (e liste minEtat)
       (if (<= (distance etat e) minDist)
 	  (progn
+	    (setq minDist (distance etat e))
 	    (push e minEtat)
+	    )
+	)
+      )
+    )
+  )
+
+
+(defun choixEtat (etat liste)
+  (let ((minDist (distance etat (car liste)))(minEtat (car liste)))
+    (dolist (e liste minEtat)
+      (if (<= (distance etat e) minDist)
+	  (progn
+	    (setq minDist (distance etat e))
+	    (setq minEtat e)
 	    )
 	)
       )
