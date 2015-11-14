@@ -11,7 +11,7 @@
 
 (defun successeurs (etat)
   (let ((value ()))
-  (loop for i in (2 3 4)
+  (loop for i in (list 2 3 4)
     do (if (etat_correct (echange etat (+ i 1) 2))
 	    (push (echange etat (+ i 1) 2) value)))
 	value)
