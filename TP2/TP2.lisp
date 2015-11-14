@@ -32,13 +32,13 @@
   (let ((value ()))
     (dotimes (i 5 value)
       (cond
-       ((= i x) (setq value (append value (list (get_symbol etat y)))))
-       ((= i y) (setq value (append value (list (get_symbol etat x)))))
-       ((> i 0) (setq value (append value (list (get_symbol etat i)))))
+       ((= i x) (setq value (append value (list (get_symbol etat y))))) ;;;; Si le symbole est x alors on met y
+       ((= i y) (setq value (append value (list (get_symbol etat x))))) ;;;; Si le symbole est y alors on met x
+       ((> i 0) (setq value (append value (list (get_symbol etat i))))) ;;;; Sinon on met le bon symbole
        )
       )
     )
-  (error "Les pièces sont positionnées entre 1 et 4"))
+  (error "Les pièces sont positionnées entre 1 et 4")) ;;;; Gestion des erreurs potentielles
   )
 
 ;;;; --------------------------------------------------------------------
@@ -70,13 +70,14 @@
 ;;;; - Si le A est positionné plus à gauche que le D
 ;;;;
 ;;;;---------------------------------------------------------------------------
-(defun etat_correct(e)
-  (if (AND (> (list-length (member 'A e)) (list-length (member 'D e)))
-       (= (list-length e) 4)
-       (member 'A e)
-       (member 'B e)
-       (member 'C e)
-       (member 'D e)) T NIL))
+
+(defun etat_correct(e) ;;;; Un etat est correct si 
+  (if (AND (> (list-length (member 'A e)) (list-length (member 'D e))) ;;;; A est avant D 
+       (= (list-length e) 4)  ;;;; Si l'état comporte exactement 4 symboles
+       (member 'A e)          ;;;; Si A est membre de l'état
+       (member 'B e)          ;;;; Si B est membre de l'état
+       (member 'C e)          ;;;; Si C est membre de l'état
+       (member 'D e)) T NIL)) ;;;; Si D est membre de l'état
 
 
 ;;;; --------------------------------------------------------------------
@@ -89,7 +90,7 @@
 
 (defun successeurs (etat)
   (let ((value ()))
-  (loop for i in (list 1 3 4)
+  (loop for i in (list 1 3 4) ;;;; On fait les échanges 1 <-> 2, 2 <-> 3 et 2 <-> 4
     do (if (etat_correct (echange etat i 2))
 	    (push (echange etat i 2) value)))
 	value)
@@ -141,9 +142,9 @@
 (defun distance (etatA etatB)
   (let ((dist 0) (x (pop etatA)) (y (pop etatB)))
     (loop for i from 0 to 4 do
-	  (if (AND (NOT (= i 1))(NOT (EQUAL x y)))
-	      (setq dist (1+ dist)))
-	  (setq x (pop etatA))
+	  (if (AND (NOT (= i 1))(NOT (EQUAL x y))) ;;;; Pour tous les symboles sauf le deuxième
+	      (setq dist (1+ dist)))               ;;;; Si le symbole de etatA est différent de etatB 
+	  (setq x (pop etatA))                     ;;;; ALORS on incrémente la distance
 	  (setq y (pop etatB))
 	  )
     dist
@@ -166,19 +167,17 @@
 (defun choixEtat (etat liste parcouru)
   (let ((minDist)(minEtat))
     (dolist (e liste minEtat)
-      ;;;;(format t "~t~tCHOIX ETAT : ~a -> ~a~%" e  (successeurs e))
-      ;;;;(format t "~t~tminDist = ~a~%~t~tminEtat = ~a~%" minDist minEtat)
-      (if (AND (OR (AND (NULL minDist) (NULL minEtat)) (< (distance etat e) minDist))
-	       (> (list-length (successeurs e)) 1)
-	       (NOT (MYMEMBER e parcouru)))
+      (if (AND
+	   (OR (AND (NULL minDist) (NULL minEtat)) (< (distance etat e) minDist)) ;;;; Si la distance entre e et minEtat est plus petite
+	   (> (list-length (successeurs e)) 1) ;;;; ET si e possède d'autres états successeurs que son prédecesseur
+	   (NOT (MYMEMBER e parcouru)))        ;;;; ET si e n'a pas déja été parcouru
 	  (progn
-	    (setq minDist (distance etat e))
+	    (setq minDist (distance etat e))   ;;;; ALORS e est un état plus prometteur que minEtat
 	    (setq minEtat e)
 	    )
 	)
       )
-    ;;;;(format t "~%~t~t~tON CHOISI ~a~%" minEtat)
-    minEtat
+    minEtat ;;;; On retourne le meilleur état trouvé
     )
   )
 
@@ -201,8 +200,8 @@
   (format t "~A~%" etatCourrant)            ;;;; On affiche en suite l'état courrant
   (IF (EQUAL etatCourrant etatFinal)
       (append etatsParcourus (list etatCourrant)) ;;;; Si l'état courrant est l'état final, alors on a trouvé le chemin
-      (let ((etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatsParcourus)))
-      	(if (NOT (MYMEMBER etatPrometteur etatsParcourus))
+      (let ((etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatsParcourus))) ;;;; On choisi l'état le plus prometteur
+      	(if (NOT (MYMEMBER etatPrometteur etatsParcourus)) ;;;; Si l'état le plus prometteur n'a pas déjà été parcouru on continu notre exploration
 		  (SETQ sol (recherche_opti etatPrometteur etatFinal (append etatsParcourus (list etatCourrant))))
 	)
       )
