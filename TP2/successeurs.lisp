@@ -18,20 +18,20 @@
       (if (equal x (car l)) l (myMember x (cdr l)))))
 
 
-#|(defun successeurs (etat)
+(defun successeurs (etat)
   (let ((value ()))
   (dotimes (i 4 value)
     (if (NOT (= i 1))
 	(if (etat_correct (echange etat (+ i 1) 2))
 	    (push (echange etat (+ i 1) 2) value)))))
-)|#
-
+)
+#|
 (defun successeurs (etat)
   (let ((value ()))
   (loop for i in (list 1 3 4)
     do (if (etat_correct (echange etat i 2))
 	    (push (echange etat i 2) value)))
 	value)
-)
+)|#
 
 

@@ -44,14 +44,30 @@
       (append etatsParcourus (list etatCourrant)) ;;;; Si l'état courrant est l'état final, alors on a trouvé le chemin
       (let ((etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatIncorrect)))
       (if (NULL etatPrometteur)
-      	(let ((lastEtat (last etatsParcourus)))
+      	(let ((lastEtat (car (last etatsParcourus))))
 	  (SETQ sol
 		(recherche_opti lastEtat etatFinal (remove lastEtat etatsParcourus) (append etatIncorrect (list etatPrometteur))))
 	  )
       	(if (NOT (MYMEMBER etatPrometteur etatsParcourus))
 		  (SETQ sol (recherche_opti etatPrometteur etatFinal (append etatsParcourus (list etatCourrant)) etatIncorrect))
-		(SETQ sol (recherche_opti etatPrometteur etatFinal etatsParcourus (append etatIncorrect (list etatPrometteur))))
+		(SETQ sol (recherche_opti etatPrometteur etatFinal etatsParcourus etatIncorrect))
 		)
+	)
+      )
+      )
+  )
+
+
+
+(DEFUN recherche_opti2 ( etatCourrant etatFinal &optional etatsParcourus) ;;;; etatsParcourus est optionnel
+  (dotimes (i (list-length etatsParcourus)) ;;;; On fait la boucle autant de fois qu'il y'a détats parcourus
+    (format t "~T"))                        ;;;; On affiche une tabulation 
+  (format t "~A~%" etatCourrant)            ;;;; On affiche en suite l'état courrant
+  (IF (EQUAL etatCourrant etatFinal)
+      (append etatsParcourus (list etatCourrant)) ;;;; Si l'état courrant est l'état final, alors on a trouvé le chemin
+      (let ((etatPrometteur (choixEtat2 etatFinal (successeurs etatCourrant) etatsParcourus)))
+      	(if (NOT (MYMEMBER etatPrometteur etatsParcourus))
+		  (SETQ sol (recherche_opti2 etatPrometteur etatFinal (append etatsParcourus (list etatCourrant))))
 	)
       )
       )
