@@ -38,7 +38,7 @@
   )
 
 
-(defun choixEtat (etat liste)
+#|(defun choixEtat (etat liste)
   (let ((minDist (distance etat (car liste)))(minEtat (car liste)))
     (dolist (e liste minEtat)
       (if (<= (distance etat e) minDist)
@@ -48,5 +48,19 @@
 	    )
 	)
       )
+    )
+  )|#
+
+(defun choixEtat (etat liste etatsIncorrects)
+  (let ((minDist)(minEtat))
+    (dolist (e liste minEtat)
+      (if (and (NOT (myMember e etatsIncorrects))  
+      	(or (nil minDist) (<= (distance etat e) minDist)))
+	  (progn
+	    (setq minDist (distance etat e))
+	    (setq minEtat e)
+	    )
+	)
+      minEtat)
     )
   )
