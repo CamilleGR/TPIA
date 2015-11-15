@@ -1,0 +1,35 @@
+\BOOKMARK [0][-]{chapter.1}{Exercice 1}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Ecriture pr\351fix\351e}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Repr\351sentation sous forme d'arbre}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Donner les premiers N \351l\351ments}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.3.1}{Version r\351cursive}{section.1.3}% 5
+\BOOKMARK [2][-]{subsection.1.3.2}{Version it\351rative}{section.1.3}% 6
+\BOOKMARK [2][-]{subsection.1.3.3}{Jeu de tests}{section.1.3}% 7
+\BOOKMARK [1][-]{section.1.4}{Intersection de 2 listes}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.4.1}{Version r\351cursive}{section.1.4}% 9
+\BOOKMARK [2][-]{subsection.1.4.2}{Version it\351rative}{section.1.4}% 10
+\BOOKMARK [2][-]{subsection.1.4.3}{Jeu de tests}{section.1.4}% 11
+\BOOKMARK [1][-]{section.1.5}{Elimination des doublons d'une liste}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.5.1}{Version r\351cursive}{section.1.5}% 13
+\BOOKMARK [2][-]{subsection.1.5.2}{Version it\351rative}{section.1.5}% 14
+\BOOKMARK [2][-]{subsection.1.5.3}{Jeu de tests}{section.1.5}% 15
+\BOOKMARK [1][-]{section.1.6}{Compteur de feuille}{chapter.1}% 16
+\BOOKMARK [2][-]{subsection.1.6.1}{Jeu de tests}{section.1.6}% 17
+\BOOKMARK [1][-]{section.1.7}{Impl\351mentation de la m\351thode MONEQUAL}{chapter.1}% 18
+\BOOKMARK [2][-]{subsection.1.7.1}{Jeu de tests}{section.1.7}% 19
+\BOOKMARK [0][-]{chapter.2}{Exercice 2}{}% 20
+\BOOKMARK [1][-]{section.2.1}{Impl\351mentation}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.2}{Jeu de tests}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.1}{Tests basiques}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.2}{Gestion de listes de diff\351rentes tailles}{section.2.2}% 24
+\BOOKMARK [0][-]{chapter.3}{Exercice 3}{}% 25
+\BOOKMARK [1][-]{section.3.1}{Impl\351mentation}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.2}{Jeu de tests}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter.4}{Exercice 4}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Fonctions de service}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.2}{Afficher tous les ouvrages}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.3}{Afficher tous les ouvrages de Hugo}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.4}{Afficher tous les ouvrages d'un auteur}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.5}{Afficher le premier ouvrage d'une ann\351e}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.6}{Afficher les ouvrages vendue \340 plus de 100k exemplaires}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.7}{Afficher la moyenne du nombre de ventes de l'ouvrage d'un auteur}{chapter.4}% 35
