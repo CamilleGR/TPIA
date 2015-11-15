@@ -19,7 +19,7 @@
   (dolist (e *etatsPossibles* 'OK)
     (dolist (et *etatsPossibles* 'OK)
       (format t "~% ~a et ~a ~%" e et)
-      (let (( resultat (recherche_opti_liste e et)))
+      (let (( resultat (recherche_opti e et)))
 	(if (NULL resultat) (error "La recherche n'a donné aucune solutions"))
 	(format t "~a~%" resultat)
 	)

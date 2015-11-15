@@ -245,7 +245,8 @@
       (append etatsParcourus (list etatCourrant)) ;;;; Si l'état courrant est l'état final, alors on a trouvé le chemin
 	  (let ((etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatsParcourus))) ;;;; On choisi l'état le plus prometteur
       	(loop while (not (null etatPrometteur))
-			do (if (NOT (MYMEMBER etatPrometteur etatsParcourus)) ;;;; Si l'état le plus prometteur n'a pas déjà été parcouru on continu notre exploration
+	      do ;;;; Si l'état le plus prometteur n'a pas déjà été parcouru on continu notre exploration
+	      (if (NOT (MYMEMBER etatPrometteur etatsParcourus)) 
 			  (SETQ sol (recherche_opti etatPrometteur etatFinal (append etatsParcourus (list etatCourrant))))
 			)
 			(if (null sol)
