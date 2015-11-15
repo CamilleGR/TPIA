@@ -165,7 +165,6 @@
     (dolist (e liste minEtat)
       (if (AND
 	   (OR (AND (NULL minDist) (NULL minEtat)) (< (distance etat e) minDist)) ;;;; Si la distance entre e et minEtat est plus petite
-	   (> (list-length (successeurs e)) 1) ;;;; ET si e possède d'autres états successeurs que son prédecesseur
 	   (NOT (MYMEMBER e parcouru)))        ;;;; ET si e n'a pas déja été parcouru
 	  (progn
 	    (setq minDist (distance etat e))   ;;;; ALORS e est un état plus prometteur que minEtat
