@@ -138,20 +138,16 @@
 ;;;; de le compter dans la distance.
 ;;;; ---------------------------------------------------------------------
 
-
 (defun distance (etatA etatB)
-  (let ((dist 0) (x (pop etatA)) (y (pop etatB)))
-    (loop for i from 0 to 4 do
-	  (if (AND (NOT (= i 1))(NOT (EQUAL x y))) ;;;; Pour tous les symboles sauf le deuxième
-	      (setq dist (1+ dist)))               ;;;; Si le symbole de etatA est différent de etatB 
-	  (setq x (pop etatA))                     ;;;; ALORS on incrémente la distance
-	  (setq y (pop etatB))
-	  )
-    dist
+  (let ((dist 0))
+    (do ((x etatA (cdr x))(y etatB (cdr y)))
+	((AND (NULL x) (NULL y)) dist)
+      (if (NOT (EQUAL (car x) (car y)))
+	  (setq dist (1+ dist))
+	)
+      )
     )
   )
-
-
 ;;;; --------------------------------------------------------------------
 ;;;;                        CHOIXETAT
 ;;;;
