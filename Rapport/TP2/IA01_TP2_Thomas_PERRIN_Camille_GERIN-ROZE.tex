@@ -243,7 +243,113 @@ ABDC, il y a le deuxième symbole qui sera forcément changé quand nous bougero
 Donc nous choisissons de calculer la distance entre deux états en omettant volontairement le deuxième symbole.
 La fonction distance permet de calculer la distance entre deux états et permet de représenter cette heuristique.
 Notre heuristique peut donc être résumé en la phrase :
-`` Un état est estimé plus proche de l'état final si la distance ométtant le deuxième symbole entre celui-ci et l'état final est minimale.''
+`` Un état est estimé plus proche de l'état final si la distance ométtant le deuxième symbole entre celui-ci et l'état final est minimale.''\newpage 
+  \section{Implémentation de la distance}
+
+  \begin{lstlisting}[language=Lisp]
+   (defun distance (etatA etatB)
+  (let ((dist 0) (x (pop etatA)) (y (pop etatB)))
+    (loop for i from 0 to 4 do
+	  (if (AND (NOT (= i 1))(NOT (EQUAL x y)))
+	      (setq dist (1+ dist)))
+	  (setq x (pop etatA))
+	  (setq y (pop etatB))
+	  )
+    dist
+    )
+  )
+  \end{lstlisting}
+  \section{Implémentation du choix de l'état}
+
+    \begin{lstlisting}[language=Lisp]
+
+  (defun choixEtat (etat liste parcouru)
+  (let ((minDist)(minEtat))
+    (dolist (e liste minEtat)
+      (if (AND ;;;; Si la distance entre e et minEtat est plus petite
+	   (OR (AND (NULL minDist) (NULL minEtat)) 
+		    (< (distance etat e) minDist)) 
+	   ;;;; ET si e n'a pas déja été parcouru
+	   (NOT (MYMEMBER e parcouru)))        
+	  (progn
+	  ;;;; ALORS e est un état plus prometteur que minEtat
+	    (setq minDist (distance etat e))   
+	    (setq minEtat e)
+	    )
+	)
+      )
+    minEtat ;;;; On retourne le meilleur état trouvé
+    )
+  )
+  \end{lstlisting}
+
+\newpage
+  
+  \section{Implémentation de notre nouvelle fonction de recherche}
+  
+  Notre nouvelle fonction de recherche va donc utiliser notre heuristique par le biais de la fonction choixEtat. 
+  Pour cela, la fonction recherche\_opti va appeller la fonction choix etat pour que celle-ci trouve l'état le plus prometteur, si cet 
+  état ne donne pas de solution alors on rapellera la fonction choix état pour qu'elle nous donne le deuxième état le plus prometteur et 
+  cela jusqu'à ce qu'il y ai une solution ou qu'il n'y ai plus de successeurs.\newline Cela nous donne l'implémentation suivante : 
+  
+  \begin{lstlisting}[basicstyle = \footnotesize, language=Lisp]
+    (DEFUN recherche_opti ( etatCourrant etatFinal &optional etatsParcourus)
+  (if (NOT (AND (etat_correct etatCourrant) (etat_correct etatFinal)))
+      (error "ERREUR : ENTREE(S) INCORRECT(S)")
+      )
+  (dotimes (i (list-length etatsParcourus))
+    (format t "~T"))                       
+  (format t "~A~%" etatCourrant)            
+  (IF (EQUAL etatCourrant etatFinal)
+      (append etatsParcourus (list etatCourrant))
+	  (let (
+	  (etatPrometteur (choixEtat etatFinal (successeurs etatCourrant) etatsParcourus))
+	  )
+      	(loop while (not (null etatPrometteur))
+	      do 
+	      (if (NOT (MYMEMBER etatPrometteur etatsParcourus)) 
+			  (SETQ 
+			  sol (recherche_opti etatPrometteur etatFinal 
+				  (append etatsParcourus (list etatCourrant)))
+			  )
+			)
+			(if (null sol)
+				(setq etatPrometteur 
+				    (choixEtat etatFinal (remove etatPrometteur 
+					  (successeurs etatCourrant)) etatsParcourus))
+				(setq etatPrometteur NIL)
+			)
+		 )
+    sol)
+  )
+ )
+ 
+  \end{lstlisting}
+\newpage 
+  \section{Comparaison des fonctions avec et sans heuristique }
+  
+  Voici l’appel de la fonction recherche\_opti :
+\begin{lstlisting}[language=Lisp]
+(recherche_opti '(A D B C) '(C B A D))
+(A D B C)
+ (A C B D)
+  (C A B D)
+   (C B A D)
+((A D B C) (A C B D) (C A B D) (C B A D))
+\end{lstlisting}
+
+On remarque que le chemin retourné par notre heuristique est plus court que celui utilisé retourné par une recherche basique en profondeur.
+Ainsi, lorsque l’on analyse le problème, et que l’on sait comment se rapprocher de la solution en simplifiant une recherche, on peut voir que l’on gagne du temps en termes de parcours. La complexité à chaque itération est plus élevée puisqu’il faut comparer les prédécesseurs avant de continuer. Mais cette analyse est moins couteuse que d’itérer pour rien sur certains états par la suite.
+
+On peut conclure qu’une heuristique est très avantageuse en termes de performance et de qualité de résultats. Sur des applications de recherche à plus grande envergures tels que la recherche de chemin dans des réseaux, les heuristiques sont obligatoires afin d’obtenir des performances convenables.
+
+\chapter*{Conclusion}
+
+  La recherche dans un espace d'état peut effectivement être faite de manière naïve en parcourant l'arbre bêtement en profondeur ou en largeur. Mais on s'aperçoit
+  que l'utilisation d'une heuristique peut permettre d'une part, d'avoir des résultats bien plus intéressant, et d'autre part, d'accélérer le traitement de certaines 
+  requêtes en diminuant de manière significative le nombre d'itération de la boucle principale. \newline 
+  Cependant, on pourra noter qu'une heuristique n'est pas toujours bénéfique dans tous les cas. En effet dans le choix des etats, choisir l'état le plus proche de 
+  l'état final ne sera pas toujours le chemin le plus court et un algorithme de recherche naïf pourrait trouver un meilleur résultat par pure hasard.
   
   \end{document}          
 
