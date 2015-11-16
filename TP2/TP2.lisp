@@ -90,7 +90,8 @@
 
 (defun successeurs (etat)
   (let ((value ()))
-  (loop for i in (list 1 3 4) ;;;; On fait les échanges 1 <-> 2, 2 <-> 3 et 2 <-> 4
+  ;;;; On fait les échanges 1 <-> 2, 2 <-> 3 et 2 <-> 4
+  (loop for i in (list 1 3 4)
     do (if (etat_correct (echange etat i 2))
 	    (push (echange etat i 2) value)))
 	value)

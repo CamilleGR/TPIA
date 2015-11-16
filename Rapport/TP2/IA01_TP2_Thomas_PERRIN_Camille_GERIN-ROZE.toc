@@ -1,5 +1,9 @@
 \select@language {french}
 \contentsline {chapter}{\numberline {1}Graphe d'\IeC {\'e}tats}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Successeurs d'un \IeC {\'e}tat}{4}{chapter.2}
+\contentsline {chapter}{\numberline {2}D\IeC {\'e}veloppement de l'algorithme de recherche}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}La fonction echange(x,y)}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}La fonction successeurs}{4}{section.2.2}
+\contentsline {section}{\numberline {2.2}La fonction successeurs}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Algorithme de recherche en profondeur}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Impl\IeC {\'e}mentation en Lisp de l'algorithme}{7}{section.2.4}
+\contentsline {chapter}{\numberline {3}Rechercher avec une heuristique}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}D\IeC {\'e}terminer une heuristique}{8}{section.3.1}
