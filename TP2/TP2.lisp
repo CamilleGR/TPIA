@@ -244,3 +244,47 @@
   )
  )
  
+;;;;-----------------------------------------------------------------
+;;;;
+;;;;                         TESTS
+;;;;
+;;;;-----------------------------------------------------------------
+
+
+
+(defparameter *etatsPossibles* '((A B C D) (A B D C) (A C B D)
+				 (A C D B) (A D C B) (B A C D)
+				 (B A D C) (B C A D) (C A B D)
+				 (C A D B) (C B A D) (A D B C)))
+
+(defun test_recherche_opti ()
+  (dolist (e *etatsPossibles* 'OK)
+    (dolist (et *etatsPossibles* 'OK)
+      (format t "~% ~a et ~a ~%" e et)
+      (let (( resultat (recherche_opti e et)))
+	(if (NULL resultat) (error "La recherche n'a donné aucune solutions"))
+	(format t "~a~%" resultat)
+	)
+      )
+    )
+  )
+
+(defun comparaison_performances ()
+  (let ((nbOpti 0.0)(nbNaif 0.0)(nbAll 0.0)(nbEgalite 0.0))
+  (dolist (e *etatsPossibles* 'OK)
+    (dolist (et *etatsPossibles* 'OK)
+      (let (( resultatOpti (list-length (recherche_opti e et )))(resultatNaif (list-length (recherche e et))))
+	(cond ((< resultatOpti resultatNaif) (setq nbOpti (1+ nbOpti)))
+	      ((> resultatOpti resultatNaif) (setq nbNaif (1+ nbNaif)))
+	      (T (setq nbEgalite (1+ nbEgalite))))
+	(setq nbAll (1+ nbAll))
+	)
+      )
+    )
+  (format t "~%CALCUL SUR ~a ÉLÉMENTS~%TAILLES EGALES = ~a~%HEURISTIQUE PLUS OPTIMISE = ~a ~%HEURISTIQUE MOINS OPTIMISE = ~a~%"
+	  nbAll nbEgalite nbOpti nbNaif)
+   (format t "~%POURCENTAGES~%TAILLES EGALES = ~a %~%HEURISTIQUE PLUS OPTIMISE = ~a % ~%HEURISTIQUE MOINS OPTIMISE = ~a %~%"
+	  (* (/ nbEgalite nbAll) 100) (* (/ nbOpti nbAll) 100) (* (/ nbNaif nbAll) 100))
+   )
+  )
+
