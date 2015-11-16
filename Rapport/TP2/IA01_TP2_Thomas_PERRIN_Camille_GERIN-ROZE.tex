@@ -236,7 +236,7 @@ Cependant, on peut remarquer qu’il remonte dans ses appels trois fois avant de
 Ainsi, si nous avons le choix entre un état possédant une seule différence avec l’état final ou un second trois différences avec ce dernier, on choisira le premier état.
 Afin d’obtenir un résultat plus pertinent, nous ne regarderons pas le deuxième symbole puisque ce dernier bougera constamment.\newline
 En effet, chaque action possible demande de déplacer le deuxième symbole, donc quand deux états ont la même distance, si un des deux états a son deuxième symbole bien placé
-alors l'autre sera plus proche de l'état final. Prenons un exemple avec l'état ABCD : \newline
+alors l'autre sera plus proche de l'état final.\newline
 Prenons l'exemple de ABDC et ACBD, ces deux états sont à une distance de deux symboles avec ABCD ( ils ont deux symboles différents ). Cependant, il faut une seule opération
 sur ACBD pour arriver à ABCD ( echange(2,3) ) tandis qu'il faut au minimum 3 opérations à ABDC pour atteindre ABCD. C'est parce que dans les symboles bien placés de 
 ABDC, il y a le deuxième symbole qui sera forcément changé quand nous bougerons les autres symboles.\newline
@@ -349,7 +349,7 @@ On peut conclure qu’une heuristique est très avantageuse en termes de perform
   que l'utilisation d'une heuristique peut permettre d'une part, d'avoir des résultats bien plus intéressant, et d'autre part, d'accélérer le traitement de certaines 
   requêtes en diminuant de manière significative le nombre d'itération de la boucle principale. \newline 
   Cependant, on pourra noter qu'une heuristique n'est pas toujours bénéfique dans tous les cas. En effet dans le choix des etats, choisir l'état le plus proche de 
-  l'état final ne sera pas toujours le chemin le plus court et un algorithme de recherche naïf pourrait trouver un meilleur résultat par pure hasard.
+  l'état final ne sera pas toujours le chemin le plus court et un algorithme de recherche naïf pourrait trouver un meilleur résultat par pur hasard.
   
   \end{document}          
 
