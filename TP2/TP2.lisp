@@ -250,3 +250,7 @@
    )
   )
 
+(recherche '(A D B C) '(C B A D))
+(recherche_opti '(A D B C) '(C B A D))
+(test_recherche_opti)
+(comparaison_performances)

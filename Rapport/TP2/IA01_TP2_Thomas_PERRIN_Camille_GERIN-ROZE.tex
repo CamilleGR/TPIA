@@ -343,6 +343,24 @@ Ainsi, lorsque l’on analyse le problème, et que l’on sait comment se rappro
 
 On peut conclure qu’une heuristique est très avantageuse en termes de performance et de qualité de résultats. Sur des applications de recherche à plus grande envergures tels que la recherche de chemin dans des réseaux, les heuristiques sont obligatoires afin d’obtenir des performances convenables.
 
+Nous avons également créé une fonction de comparaison qui va comparer le chemin renvoyé par la fonction recherche et le chemin renvoyé par recherche\_opti pour tous 
+les cas possibles pour faire des statistiques. Voici l'appel de cette fonction : 
+
+\begin{lstlisting}[language=Lisp]
+CALCUL SUR 144.0 ELEMENTS
+TAILLES EGALES = 72.0
+HEURISTIQUE PLUS OPTIMISE = 68.0 
+HEURISTIQUE MOINS OPTIMISE = 4.0
+
+POURCENTAGES
+TAILLES EGALES = 50.0 %
+HEURISTIQUE PLUS OPTIMISE = 47.22222 % 
+HEURISTIQUE MOINS OPTIMISE = 2.777778 %
+\end{lstlisting}
+
+Donc dans 50\% des cas, utiliser l'heuristique sera équivalent à ne pas l'utiliser, mais dans 47\% des cas l'utilisation de l'heuristique permettra d'obtenir un chemin plus
+cours. et plus long dans seulement 2.7\% des cas.
+
 \chapter*{Conclusion}
 
   La recherche dans un espace d'état peut effectivement être faite de manière naïve en parcourant l'arbre bêtement en profondeur ou en largeur. Mais on s'aperçoit
