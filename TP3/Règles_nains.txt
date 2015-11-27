@@ -1,0 +1,61 @@
+Un nain minier va creuser 3 M / jour sur un type de roches standard.
+Voici la liste des roches possibles, et leurs difficultés :
+
+Légende :
+- = Standard = 3 M / jour
+-- = Facile = 5 M / jour
++ = Difficile = 2 M / jour
+++ = Extrême = 1 M / jour
+
+Granite = -
+Greis = ++
+Micachiste = --
+Amphibolite = +
+Leptyrites = +
+Ophiolites = +
+Gabbros = -
+Prasinites = -
+Serpentines = -
+Cipolins = -
+Splites = ++
+Orthophyres = +
+
+_______________________________
+
+Une pioche standard va permettre aux nains de creuser à cette vitesse.
+Si on extrapôle sur les différents types de pioches et leurs coefficients multiplicateurs :
+
+Pioche standard : x1
+Pioche de mauvaise qualité : x0.75
+Pioche de qualité supérieur : x1.5
+Pioche ultime : x2
+
+_______________________________
+
+Règles au niveau du nombre des nains :
+
+
+Un soigneur / 3 Nains Miniers
+Un forgeron / 3 Nains Miniers
+Un tourneur de manche / 3 Nains Miniers
+
+Quatre porteurs de lampes / 3 Nains Miniers (EQUIPE DE NUIT)
+
+2x4 = 8 nains de ravitaillement / 2 Nains GENERAL
+Un plongeur / 4 nain de ravitaillement
+
+Un surveillant / 4 Nains GENERAL (NUIT)
+Un manager / 3 Surveillants (NUIT)
+
+
+_______________________________
+
+Type_pioche * Type_tunnel = vitese/nain
+
+Largeur => nb_mineurs
+
+Nb_jour + longueur + vitesse + mineurs => possible ? (avec eq. de nuit ou non)
+
+nb_mineurs => nb de chaque catégorie de nains
+
+Nb_nains + type_pioche => coût opération
