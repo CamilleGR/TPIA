@@ -1,0 +1,31 @@
+;;; Definition de la base de règles
+
+(setq *baseDeRegles* '( (F (B D E) R1)
+		      (A (D G) R2)
+		      (A (C F) R3)
+		      (C (D) R4)
+		      (D (E) R5)
+		      (A (H) R6)
+		      (B (X) R7)
+		      (X (X C) R8))
+      )
+
+(defun etatFinal (regle) (car regle))
+(defun premisse (regle) (cadr regle))
+(defun nomRegle (regle) (caddr))
+
+(defun regles_candidates (baseDeRegles fait)
+  (let ((sol ()))
+    (dolist (x baseDeRegles sol)
+      (if (EQUAL (etatFinal x) fait)
+	  (setq sol (nconc (list x) sol))
+	)
+      )
+    )
+  )
+
+
+
+
+;;; Verifier_ou => utiliser la méthode some, qui renvoie vrai si un élément de la liste est vrais
+;;; Verifier_ou => utiliser la méthode every, qui renvoie vrai si tous les éléments de la liste sont vrais
