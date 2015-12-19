@@ -28,12 +28,6 @@
 ;;;;                    \\/ \/ )/     |=____#|    '=....#|
 
 
-  
-
-
-(defun ask-user()
-  (string (read-char))
-  )
 
 (defun nainVsUtc()
   (format t "~%Bien sure que oui, t'en a d'autre des questions cons ?~%")
