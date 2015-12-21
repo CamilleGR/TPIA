@@ -56,6 +56,7 @@ Règles :
 
 |#
 
+;; Vitesse roche
 (setq *BaseRegles*  
           '(
 						(
@@ -175,7 +176,7 @@ Règles :
 								(TypeDePioche MauvaiseQualite)
 							)
 						RTP1)
-						
+						;; Vitesse pioche				
 						(
 							(
 								(VitesseNain . (VitesseNain * 1.5))
@@ -195,7 +196,7 @@ Règles :
 								(TypeDePioche Mithril)
 							)
 						RTP3)
-					
+					;; Chantier OK et equipe de nuit ?
 						(
 							(
 								(ChantierRéalisable . T)
@@ -237,7 +238,7 @@ Règles :
 								)
 							)
 						RCR3)
-						
+						;; Calcul de nains
 						(
 							(<
 								(NbNainMinier . 
@@ -273,6 +274,9 @@ Règles :
 						RN2)
 					)
 					
+					;; Il manque : nains ravitaillements / nains surveillants / nains porteurs de lumière
+					;; Le coût
+					;; Règle finale qui calcule le nb de nains total 
 						
 							
 						
