@@ -49,7 +49,7 @@ NbNainTotal : Résultat final du nombre de nains.
 
 // Variables intermédiaires :
 VitesseNain : Vitesse par nain par jour en fonction du type de roche et du type de pioche.
- 
+
 _________________________
 
 Règles :
@@ -57,7 +57,7 @@ Règles :
 |#
 
 ;; Vitesse roche
-(setq *BaseRegles*  
+(setq *BaseRegles*
           '(
 						(
 							(
@@ -67,7 +67,7 @@ Règles :
 								(TypeDeRoche Micachiste)
 							)
 						RTR1)
-						
+
 						(
 							(
 								(VitesseNain . 3)
@@ -76,7 +76,7 @@ Règles :
 								(TypeDeRoche Granite)
 							)
 						RTR2)
-						
+
 						(
 							(
 								(VitesseNain . 3)
@@ -85,7 +85,7 @@ Règles :
 								(TypeDeRoche Gabbros)
 							)
 						RTR3)
-						
+
 						(
 							(
 								(VitesseNain . 3)
@@ -94,7 +94,7 @@ Règles :
 								(TypeDeRoche Prasinites)
 							)
 						RTR4)
-						
+
 						(
 							(
 								(VitesseNain . 3)
@@ -103,7 +103,7 @@ Règles :
 								(TypeDeRoche Serpentines)
 							)
 						RTR5)
-						
+
 						(
 							(
 								(VitesseNain . 3)
@@ -112,7 +112,7 @@ Règles :
 								(TypeDeRoche Cipolins)
 							)
 						RTR6)
-					
+
 						(
 							(
 								(VitesseNain . 2)
@@ -121,7 +121,7 @@ Règles :
 								(TypeDeRoche Amphiobolite)
 							)
 						RTR7)
-						
+
 						(
 							(
 								(VitesseNain . 2)
@@ -130,7 +130,7 @@ Règles :
 								(TypeDeRoche Leptyrites)
 							)
 						RTR8)
-						
+
 						(
 							(
 								(VitesseNain . 2)
@@ -139,7 +139,7 @@ Règles :
 								(TypeDeRoche Ophiolites)
 							)
 						RTR9)
-					
+
 						(
 							(
 								(VitesseNain . 2)
@@ -148,7 +148,7 @@ Règles :
 								(TypeDeRoche Orthophyres)
 							)
 						RTR10)
-						
+
 						(
 							(
 								(VitesseNain . 1)
@@ -157,7 +157,7 @@ Règles :
 								(TypeDeRoche Splites)
 							)
 						RTR11)
-					
+
 						(
 							(
 								(VitesseNain . 1)
@@ -166,7 +166,7 @@ Règles :
 								(TypeDeRoche Greis)
 							)
 						RTR12)
-					
+
 						(
 							(
 								(VitesseNain . (VitesseNain * 0.75))
@@ -176,7 +176,7 @@ Règles :
 								(TypeDePioche MauvaiseQualite)
 							)
 						RTP1)
-						;; Vitesse pioche				
+						;; Vitesse pioche
 						(
 							(
 								(VitesseNain . (VitesseNain * 1.5))
@@ -186,7 +186,7 @@ Règles :
 								(TypeDePioche Double)
 							)
 						RTP2)
-						
+
 						(
 							(
 								(VitesseNain . (VitesseNain * 2))
@@ -202,38 +202,38 @@ Règles :
 								(ChantierRéalisable . T)
 								(EquipeDeNuit . NIL)
 							)
-							
+
 							(
-								(>= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain) 
+								(>=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
 									LongueurTunnel
 								)
 							)
 						RCR1)
-						
+
 						(
 							(
 								(ChantierRéalisable . T)
 								(EquipeDeNuit . T)
 							)
-							
+
 							(
-								(>= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2) 
+								(>=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
 								)
 							)
 						RCR2)
-						
+
 						(
 							(
 								(ChantierRéalisable . NIL)
 								(EquipeDeNuit . NIL)
 							)
-							
+
 							(
-								(<= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2) 
+								(<=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
 								)
 							)
@@ -241,42 +241,41 @@ Règles :
 						;; Calcul de nains
 						(
 							(<
-								(NbNainMinier . 
-								(car (* 
-										(truncate (/ LargeurTunnel 1.25)) 
+								(NbNainMinier .
+								(car (*
+										(truncate (/ LargeurTunnel 1.25))
 										HauteurTunnel)
 									)
 								)
 							)
-							
+
 							(
 								(ChantierRéalisable T)
 							)
 						RN1)
-							
+
 						(
 							(
-								(NbNainGuerisseur . 
+								(NbNainGuerisseur .
 								(truncate (NbNainMinier / 3))
 								)
-								(NbNainForgeron . 
+								(NbNainForgeron .
 								(truncate (NbNainMinier / 3))
 								)
-								(NbNainTourneurManche . 
+								(NbNainTourneurManche .
 								(truncate (NbNainMinier / 3))
 								)
 							)
-							
+
 							(
 								(NbNainMinier)
 								(ChantierRéalisable T)
 							)
 						RN2)
 					)
-					
+
+)
+
 					;; Il manque : nains ravitaillements / nains surveillants / nains porteurs de lumière
 					;; Le coût
-					;; Règle finale qui calcule le nb de nains total 
-						
-							
-						
+					;; Règle finale qui calcule le nb de nains total
