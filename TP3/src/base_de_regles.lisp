@@ -64,7 +64,7 @@ Règles :
 								(VitesseNain . 4)
 							)
 							(
-								(TypeDeRoche Micachiste)
+								(EGALITE (TypeDeRoche Micachiste))
 							)
 						RTR1)
 
@@ -73,7 +73,7 @@ Règles :
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Granite)
+								(EGALITE (TypeDeRoche Granite))
 							)
 						RTR2)
 
@@ -82,7 +82,7 @@ Règles :
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Gabbros)
+								(EGALITE (TypeDeRoche Gabbros))
 							)
 						RTR3)
 
@@ -91,7 +91,7 @@ Règles :
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Prasinites)
+								(EGALITE (TypeDeRoche Prasinites))
 							)
 						RTR4)
 
@@ -100,7 +100,7 @@ Règles :
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Serpentines)
+								(EGALITE (TypeDeRoche Serpentines))
 							)
 						RTR5)
 
@@ -109,7 +109,7 @@ Règles :
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Cipolins)
+								(EGALITE (TypeDeRoche Cipolins))
 							)
 						RTR6)
 
@@ -118,7 +118,7 @@ Règles :
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Amphiobolite)
+								(EGALITE (TypeDeRoche Amphiobolite))
 							)
 						RTR7)
 
@@ -127,7 +127,7 @@ Règles :
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Leptyrites)
+								(EGALITE (TypeDeRoche Leptyrites))
 							)
 						RTR8)
 
@@ -136,7 +136,7 @@ Règles :
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Ophiolites)
+								(EGALITE (TypeDeRoche Ophiolites))
 							)
 						RTR9)
 
@@ -145,7 +145,7 @@ Règles :
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Orthophyres)
+								(EGALITE (TypeDeRoche Orthophyres))
 							)
 						RTR10)
 
@@ -154,7 +154,7 @@ Règles :
 								(VitesseNain . 1)
 							)
 							(
-								(TypeDeRoche Splites)
+								(EGALITE (TypeDeRoche Splites))
 							)
 						RTR11)
 
@@ -163,7 +163,7 @@ Règles :
 								(VitesseNain . 1)
 							)
 							(
-								(TypeDeRoche Greis)
+								(EGALITE (TypeDeRoche Greis))
 							)
 						RTR12)
 
@@ -172,8 +172,8 @@ Règles :
 								(VitesseNain . (VitesseNain * 0.75))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche MauvaiseQualite)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche MauvaiseQualite))
 							)
 						RTP1)
 						;; Vitesse pioche
@@ -182,8 +182,8 @@ Règles :
 								(VitesseNain . (VitesseNain * 1.5))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche Double)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Double))
 							)
 						RTP2)
 
@@ -192,8 +192,8 @@ Règles :
 								(VitesseNain . (VitesseNain * 2))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche Mithril)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Mithril))
 							)
 						RTP3)
 					;; Chantier OK et equipe de nuit ?
@@ -204,10 +204,10 @@ Règles :
 							)
 
 							(
-								(>=
+								(COMPARAISON (>=
 									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
 									LongueurTunnel
-								)
+								))
 							)
 						RCR1)
 
@@ -218,10 +218,10 @@ Règles :
 							)
 
 							(
-								(>=
+								(COMPARAISON (>=
 									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
-								)
+								))
 							)
 						RCR2)
 
@@ -232,25 +232,23 @@ Règles :
 							)
 
 							(
-								(<=
+								(COMPARAISON (<=
 									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
-								)
+								))
 							)
 						RCR3)
 						;; Calcul de nains
 						(
-							(<
 								(NbNainMinier .
 								(car (*
 										(truncate (/ LargeurTunnel 1.25))
 										HauteurTunnel)
 									)
 								)
-							)
 
 							(
-								(ChantierRéalisable T)
+								(EGALITE(ChantierRéalisable T))
 							)
 						RN1)
 
@@ -268,8 +266,8 @@ Règles :
 							)
 
 							(
-								(NbNainMinier)
-								(ChantierRéalisable T)
+								(DEFINI (NbNainMinier))
+								(EGALITE (ChantierRéalisable T))
 							)
 						RN2)
 					)
