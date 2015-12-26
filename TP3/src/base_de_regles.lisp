@@ -248,7 +248,7 @@ Règles :
 								)
 
 							(
-								(EGALITE(ChantierRéalisable T))
+								(EGALITE (ChantierRéalisable T))
 							)
 						RN1)
 

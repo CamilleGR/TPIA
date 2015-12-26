@@ -12,18 +12,15 @@
   )
 )
 
-(defun TESTREGLES()
-  (dolist (x *BaseRegles* NIL)
-    ;;(format t "~%Nom de règle : ~a~%premisse : ~a~%Nouveau Faits : ~a~%" (caddr x) (cadr x) (car x))
-      (premisseRespecte? x)
-    )
-  )
-
 (defun ajouterFait(fait)
   (if (assoc (car fait) *BaseFaits*)
     (setf (assoc (car fait) *BaseFaits*) (cdr fait))
     (push fait *BaseFaits*)
   )
+)
+
+(defun estUnComparateur? (symbole)
+  (OR (EQUAL symbole '<) (EQUAL symbole '>) (EQUAL symbole '<=) (EQUAL symbole '>=))
 )
 
 (defun getPremisse(regle)
@@ -41,6 +38,7 @@
   ;;;;(format t "(car (getPremisse regle)) = ~a~%" (car (car (getPremisse regle))))
   (let ((test T))
     (dolist ( x (getPremisse regle) test)
+      ;;;;(print x)
       (setq test (AND test (conditionRespecte? x)))
     )
   )
@@ -48,26 +46,37 @@
 
 
 (defun conditionRespecte?(condition)
-;;;;(format t "Condition = ~a~%Type =~a~%Valeurs = ~a~%"
-;;;;  condition (car condition) (cadr (cadr condition)))
 (cond
   ((EQUAL (car condition) 'EGALITE)
-      (format t "~a == ~a = ~a~%~%" (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition)) (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition))))
-      (EQUAL (cadr (ASSOC (cadr condition) *BaseFaits*)) (cadr (cadr condition)))
-    )
-  ((EQUAL (car condition) 'DEFINI)
-    (format t "~a EST IL DEFINI ?? ~%" condition )
-    (if (ASSOC (car (cadr condition)) *BaseFaits*)
-        (progn
-          (format t "OUI~%~%")
-          T
-      )
-      NIL))
+      ;;;;(format t "~a == ~a = ~a~%~%" (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition)) (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition))))
+      (return-from conditionRespecte? (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition)))))
+  ((EQUAL (car condition) 'DEFINI)(return-from conditionRespecte? (NOT (NULL (ASSOC (car (cadr condition)) *BaseFaits*)))))
   ((EQUAL (car condition) 'COMPARAISON)
-    (format t "COMPARAISON = ~a~%" condition)
-    NIL)
+    (return-from conditionRespecte?
+      (eval
+        (let ((expression))
+          (dolist (x (cadr condition) expression)
+            (cond
+              ((estUnComparateur? x)
+                (setq expression (append expression (list x))))
+                ((listp x)
+                  (if (evalOperande x)
+                    (setq expression (append expression (list (eval (evalOperande x)))))
+                      NIL
+                    ))
+                (T
+                  (if (ASSOC x *BaseFaits*)
+                    (setq expression (append expression (list (cadr (ASSOC x *BaseFaits*)))))
+                    NIL
+                    ))
+            )
+          )
+        ))))
   )
 )
+
+
+
 #|
   ~ = Alt + N
   | = Alt + Shift + L
@@ -80,42 +89,25 @@
 
     Faire deux fonctions :
       - Une fonction qui va vérifier la comparaison  "verifierComparaison"
-      - Une fonction qui va évaleur toutes les opérandes "evalOperande"   DONE BIATCH 
+      - Une fonction qui va évaleur toutes les opérandes "evalOperande"   DONE BIATCH
 |#
 
 
 (defun evalOperande(operande)
   (let ((newList (list)))
-    (eval (dolist (x operande newList)
-      (cond
-        ((LISTP x)
-          (setq newList (append newList (list (evalOperande x)))))
-        ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
-          (setq newList (APPEND newList (list x))))
-        ((SYMBOLP x)
-          (if (NULL (ASSOC x *BaseFaits*))
-              (return-from evalOperande NIL) ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
+      (dolist (x operande newList)
+        (cond
+          ((LISTP x)
+            (setq newList (append newList (list (evalOperande x)))))
+          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+            (setq newList (APPEND newList (list x))))
+          ((SYMBOLP x)
+            (if (NULL (ASSOC x *BaseFaits*))
+                (return-from evalOperande NIL) ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
               (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
             ))
-        (T (setq newList (APPEND newList (list x))))
+          (T (setq newList (APPEND newList (list x))))
         )
-    ))
+    )
+  )
 )
-)
-
-;;;;;(cadr (ASSOC x *BaseFaits*))))
-;;;;(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
-
-(ajouterFait (list 'TYPEDEROCHE 'Micachiste))
-(ajouterFait (list 'TYPEDEPIOCHE 'Double))
-(ajouterFait (list 'LargeurTunnel 5))
-(ajouterFait (list 'HauteurTunnel 3))
-(ajouterFait (list 'NombreDeJours 10))
-(ajouterFait (list 'VitesseNain 10))
-(setq operandeTest '(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2))
-(print operandeTest)
-(print (evalOperande operandeTest))
-#|
-(TESTREGLES)
-(print *BaseFaits*)
-|#
