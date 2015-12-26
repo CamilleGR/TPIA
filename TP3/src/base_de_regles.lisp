@@ -240,10 +240,10 @@ Règles :
 						RCR3)
 						;; Calcul de nains
 						(
-								(NbNainMinier .
+								((NbNainMinier .
 								  (*
 										(truncate (/ LargeurTunnel 1.25))
-										HauteurTunnel)
+										HauteurTunnel))
 								)
 
 							(
