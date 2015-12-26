@@ -12,12 +12,13 @@
   )
 )
 
-(defun ajouterFait(fait)
-  (if (assoc (car fait) *BaseFaits*)
-    (setf (assoc (car fait) *BaseFaits*) (cdr fait))
-    (push fait *BaseFaits*)
-  )
-)
+
+;;;;###############################################################################
+;;;;
+;;;;                    FONCTIONS DE VERIFICATIONS DES PREMISSES
+;;;;
+;;;;###############################################################################
+
 
 (defun estUnComparateur? (symbole)
   (OR (EQUAL symbole '<) (EQUAL symbole '>) (EQUAL symbole '<=) (EQUAL symbole '>=))
@@ -44,6 +45,24 @@
   )
 )
 
+(defun evalOperande(operande)
+  (let ((newList (list)))
+      (dolist (x operande newList)
+        (cond
+          ((LISTP x)
+            (setq newList (append newList (list (evalOperande x)))))
+          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+            (setq newList (APPEND newList (list x))))
+          ((SYMBOLP x)
+            (if (NULL (ASSOC x *BaseFaits*))
+                (return-from evalOperande NIL) ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
+              (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
+            ))
+          (T (setq newList (APPEND newList (list x))))
+        )
+    )
+  )
+)
 
 (defun conditionRespecte?(condition)
 (cond
@@ -76,37 +95,32 @@
 )
 
 
+;;;;###############################################################################
+;;;;
+;;;;                 FONCTIONS DE MISE A JOUR DE LA BASE DE FAIT
+;;;;
+;;;;###############################################################################
 
-#|
-  ~ = Alt + N
-  | = Alt + Shift + L
+;;;; ON MODIFIE LE FAIT SI IL EXISTE ET ON L'AJOUTE SI IL N'EXISTE PAS
+(defun ajouterFait(fait)
+  (if (assoc (car fait) *BaseFaits*)
+    (setf (assoc (car fait) *BaseFaits*) (cdr fait))
+    (push fait *BaseFaits*)
+  )
+)
 
-  Pour la comparaison :
-    - Si c'est un comparateur alors on le garde
-    - Si c'est un opérateur on le garde
-    - Si c'est un symbole on va chercher sa valeur dans la base de fait (il faut vérifier qu'il existe)
-    - Si c'est une liste appel récursif
-
-    Faire deux fonctions :
-      - Une fonction qui va vérifier la comparaison  "verifierComparaison"
-      - Une fonction qui va évaleur toutes les opérandes "evalOperande"   DONE BIATCH
-|#
-
-
-(defun evalOperande(operande)
-  (let ((newList (list)))
-      (dolist (x operande newList)
-        (cond
-          ((LISTP x)
-            (setq newList (append newList (list (evalOperande x)))))
-          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
-            (setq newList (APPEND newList (list x))))
-          ((SYMBOLP x)
-            (if (NULL (ASSOC x *BaseFaits*))
-                (return-from evalOperande NIL) ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
-              (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
-            ))
-          (T (setq newList (APPEND newList (list x))))
+(defun evaluerValeur(val)
+  (cond
+    ((NUMBERP val) val)
+    ((SYMBOLP val) (cadr (ASSOC val *BaseFaits*)))
+    ((LISTP val)
+      (let (newVal)
+          (dolist (x val newVal)
+            (if (OR (EQUAL x '+) (EQUAL x '-) (EQUAL x '/) (EQUAL x '*) (EQUAL x 'truncate))
+              (setq newVal (APPEND newVal (list x)))
+              (setq newVal (APPEND newVal (list (evaluerValeur x))))
+            )
+          )
         )
     )
   )

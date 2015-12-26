@@ -169,7 +169,7 @@ Règles :
 
 						(
 							(
-								(VitesseNain . (VitesseNain * 0.75))
+								(VitesseNain . (* VitesseNain 0.75))
 							)
 							(
 								(DEFINI (VitesseNain))
@@ -179,7 +179,7 @@ Règles :
 						;; Vitesse pioche
 						(
 							(
-								(VitesseNain . (VitesseNain * 1.5))
+								(VitesseNain . (* VitesseNain 1.5))
 							)
 							(
 								(DEFINI (VitesseNain))
@@ -189,7 +189,7 @@ Règles :
 
 						(
 							(
-								(VitesseNain . (VitesseNain * 2))
+								(VitesseNain . (* VitesseNain 2))
 							)
 							(
 								(DEFINI (VitesseNain))
@@ -241,10 +241,9 @@ Règles :
 						;; Calcul de nains
 						(
 								(NbNainMinier .
-								(car (*
+								  (*
 										(truncate (/ LargeurTunnel 1.25))
 										HauteurTunnel)
-									)
 								)
 
 							(

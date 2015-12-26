@@ -2,13 +2,13 @@
 (load "moteur_inference.lisp")
 ;;;;(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 
-(ajouterFait (list 'TYPEDEROCHE 'Micachiste))
-(ajouterFait (list 'TYPEDEPIOCHE 'Double))
-(ajouterFait (list 'LargeurTunnel 5))
-(ajouterFait (list 'HauteurTunnel 3))
-(ajouterFait (list 'NombreDeJours 10))
+(ajouterFait (list 'TYPEDEROCHE  'Micachiste))
+(ajouterFait (list 'TYPEDEPIOCHE  'Double))
+(ajouterFait (list 'LargeurTunnel  5))
+(ajouterFait (list 'HauteurTunnel  3))
+(ajouterFait (list 'NombreDeJours  10))
 (ajouterFait (list 'LongueurTunnel 10))
-(ajouterFait (list 'VitesseNain 2))
+(ajouterFait (list 'VitesseNain  2))
 
 (defun TESTREGLES()
   (dolist (x *BaseRegles* NIL)
@@ -42,7 +42,11 @@
   LongueurTunnel))
   )
 
+(setq valeur '(*
+  (truncate (/ LargeurTunnel 1.25))
+  HauteurTunnel))
 
-(TESTREGLES)
-
-(print *BaseFaits*)
+(print (evaluerValeur valeur))
+(print (eval (evaluerValeur valeur)))
+;;;;(TESTREGLES)
+;;;;(print *BaseFaits*)
