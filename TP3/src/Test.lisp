@@ -15,6 +15,17 @@
       (format t "~a -> ~c[31m~a~c[0m~%" x #\ESC (premisseRespecte? x) #\ESC)
     )
   )
+
+(defun TestAjoutNouveauxFaits()
+  (dolist (x *BaseRegles* NIL)
+    (format t "~%~%~a~%" (getNom x))
+    (dolist (y (getNouveauxFaits x) NIL)
+      (format t "~%~a" y)
+      (format t "~%~a"  (eval (evaluerValeur (cdr y)))
+    )
+  )
+)
+)
 ;;;;(setq operandeTest '(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2))
 ;;;;(print operandeTest)
 ;;(print (evalOperande operandeTest))|#
@@ -48,5 +59,7 @@
 
 (print (evaluerValeur valeur))
 (print (eval (evaluerValeur valeur)))
+
+(TestAjoutNouveauxFaits)
 ;;;;(TESTREGLES)
 ;;;;(print *BaseFaits*)
