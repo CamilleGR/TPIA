@@ -80,13 +80,42 @@
 
     Faire deux fonctions :
       - Une fonction qui va vérifier la comparaison  "verifierComparaison"
-      - Une fonction qui va évaleur toutes les opérandes "evalOperande"
+      - Une fonction qui va évaleur toutes les opérandes "evalOperande"   DONE BIATCH 
 |#
 
 
+(defun evalOperande(operande)
+  (let ((newList (list)))
+    (eval (dolist (x operande newList)
+      (cond
+        ((LISTP x)
+          (setq newList (append newList (list (evalOperande x)))))
+        ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+          (setq newList (APPEND newList (list x))))
+        ((SYMBOLP x)
+          (if (NULL (ASSOC x *BaseFaits*))
+              (return-from evalOperande NIL) ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
+              (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
+            ))
+        (T (setq newList (APPEND newList (list x))))
+        )
+    ))
+)
+)
+
+;;;;;(cadr (ASSOC x *BaseFaits*))))
+;;;;(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 
 (ajouterFait (list 'TYPEDEROCHE 'Micachiste))
 (ajouterFait (list 'TYPEDEPIOCHE 'Double))
-(ajouterFait (list 'VITESSENAIN 1))
+(ajouterFait (list 'LargeurTunnel 5))
+(ajouterFait (list 'HauteurTunnel 3))
+(ajouterFait (list 'NombreDeJours 10))
+(ajouterFait (list 'VitesseNain 10))
+(setq operandeTest '(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2))
+(print operandeTest)
+(print (evalOperande operandeTest))
+#|
 (TESTREGLES)
 (print *BaseFaits*)
+|#
