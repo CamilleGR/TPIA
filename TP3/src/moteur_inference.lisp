@@ -115,7 +115,7 @@
     ((LISTP val)
       (let (newVal)
           (dolist (x val newVal)
-            (if (OR (EQUAL x '+) (EQUAL x '-) (EQUAL x '/) (EQUAL x '*) (EQUAL x 'truncate))
+            (if (OR (EQUAL x '+) (EQUAL x '-) (EQUAL x '/) (EQUAL x '*) (EQUAL x 'truncate) (EQUAL x 'ceiling))
               (setq newVal (APPEND newVal (list x)))
               (setq newVal (APPEND newVal (list (evaluerValeur x))))
             )
