@@ -220,11 +220,7 @@ Règles :
 							(
 								(COMPARAISON (>=
 									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
-									LongueurTunnel
-								))
-                (COMPARAISON (<=
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
-									LongueurTunnel
+									LongueurTunnel (* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
 								))
 							)
 						RCR2)
