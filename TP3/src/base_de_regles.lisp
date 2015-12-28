@@ -242,7 +242,7 @@ Règles :
 						(
 								((NbNainMinier .
 								  (*
-										(truncate (/ LargeurTunnel 1.25))
+										(ceiling (/ LargeurTunnel 1.25))
 										HauteurTunnel))
 								)
 
