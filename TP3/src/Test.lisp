@@ -2,13 +2,11 @@
 (load "moteur_inference.lisp")
 ;;;;(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 
-(ajouterFait (list 'TYPEDEROCHE  'Micachiste))
-(ajouterFait (list 'TYPEDEPIOCHE  'Double))
-(ajouterFait (list 'LargeurTunnel  5))
-(ajouterFait (list 'HauteurTunnel  3))
-(ajouterFait (list 'NombreDeJours  10))
-(ajouterFait (list 'LongueurTunnel 10))
-(ajouterFait (list 'VitesseNain  2))
+(ajouterFait (list 'TYPEDEROCHE  'GRANITE))
+(ajouterFait (list 'LargeurTunnel  4))
+(ajouterFait (list 'HauteurTunnel  1))
+(ajouterFait (list 'NombreDeJours  2))
+(ajouterFait (list 'LongueurTunnel 28))
 
 (defun TESTREGLES()
   (dolist (x *BaseRegles* NIL)
@@ -47,19 +45,22 @@
 ;;;)
 
 ;;;;(TESTREGLES)
+;;;;(setq  condition '(COMPARAISON (>=
+;;;;  (* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
+;;;;  LongueurTunnel))
+;;;;  )
 
-(setq  condition '(COMPARAISON (>=
-  (* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
-  LongueurTunnel))
-  )
+;;;;(setq valeur '(*
+;;;;  (truncate (/ LargeurTunnel 1.25))
+;;;;  HauteurTunnel))
 
-(setq valeur '(*
-  (truncate (/ LargeurTunnel 1.25))
-  HauteurTunnel))
+;;;;(print (evaluerValeur valeur))
+;;;;(print (eval (evaluerValeur valeur)))
 
-(print (evaluerValeur valeur))
-(print (eval (evaluerValeur valeur)))
 
-(TestAjoutNouveauxFaits)
+(format t "~%~%~%~%TEST DU MOTEUR D'INFERENCE EN CHAINAGE AVANT~%~%")
+
+(print (chainageAvant))
+(print (evaluerValeur T))
+
 ;;;;(TESTREGLES)
-;;;;(print *BaseFaits*)
