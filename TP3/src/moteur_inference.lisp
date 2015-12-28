@@ -104,14 +104,13 @@
 ;;;; ON MODIFIE LE FAIT SI IL EXISTE ET ON L'AJOUTE SI IL N'EXISTE PAS
 (defun ajouterFait(fait)
   (if (assoc (car fait) *BaseFaits*)
-    (setf (assoc (car fait) *BaseFaits*) (cdr fait))
+    (setq *BaseFaits* (remove (car fait) *BaseFaits* :key #'first)))
     (push fait *BaseFaits*)
-  )
 )
 
 (defun evaluerValeur(val)
   (cond
-    ((NUMBERP val) val)
+    ((OR (EQUAL val T) (NULL val)(NUMBERP val)) val)
     ((SYMBOLP val) (cadr (ASSOC val *BaseFaits*)))
     ((LISTP val)
       (let (newVal)
@@ -124,4 +123,39 @@
         )
     )
   )
+)
+
+(defun majBDF(regle)
+  (dolist (x (getNouveauxFaits regle) NIL)
+    (if (EQUAL 'RCR1 (getNom regle))
+      (format t "~%~%VALEUR = ~a~%EVALUE = ~a~%~%" (cdr x) (evaluerValeur (cdr x)))
+    )
+    (if (listp (evaluerValeur (cdr x)))
+      (ajouterFait (list (car x) (eval (evaluerValeur (cdr x)))))
+      (ajouterFait (list (car x) (cdr x)))
+    )
+  )
+)
+
+
+(defun chainageAvant()
+  (let ((listeRegle *BaseRegles*)(nouveauxFaits T)(reglesUtilise NIL))
+  (loop while nouveauxFaits do
+    (setq nouveauxFaits NIL)
+    (dolist (r listeRegle NIL) ;;;; TANT QU'IL Y A DES RÈGLES À TESTER
+          (format t "~%REGLE = ~a~%BDF = ~a" (caddr r) *BaseFaits*)
+            (if (premisseRespecte? r) ;;;; SI LES PREMISSES DE LA REGLE SONT RESPECTES
+                (progn
+                    (setq nouveauxFaits T)                      ;;;; ON NOTIFIE QU'IL Y A EUT UN NOUVEAU FAIT
+                    (setq listeRegle (remove (caddr r) listeRegle :key #'third))  ;;;; ON REITIRE LA REGLE DE LA LISTE
+                    (majBDF r)
+                    (if (EQUAL (caddr r) 'RCR1) (format t "~%~%DECLENCHEMENT DE RCR1~%~%~%"))
+                    (push (caddr r) reglesUtilise)
+
+                )
+            )
+      )
+  )
+  reglesUtilise
+)
 )
