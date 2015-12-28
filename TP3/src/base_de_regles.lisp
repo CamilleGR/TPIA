@@ -222,6 +222,10 @@ Règles :
 									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
 								))
+                (COMPARAISON (<=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
+									LongueurTunnel
+								))
 							)
 						RCR2)
 
@@ -254,13 +258,13 @@ Règles :
 						(
 							(
 								(NbNainGuerisseur .
-								(truncate (NbNainMinier / 3))
+								(truncate (/ NbNainMinier 3))
 								)
 								(NbNainForgeron .
-								(truncate (NbNainMinier / 3))
+								(truncate (/ NbNainMinier 3))
 								)
 								(NbNainTourneurManche .
-								(truncate (NbNainMinier / 3))
+								(truncate (/ NbNainMinier 3))
 								)
 							)
 
