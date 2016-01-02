@@ -247,6 +247,21 @@ Règles :
 										HauteurTunnel)
 									)
 								)
+								(NbNainGuerisseur . 
+								(ceiling 
+									(/ NbNainMinier 3))
+								)
+								(NbNainForgeron . 
+								(ceiling 
+									(/ NbNainMinier 3))
+								)
+								(NbNainTourneurManche . 
+								(ceiling 
+									(/ NbNainMinier 3))
+								)
+								(NbNainTotal .
+								(+ NbNainMinier NbNainGuerisseur NbNainForgeron NbNainTourneurManche)
+								)
 							)
 							
 							(
@@ -256,25 +271,60 @@ Règles :
 							
 						(
 							(
-								(NbNainGuerisseur . 
-								(truncate (NbNainMinier / 3))
+								(NbNainRavitaillement .
+								(* NbNainTotal 4)
 								)
-								(NbNainForgeron . 
-								(truncate (NbNainMinier / 3))
+								(NbNainPlongueur .
+								(ceiling (/ NbNainRavitaillement 4))
 								)
-								(NbNainTourneurManche . 
-								(truncate (NbNainMinier / 3))
+								(NbNainTotal .
+								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
 								)
 							)
 							
 							(
 								(NbNainMinier)
-								(ChantierRéalisable T)
+								(ChantierRéalisable NIL)
 							)
 						RN2)
+						
+						(
+							(
+								(NbNainPorteurLanterne . 
+								(* (ceiling (/ NbNainMinier  3)) 4)
+								)
+								(NbNainTotal .
+								(+ NbNainTotal NbNainPorteurLanterne)
+								)
+								
+								(NbNainSurveillant .
+								(ceiling (/ NbNainTotal 4))
+								)
+								(NbNainManager . 
+								(ceiling (/ NbNainSurveillant 3))
+								)
+								(NbNainTotal .
+								(+ NbNainTotal NbNainSurveillant NbNainManager)
+								)
+								
+								(NbNainRavitaillement .
+								(* NbNainTotal 4)
+								)
+								(NbNainPlongueur .
+								(ceiling (/ NbNainRavitaillement 4))
+								)
+								(NbNainTotal .
+								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
+								)
+							)
+							
+							(
+								(NbNainMinier)
+								(EquipeDeNuit T)
+							)
+						RN3)
 					)
 					
-					;; Il manque : nains ravitaillements / nains surveillants / nains porteurs de lumière
 					;; Le coût
 					;; Règle finale qui calcule le nb de nains total 
 						
