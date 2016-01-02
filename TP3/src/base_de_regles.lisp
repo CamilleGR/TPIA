@@ -328,7 +328,7 @@ Règles :
 								)
 								
 								(NbNainTotal .
-								(+ NbNainSurveillant NbNainManager NbNainRavitaillement NbNainPlongueur)
+								(+ NbNainTotal NbNainSurveillant NbNainManager NbNainRavitaillement NbNainPlongueur)
 								)
 								(NainsCalculé . T)
 							)
