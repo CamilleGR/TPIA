@@ -57,143 +57,143 @@ Règles :
 |#
 
 ;; Vitesse roche
-(setq *BaseRegles*  
+(setq *BaseRegles*
           '(
 						(
 							(
 								(VitesseNain . 4)
 							)
 							(
-								(TypeDeRoche Micachiste)
+								(EGALITE (TypeDeRoche Micachiste))
 							)
 						RTR1)
-						
+
 						(
 							(
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Granite)
+								(EGALITE (TypeDeRoche Granite))
 							)
 						RTR2)
-						
+
 						(
 							(
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Gabbros)
+								(EGALITE (TypeDeRoche Gabbros))
 							)
 						RTR3)
-						
+
 						(
 							(
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Prasinites)
+								(EGALITE (TypeDeRoche Prasinites))
 							)
 						RTR4)
-						
+
 						(
 							(
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Serpentines)
+								(EGALITE (TypeDeRoche Serpentines))
 							)
 						RTR5)
-						
+
 						(
 							(
 								(VitesseNain . 3)
 							)
 							(
-								(TypeDeRoche Cipolins)
+								(EGALITE (TypeDeRoche Cipolins))
 							)
 						RTR6)
-					
+
 						(
 							(
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Amphiobolite)
+								(EGALITE (TypeDeRoche Amphiobolite))
 							)
 						RTR7)
-						
+
 						(
 							(
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Leptyrites)
+								(EGALITE (TypeDeRoche Leptyrites))
 							)
 						RTR8)
-						
+
 						(
 							(
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Ophiolites)
+								(EGALITE (TypeDeRoche Ophiolites))
 							)
 						RTR9)
-					
+
 						(
 							(
 								(VitesseNain . 2)
 							)
 							(
-								(TypeDeRoche Orthophyres)
+								(EGALITE (TypeDeRoche Orthophyres))
 							)
 						RTR10)
-						
+
 						(
 							(
 								(VitesseNain . 1)
 							)
 							(
-								(TypeDeRoche Splites)
+								(EGALITE (TypeDeRoche Splites))
 							)
 						RTR11)
-					
+
 						(
 							(
 								(VitesseNain . 1)
 							)
 							(
-								(TypeDeRoche Greis)
+								(EGALITE (TypeDeRoche Greis))
 							)
 						RTR12)
-					
+
 						(
 							(
-								(VitesseNain . (VitesseNain * 0.75))
+								(VitesseNain . (* VitesseNain 0.75))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche MauvaiseQualite)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche MauvaiseQualite))
 							)
 						RTP1)
-						;; Vitesse pioche				
+						;; Vitesse pioche
 						(
 							(
-								(VitesseNain . (VitesseNain * 1.5))
+								(VitesseNain . (* VitesseNain 1.5))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche Double)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Double))
 							)
 						RTP2)
-						
+
 						(
 							(
-								(VitesseNain . (VitesseNain * 2))
+								(VitesseNain . (* VitesseNain 2))
 							)
 							(
-								(VitesseNain)
-								(TypeDePioche Mithril)
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Mithril))
 							)
 						RTP3)
 					;; Chantier OK et equipe de nuit ?
@@ -202,45 +202,45 @@ Règles :
 								(ChantierRéalisable . T)
 								(EquipeDeNuit . NIL)
 							)
-							
+
 							(
-								(>= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain) 
+								(COMPARAISON (>=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
 									LongueurTunnel
-								)
+								))
 							)
 						RCR1)
-						
+
 						(
 							(
 								(ChantierRéalisable . T)
 								(EquipeDeNuit . T)
 							)
-							
+
 							(
-								(>= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2) 
-									LongueurTunnel
-								)
+								(COMPARAISON (>=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
+									LongueurTunnel (* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain)
+								))
 							)
 						RCR2)
-						
+
 						(
 							(
 								(ChantierRéalisable . NIL)
 								(EquipeDeNuit . NIL)
 							)
-							
+
 							(
-								(<= 
-									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2) 
+								(COMPARAISON (<=
+									(* LargeurTunnel HauteurTunnel NombreDeJours VitesseNain 2)
 									LongueurTunnel
-								)
+								))
 							)
 						RCR3)
 						;; Calcul de nains
 						(
-							(<
+							(
 								(NbNainMinier . 
 								(car (* 
 										(truncate (/ LargeurTunnel 1.25)) 
@@ -265,7 +265,7 @@ Règles :
 							)
 							
 							(
-								(ChantierRéalisable T)
+								(EGALITE (ChantierRéalisable T))
 							)
 						RN1)
 							
@@ -284,8 +284,8 @@ Règles :
 							)
 							
 							(
-								(NbNainMinier)
-								(EquipeDeNuit NIL)
+								(DEFINI (NbNainMinier))
+								(EGALITE (EquipeDeNuit NIL))
 							)
 						RN2)
 						
@@ -321,8 +321,8 @@ Règles :
 							)
 							
 							(
-								(NbNainMinier)
-								(EquipeDeNuit T)
+								(DEFINI (NbNainMinier))
+								(EGALITE (EquipeDeNuit T))
 							)
 						RN3)
 						
@@ -332,13 +332,21 @@ Règles :
 							)
 							
 							(
-								(NainsCalculé T)
+								(EGALITE (NainsCalculé T))
 							)
 						RC)
 					)
-					
+
+)
+
+					;; Il manque : nains ravitaillements / nains surveillants / nains porteurs de lumière
 					;; Le coût
 					;; Règle finale qui calcule le nb de nains total 
 						
 							
+							(
+								(DEFINI (NbNainMinier))
+								(EGALITE (EquipeDeNuit T))
+							)
+						RN3)
 						
