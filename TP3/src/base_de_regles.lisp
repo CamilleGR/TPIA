@@ -293,31 +293,31 @@ Règles :
 								(NbNainPorteurLanterne .
 								(* (ceiling (/ NbNainMinier  3)) 4)
 								)
-								
+
 								(NbNainMinier .
 								(* NbNainMinier 2)
 								)
-								
+
 								(NbNainGuerisseur .
 								(* NbNainGuerisseur 2)
 								)
-								
+
 								(NbNainForgeron .
 								(* NbNainForgeron 2)
 								)
-								
+
 								(NbNainTourneurManche .
 								(* NbNainTourneurManche 2)
 								)
-								
-								(NbNainTotal
+
+								(NbNainTotal .
 								(+ (* NbNainTotal 2) NbNainPorteurLanterne)
 								)
-								
+
 								(NbNainSurveillant .
 								(ceiling (/ NbNainTotal 4))
 								)
-								(NbNainManager . 
+								(NbNainManager .
 								(ceiling (/ NbNainSurveillant 3))
 								)
 								(NbNainRavitaillement .
@@ -326,7 +326,7 @@ Règles :
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
 								)
-								
+
 								(NbNainTotal .
 								(+ NbNainTotal NbNainSurveillant NbNainManager NbNainRavitaillement NbNainPlongueur)
 								)
@@ -338,6 +338,8 @@ Règles :
 								(EGALITE (EquipeDeNuit T))
 							)
 						RN3)
+
+
 
 						(
 							(
