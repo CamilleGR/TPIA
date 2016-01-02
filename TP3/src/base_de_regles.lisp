@@ -241,34 +241,33 @@ Règles :
 						;; Calcul de nains
 						(
 							(
-								(NbNainMinier . 
-								(car (* 
-										(truncate (/ LargeurTunnel 1.25)) 
+								(NbNainMinier .
+								(*
+										(truncate (/ LargeurTunnel 1.25))
 										HauteurTunnel)
 									)
-								)
-								(NbNainGuerisseur . 
-								(ceiling 
+								(NbNainGuerisseur .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
-								(NbNainForgeron . 
-								(ceiling 
+								(NbNainForgeron .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
-								(NbNainTourneurManche . 
-								(ceiling 
+								(NbNainTourneurManche .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
 								(NbNainTotal .
 								(+ NbNainMinier NbNainGuerisseur NbNainForgeron NbNainTourneurManche)
 								)
 							)
-							
+
 							(
 								(EGALITE (ChantierRéalisable T))
 							)
 						RN1)
-							
+
 						(
 							(
 								(NbNainRavitaillement .
@@ -282,22 +281,22 @@ Règles :
 								)
 								(NainsCalculé . T)
 							)
-							
+
 							(
 								(DEFINI (NbNainMinier))
 								(EGALITE (EquipeDeNuit NIL))
 							)
 						RN2)
-						
+
 						(
 							(
-								(NbNainPorteurLanterne . 
+								(NbNainPorteurLanterne .
 								(* (ceiling (/ NbNainMinier  3)) 4)
 								)
 								(NbNainSurveillant .
 								(ceiling (/ NbNainTotal 4))
 								)
-								(NbNainManager . 
+								(NbNainManager .
 								(ceiling (/ NbNainSurveillant 3))
 								)
 								(NbNainRavitaillement .
@@ -306,40 +305,40 @@ Règles :
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
 								)
-								
+
 								(NbNainMinier .
 								(* NbNainMinier 2)
 								)
-								
+
 								(NbNainGuerisseur .
 								(* NbNainGuerisseur 2)
 								)
-								
+
 								(NbNainForgeron .
 								(* NbNainForgeron 2)
 								)
-								
+
 								(NbNainTourneurManche .
 								(* NbNainTourneurManche 2)
 								)
-								
+
 								(NbNainTotal .
 								(+ (* NbNainTotal 2) NbNainSurveillant NbNainManager NbNainPorteurLanterne NbNainRavitaillement NbNainPlongueur)
 								)
 								(NainsCalculé . T)
 							)
-							
+
 							(
 								(DEFINI (NbNainMinier))
 								(EGALITE (EquipeDeNuit T))
 							)
 						RN3)
-						
+
 						(
 							(
 								;; TODO
 							)
-							
+
 							(
 								(EGALITE (NainsCalculé T))
 							)

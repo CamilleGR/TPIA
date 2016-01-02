@@ -49,16 +49,24 @@
       (setq largeurTunnel (parse-integer (string (read-line)) :junk-allowed t))
       (if (NULL largeurTunnel) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE") )
     )
+    (loop while (NULL hauteurTunnel) do
+      (format t "~%Quel est la hauteur de votre tunnel ?")
+      (setq hauteurTunnel (parse-integer (string (read-line)) :junk-allowed t))
+      (if (NULL hauteurTunnel) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE") )
+    )
     (loop while (NULL nbJourMax) do
       (format t "~%Dans combien de temps votre tunnel doit être prêt ?")
       (setq nbJourMax (parse-integer (string (read-line)) :junk-allowed t))
       (if (NULL nbJourMax) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE") )
     )
-    (loop while (NULL hauteurTunnel) do
-      (format t "~%Dans combien de temps votre tunnel doit être prêt ?")
-      (setq hauteurTunnel (parse-integer (string (read-line)) :junk-allowed t))
-      (if (NULL hauteurTunnel) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE") )
+    (loop while (OR (NULL nbJourMax) (> 0 nbJourMax) (> nbJourMax 11)) do
+      (format t "~%Selectionner le type de roche dans lequel vous voulez creuser :
+        ~%1- Gabbros~%2- Greis~%3- Micachiste~%4- Amphibolite~%5- Leptyrites~%6- Ophiolites
+        ~%7- Prasinites~%8- Serpentines~%9- Cipolins~%10- Splites~%11- Orthophyres~%12- Granite~%")
+      (setq nbJourMax (parse-integer (string (read-line)) :junk-allowed t))
+      (if (OR (NULL nbJourMax) (< 0 nbJourMax) (> nbJourMax 11)) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE ENTRE 1 ET 11") )
     )
+
     (ajouterFait (list 'LargeurTunnel LargeurTunnel))
     (ajouterFait (list 'longueurTunnel longueurTunnel))
     (ajouterFait (list 'NombreDeJours nbJourMax))
