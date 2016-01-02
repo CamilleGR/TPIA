@@ -280,11 +280,12 @@ Règles :
 								(NbNainTotal .
 								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
 								)
+								(NainsCalculé . T)
 							)
 							
 							(
 								(NbNainMinier)
-								(ChantierRéalisable NIL)
+								(EquipeDeNuit NIL)
 							)
 						RN2)
 						
@@ -316,6 +317,7 @@ Règles :
 								(NbNainTotal .
 								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
 								)
+								(NainsCalculé . T)
 							)
 							
 							(
@@ -323,6 +325,16 @@ Règles :
 								(EquipeDeNuit T)
 							)
 						RN3)
+						
+						(
+							(
+								;; TODO
+							)
+							
+							(
+								(NainsCalculé T)
+							)
+						RC)
 					)
 					
 					;; Le coût
