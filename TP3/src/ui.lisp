@@ -63,7 +63,7 @@
     (ajouterFait (list 'longueurTunnel longueurTunnel))
     (ajouterFait (list 'NombreDeJours nbJourMax))
     (ajouterFait (list 'hauteurTunnel hauteurTunnel))
-    (ajouterFait (list 'TypeDePioche 'Double))
+  ;  (ajouterFait (list 'TypeDePioche 'Double))
     (ajouterFait (list 'TypeDeRoche 'GRANITE))
     (print *BaseFaits*)
     (chainageAvant)
