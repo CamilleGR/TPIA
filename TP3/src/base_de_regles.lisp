@@ -271,7 +271,7 @@ Règles :
 						(
 							(
 								(NbNainRavitaillement .
-								(* NbNainTotal 4)
+								(* NbNainMinier 4)
 								)
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
@@ -293,28 +293,36 @@ Règles :
 								(NbNainPorteurLanterne .
 								(* (ceiling (/ NbNainMinier  3)) 4)
 								)
+<<<<<<< HEAD
 								(NbNainTotal .
 								(+ NbNainTotal NbNainPorteurLanterne)
 								)
 
+=======
+>>>>>>> a1be6b19b4f9dee853eb08f8859599c64e204e09
 								(NbNainSurveillant .
 								(ceiling (/ NbNainTotal 4))
 								)
 								(NbNainManager .
 								(ceiling (/ NbNainSurveillant 3))
 								)
+<<<<<<< HEAD
 								(NbNainTotal .
 								(+ NbNainTotal NbNainSurveillant NbNainManager)
 								)
 
 								(NbNainRavitaillement .
 								(* NbNainMinier 4)
+=======
+								(NbNainRavitaillement .
+								(* NbNainTotal 8)
+>>>>>>> a1be6b19b4f9dee853eb08f8859599c64e204e09
 								)
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
 								)
 								(NbNainTotal .
-								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
+								(+ NbNainTotal NbNainSurveillant NbNainManager NbNainPorteurLanterne NbNainRavitaillement NbNainPlongueur)
 								)
 								(NainsCalculé . T)
 							)
