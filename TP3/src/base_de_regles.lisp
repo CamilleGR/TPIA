@@ -321,7 +321,7 @@ Règles :
 								(ceiling (/ NbNainSurveillant 3))
 								)
 								(NbNainRavitaillement .
-								(* NbNainMinier 8)
+								(* NbNainMinier 4)
 								)
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
