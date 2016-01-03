@@ -32,16 +32,10 @@
 
 (defparameter *reglesUtilise* NIL)
 
-(defun nainVsUtc()
-  (format t "~%Bien sure que oui, t'en a d'autre des questions cons ?~%")
-  )
-
-(defun GestionDesNains()
-  (format t "~%Parce que c'est des ivrognes pardi !~%")
-  )
-
 (defun gestionDesNains()
-  (let ((longueurTunnel)(largeurTunnel)(nbJourMax)(hauteurTunnel))
+  (let ((longueurTunnel)(largeurTunnel)(nbJourMax)(hauteurTunnel)(typeRoche)
+          (listeRoche '(Gabbros Greis Micachiste Amphibolite Leptyrites
+            Ophiolites Prasinites Serpentines Cipolins Splites Orthophyres Granite)))
     (loop while (OR (NULL longueurTunnel) (<= longueurTunnel 0)) do
       (format t "~%De quel longueur est votre tunnel ?")
       (setq longueurTunnel (parse-integer (string (read-line)) :junk-allowed t))
@@ -62,35 +56,29 @@
       (setq nbJourMax (parse-integer (string (read-line)) :junk-allowed t))
       (if (NULL nbJourMax) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE POSITIF") )
     )
-    (loop while (OR (NULL nbJourMax) (> 0 nbJourMax) (> nbJourMax 11)) do
-      (format t "~%Selectionner le type de roche dans lequel vous voulez creuser :
-        ~%1- Gabbros~%2- Greis~%3- Micachiste~%4- Amphibolite~%5- Leptyrites~%6- Ophiolites
-        ~%7- Prasinites~%8- Serpentines~%9- Cipolins~%10- Splites~%11- Orthophyres~%12- Granite~%")
-      (setq nbJourMax (parse-integer (string (read-line)) :junk-allowed t))
-      (if (OR (NULL nbJourMax) (< 0 nbJourMax) (> nbJourMax 11)) (format t "ERREUR : VEUILLEZ ENTRER UN NOMBRE ENTRE 1 ET 11") )
+    (loop while (OR (NULL typeRoche)(NOT (member typeRoche listeRoche))) do
+      (format t "~%Selectionner le type de roche dans lequel vous voulez creuser :~%")
+      (dolist (roche listeRoche) (format t "~a~%" roche))
+      (setq typeRoche (intern (string-upcase (string (read-line)))))
+      (if (OR (NULL typeRoche)(NOT (member typeRoche listeRoche)))
+        (format t "ERREUR : VEUILLEZ ENTRER UNE ROCHE DE LA LISTE") )
     )
 
     (ajouterFait (list 'LargeurTunnel LargeurTunnel))
     (ajouterFait (list 'longueurTunnel longueurTunnel))
     (ajouterFait (list 'NombreDeJours nbJourMax))
     (ajouterFait (list 'hauteurTunnel hauteurTunnel))
-  ;  (ajouterFait (list 'TypeDePioche 'Double))
-    (ajouterFait (list 'TypeDeRoche 'GRANITE))
+    (ajouterFait (list 'TypeDeRoche typeRoche))
+    (if (NULL (assoc 'TypeDePioche *BaseFaits*))
+        (ajouterFait (list 'TypeDePioche 'Standard))
+      )
     (print *BaseFaits*)
     (setq *reglesUtilise* (chainageAvant))
     (displayResult)
     (format t "~%~%~a~%~%" *reglesUtilise*)
   )
 )
-#|
-((NAINSCALCULÉ T) (NBNAINTOTAL 168) (NBNAINPLONGUEUR 24)
- (NBNAINRAVITAILLEMENT 96) (NBNAINTOURNEURMANCHE 8) (NBNAINFORGERON 8)
- (NBNAINGUERISSEUR 8) (NBNAINMINIER 24) (EQUIPEDENUIT NIL)
- (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE)
- (HAUTEURTUNNEL 6) (NOMBREDEJOURS 6) (LONGUEURTUNNEL 0) (LARGEURTUNNEL 5)
- (NBNAINMANAGER 2) (NBNAINSURVEILLANT 4) (NBNAINPORTEURLANTERNE 4))
 
-|#
 (defun displayResult()
   (cond
       ((NULL (cadr (assoc 'ChantierRéalisable *BaseFaits*)))
@@ -143,6 +131,19 @@
     (return-from displayResult 'OK)
 )
 
+(defun ChangementDePioche()
+  (let ((choix))
+    (format t "~%Quel type de pioche vos nains vont ils utiliser ?~%1- Mauvaise Qualitée ~%2- Pioche standard~%3- Pioche Double~%4-Pioche en mithril~%")
+    (setq choix (string (read-line)))
+    (cond
+      ((EQUAL choix "1") (ajouterFait (list 'TypeDePioche 'MauvaiseQualite)))
+      ((EQUAL choix "2") (ajouterFait (list 'TypeDePioche 'Standard)))
+      ((EQUAL choix "3") (ajouterFait (list 'TypeDePioche 'Double)))
+      ((EQUAL choix "4") (ajouterFait (list 'TypeDePioche 'Mithril)))
+      (T (warn "vous avez entré une valeur éronnée, vous utiliserez donc des pioches standards"))
+      )
+  )
+)
 
 
 (defun menu()
@@ -152,12 +153,12 @@
       (format t "~%~%          GESTION DU PERSONNEL MINIER EN ZONE DE CREUSEMENT INTENSIF~%~%")
       (format t "~%")
       (format t "    1- Combien me faut il de nain pour creuser mon tunnel ?~%")
-      (format t "    2- Paramètres~%")
+      (format t "    2- Changer l'equipement des nains~%")
       (if  *reglesUtilise* (format t "    3- Quelle règles ont été utilisées ?~%"))
       (format t "    0- Quitter~%~%")
       (setq choix (string (read-line)))
       (cond ((EQUAL choix "1") (gestionDesNains))
-	    ((EQUAL choix "2") (nainVsUtc))
+	    ((EQUAL choix "2") (ChangementDePioche))
 	    ((AND (EQUAL choix "3") *reglesUtilise*)
           (dolist (r *reglesUtilise*)
             (format t "~%~a : ~a~%" r (cdr (assoc r *detailRegle*)))
