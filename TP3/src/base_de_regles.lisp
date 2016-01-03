@@ -196,6 +196,17 @@ Règles :
 								(EGALITE (TypeDePioche Mithril))
 							)
 						RTP3)
+
+            (
+							(
+								(VitesseNain . (* VitesseNain 1))
+							)
+							(
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Standard))
+							)
+						RTP4) ;; La règle n'est pas utile, mais elle permet de spécifier l'usage de pioches standard
+
 					;; Chantier OK et equipe de nuit ?
 						(
 							(
@@ -340,7 +351,7 @@ Règles :
 						RN3)
 
 
-
+#|
 						(
 							(
 								;; TODO
@@ -349,7 +360,7 @@ Règles :
 							(
 								(EGALITE (NainsCalculé T))
 							)
-						RC)
+						RC)|#
 					)
 
 )
