@@ -1,0 +1,152 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+% Title Page
+\title{IA01 : TP2}
+\author{Par Camille Gerin-Roze et Thomas Perrin}
+
+
+
+\renewcommand{\footrulewidth}{1pt}
+\fancyfoot[C]{\textbf{\thepage}} 	
+\fancyfoot[L]{}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{flushright}
+  \includegraphics[scale = 0.2]{logo_utc.jpg}
+\end{flushright}
+\vspace*{5cm}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+ 
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \LARGE \bfseries  IA01 : Rapport du TP3}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Auteurs:}\\
+Camille \textsc{Gerin-Roze} \newline
+Thomas \textsc{Perrin} 
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+
+\end{minipage}\\[1.3cm]
+
+
+{\large Le 3 Janvier 2016} % Date, change the \today to a set date if you want to be precise
+
+\end{titlepage}
+\tableofcontents
+\chapter*{Introduction}
+\chapter{Connaissances nécessaires au système expert}
+\chapter{Implémentation du système expert}
+  \section{Choix de la représentation Lisp}
+    \subsection{Base de règles}
+    Pour représenter les règles de notre SE, nous avons choisi d'utiliser une liste qui contiendra 2 sous-listes ( les nouveaux faits et les prémisses ) 
+    ainsi que le nom de la règle. Par exemple, voici la règle RCR1 qui permet de savoir si un chantier est réalisable:\newline
+    \begin{lstlisting}[language=Lisp]
+(
+	( ;;;; DEBUT DES NOUVEAUX FAITS
+		(ChantierRealisable . T)
+		(EquipeDeNuit . NIL)
+	);;;; FIN DES NOUVEAUX FAITS
+		(;;;;DEBUT DES PREMISSES
+		(COMPARAISON (>=
+			(* LargeurTunnel HauteurTunnel 
+			    NombreDeJours VitesseNain)
+			LongueurTunnel
+		))
+	);;;;FIN DES PREMISSES
+RCR1);;;;NOM DE LA REGLE
+     
+    \end{lstlisting}
+    
+    On peut noter que les premisses ont un format bien spécial. En effet, chaque condition commence par le type de vérification à faire. Cela peut être une égalité,
+    une comparaison, ou encore une définition (savoir si un fait a déjà été défini). Cette étiquette permet de simplifier le traitement lors de la vérification
+    des prémisses. Pour les prémisses, une fonction va donc vérifier si LargeurTunnel * HauteurTunnel * NombreDeJours * VitesseNain est bien supérieur ou égale à la
+    longueur du tunnel. Si c'est le cas, notre moteur d'inférence va apeller une nouvelle fonction qui va évaluer les valeurs des nouveaux faits et les ajouter à
+    notre base de fait. Nous avons également une A-List qui contient la description de chaque règles, mais celle-ci a été mise à part dans le but de garder un code
+    clair. Cette représentation permet non seulement d'avoir un format homogène pour toutes les règles, et donc de traiter chaque règle de la même façon, mais elle
+    permet également de traiter des conditions complexes qui demandent l'évaluation de plusieurs opérations ou encore des opérations qui demandent de rechercher
+    dans la base de faits.
+
+    \subsection{Base de faits}
+      La base de faits a été faites de la manière la plus simple possible, celle-ci est juste une liste donc chaque membre est une sous-liste qui représente un fait. 
+      Un fait est tout simplement constitué d'une étiquette, donc le nom du fait, et d'une valeur qui peut être un nombre, un symbole, ou même une valeur booléenne.
+      \begin{lstlisting}[language=Lisp]
+(
+  (VitesseNain 3) 
+  (TypeRoche GRANITE)
+  (LargeurTunnel 3)
+  (LongueurTunnel 28)
+  (HauteurTunnel 1)
+)
+      \end{lstlisting}
+      Ici on peut voir qu'il y a 4 faits dans notre base de faits : la vitesse des nains, le type de roche, la largeur et la longueur du tunnel, et la hauteur du tunnel.
+  \section{Le moteur d'inférences}
+  Le moteur d'inférence est un moteur à chaînage avant avec un fonctionnement simple, mais pour bien comprendre comment il fonctionne, il faut expliciter certaines 
+  fonctions qui permettent de savoir si les prémisses sont satisfaits ou bien d'ajouter les faits à notre base de faits. Nous allons donc commencer par présenter 
+  toutes ces fonctions.\newpage
+    \subsection{Validation des prémisses}
+    Pour que les prémisses soient validés, il faut que toutes les conditions soient validées. Donc nous allons itérer sur toutes les conditions de la liste
+    des prémisses pour vérifier qu'elles sont toutes validée. Mais certaines conditions sont complexes et demandent d'aller vérifier l'existence ou la valeur 
+    de faits dans la base de faits. Pour cela nous avons défini une fonction evalOperande qui va nous permettre d'évaluer la valeur de chaque opérande :
+    \begin{lstlisting}[language=Lisp]
+(defun evalOperande(operande)
+  (let ((newList (list)))
+      (dolist (x operande newList)
+        (cond
+          ((LISTP x)
+            (setq newList (append newList (list (evalOperande x)))))
+          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+            (setq newList (APPEND newList (list x))))
+          ((SYMBOLP x)
+            (if (NULL (ASSOC x *BaseFaits*))
+	      ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
+                (return-from evalOperande NIL) 
+              (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
+            ))
+          (T (setq newList (APPEND newList (list x))))
+        )
+    )
+  )
+)    
+    \end{lstlisting}
+
+    Pour évaluer 
+    \subsection{Calcul des nouvelles valeurs}
+    \subsection{Moteur à chaînage avant}
+    \subsection{Test du moteur d'inférences}
+\chapter{Scénarios d'utilisation}
+\chapter*{Conclusion}
+
+  \end{document}          
+
+
