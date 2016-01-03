@@ -66,6 +66,40 @@ Thomas \textsc{Perrin}
 \tableofcontents
 \chapter*{Introduction}
 \chapter{Connaissances nécessaires au système expert}
+ \section{Paramètres à fournir au système}
+ Afin de déterminer le nombre de nains nécessaire à un chantier, plusieurs paramètres seront nécessaire :
+\begin{itemize}
+\item La longueur du tunnel
+\item Sa hauteur
+\item Sa largeur
+\item Le nombre de jours maximum
+\item Le type de roche
+\item Le type de pioche employé
+\end{itemize}
+
+Avec ces paramètres, on va pouvoir déterminer si oui ou non le chantier est réalisable. Si il l’est, on obtiendra un nombre total de nains avec les différents rôles de chacun. Un indicateur sera présent pour dire si une équipe de nuit est nécessaire ou non pour compléter le chantier en temps et en heures.
+
+\section{Traduction des connaissances en règles}
+
+La base de règles est décomposé en plusieurs parties :
+\begin{itemize}
+\item Les règles du type de roche (RTR)
+Ces règles vont permettre, en fonction du type de roche, de fixer la vitesse de travail d’un nain par jour.
+
+\item Les règles du type de pioche (RTP)
+Ces règles vont ajouter un coefficient multiplicateur à la vitesse de base, pour aller plus ou moins vite en fonction des moyens de l’employeur.
+
+\item Les règles concernant la réalisation du chantier (RCR)
+Ces règles vont déterminer si le chantier est réalisable avec les paramètres énoncés. En effet, en fonction de la vitesse des nains, de la hauteur, largeur et longueur du tunnel, on peut d’avance vérifier si cela tiendra avec le nombre de jours énoncé ou non.
+
+\item Les règles calculant le nombre de nains (RN)
+Ces dernières règles vont conclure en calculant le nombre de nains totals.
+\end{itemize}
+
+Toutes les règles ont été déterminés par la vidéo présentés ci-dessus, et par des échanges avec John Lang, le créateur de l’univers du Donjon de Naheulbeuk. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. 
+
+
+
 \chapter{Implémentation du système expert}
   \section{Choix de la représentation Lisp}
     \subsection{Base de règles}
@@ -118,8 +152,7 @@ RCR1);;;;NOM DE LA REGLE
     Pour que les prémisses soient validés, il faut que toutes les conditions soient validées. Donc nous allons itérer sur toutes les conditions de la liste
     des prémisses pour vérifier qu'elles sont toutes validée. Mais certaines conditions sont complexes et demandent d'aller vérifier l'existence ou la valeur
     de faits dans la base de faits. Pour cela nous avons défini une fonction evalOperande qui va nous permettre d'évaluer la valeur de chaque opérande :
-
-		\begin{lstlisting}[language=Lisp]
+    \begin{lstlisting}[language=Lisp]
 (defun evalOperande(operande)
   (let ((newList (list)))
       (dolist (x operande newList)
@@ -131,14 +164,14 @@ RCR1);;;;NOM DE LA REGLE
           ((SYMBOLP x)
             (if (NULL (ASSOC x *BaseFaits*))
 	      ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
-                (return-from evalOperande NIL)
+                (return-from evalOperande NIL) 
               (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
             ))
           (T (setq newList (APPEND newList (list x))))
         )
     )
   )
-)
+)    
     \end{lstlisting}
 
     Pour évaluer un opérande, on va vérifier si celui-ci est une liste, si c'est une liste on va alors appeller notre fonction récursivement sur chaque éléments
