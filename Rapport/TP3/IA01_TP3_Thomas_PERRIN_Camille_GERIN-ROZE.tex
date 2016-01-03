@@ -140,7 +140,11 @@ RCR1);;;;NOM DE LA REGLE
 )    
     \end{lstlisting}
 
-    Pour évaluer 
+    Pour évaluer un opérande, on va vérifier si celui-ci est une liste, si c'est une liste on va alors appeller notre fonction récursivement sur chaque éléments
+    de la liste. Dans le Cas où c'est un symbole, on va alors aller chercher sa valeur dans la base de faits. Si jamais la valeur n'est pas dans la base de faits,
+    il est important que la fonction renvoie NIL pour qu'on sache que cela ne peut pas être évalué et que la condition n'est pas respectée. À la fin de la fonction,
+    on aura une liste qui pourra être évaluée grâce à un simple eval.\newline
+    
     \subsection{Calcul des nouvelles valeurs}
     \subsection{Moteur à chaînage avant}
     \subsection{Test du moteur d'inférences}

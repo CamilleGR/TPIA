@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.14)  3 JAN 2016 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.14)  3 JAN 2016 22:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -701,29 +701,34 @@ Overfull \hbox (93.00446pt too wide) in paragraph at lines 134--135
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--147
+
+ []
+
 [6]
 Chapitre 3.
 [7
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 154.
  [8
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
  (./IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
 Package rerunfilecheck Info: File `IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.ou
 t' has not changed.
 (rerunfilecheck)             Checksum: CA0FCA3BD35C48DB46103EB96FC02681;833.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 154.
  ) 
 Here is how much of TeX's memory you used:
- 9146 strings out of 495025
- 128248 string characters out of 6181515
- 238148 words of memory out of 5000000
- 12198 multiletter control sequences out of 15000+600000
+ 9149 strings out of 495025
+ 128272 string characters out of 6181515
+ 239148 words of memory out of 5000000
+ 12201 multiletter control sequences out of 15000+600000
  8424 words of font info for 30 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  29i,5n,43p,274b,1619s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -736,8 +741,8 @@ st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmti12.pfb>
-Output written on IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.pdf (9 pages, 18580
-8 bytes).
+Output written on IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.pdf (9 pages, 18634
+0 bytes).
 PDF statistics:
  198 PDF objects out of 1000 (max. 8388607)
  175 compressed objects within 2 object streams

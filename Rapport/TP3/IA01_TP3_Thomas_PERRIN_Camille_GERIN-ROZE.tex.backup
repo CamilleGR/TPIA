@@ -140,6 +140,7 @@ RCR1);;;;NOM DE LA REGLE
 )    
     \end{lstlisting}
 
+    Pour évaluer 
     \subsection{Calcul des nouvelles valeurs}
     \subsection{Moteur à chaînage avant}
     \subsection{Test du moteur d'inférences}
