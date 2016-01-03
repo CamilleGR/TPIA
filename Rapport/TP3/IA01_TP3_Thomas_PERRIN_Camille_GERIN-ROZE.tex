@@ -321,7 +321,7 @@ toutes vrais on pourra ajouter les nouveaux faits à notre base de fait.\newpage
     \begin{lstlisting}[basicstyle = \footnotesize]
     
 De quel longueur est votre tunnel ?28
-De quel largeur est votre tunnel ?3
+De quel largeur est votre tunnel ?4
 Quel est la hauteur de votre tunnel ?1
 Dans combien de temps votre tunnel doit être prêt ?2
 Selectionner le type de roche dans lequel vous voulez creuser : GRANITE
@@ -336,32 +336,26 @@ VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 PLUS RAPIDEMENT POSSIBLE : 
 
 VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
-Nains mineurs : 2
+Nains mineurs : 3
 Nains Guerisseurs : 1
 Nains Forgerons : 1
 Nains Tourneurs de manche : 1
-Nains Ravitailleurs : 8
-Nains Plongeurs (Vaisselle) : 2
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
 
 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE DE : 
-Nains Mineurs : 2
+Nains Mineurs : 3
 Nains Guerisseurs : 1
 Nains Forgerons : 1
 Nains Tourneurs de manche : 1
-Nains Ravitailleurs : 8
-Nains Plongeurs (Vaisselle) : 2
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
 Nains Surveillants : 4
 Nains Managers : 2
 Nains Porteurs de lanternes : 4
 
-
-TOTAL :                                                40 nains
-
+TOTAL :                                                52 nains
 --------------------------------------------------------------------
-
-
-
-
 (RN3 RN1 RCR2 RTP4 RTR2)
     \end{lstlisting}
 
@@ -416,15 +410,13 @@ BDF =
     \end{itemize} 
     
   \begin{lstlisting}[basicstyle = \footnotesize]
-  BDF = 
-((NAINSCALCULÉ T) (NBNAINTOTAL 30) (NBNAINPLONGUEUR 4)
- (NBNAINRAVITAILLEMENT 16) (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2)
- (NBNAINGUERISSEUR 2) (NBNAINMINIER 4) (EQUIPEDENUIT NIL)
+BDF = 
+((NAINSCALCULÉ T) (NBNAINTOTAL 42) (NBNAINPLONGUEUR 6)
+ (NBNAINRAVITAILLEMENT 24) (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2)
+ (NBNAINGUERISSEUR 2) (NBNAINMINIER 6) (EQUIPEDENUIT NIL)
  (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
- (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 6) (NBNAINMANAGER 2)
+ (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 8) (NBNAINMANAGER 2)
  (NBNAINSURVEILLANT 4) (NBNAINPORTEURLANTERNE 4) (TYPEDEPIOCHE STANDARD))
-
-
 
 --------------------------------------------------------------------
 --------------     LE CHANTIER EST REALISABLE     ------------------
@@ -434,20 +426,19 @@ VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 PLUS RAPIDEMENT POSSIBLE : 
 
 VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
-Nains mineurs : 4
+Nains mineurs : 6
 Nains Guerisseurs : 2
 Nains Forgerons : 2
 Nains Tourneurs de manche : 2
-Nains Ravitailleurs : 16
-Nains Plongeurs (Vaisselle) : 4
+Nains Ravitailleurs : 24
+Nains Plongeurs (Vaisselle) : 6
 
 
-TOTAL :                                                30 nains
+TOTAL :                                                42 nains
 
 --------------------------------------------------------------------
 
 (RN2 RN1 RCR1 RTP4 RTR2)
-
 \end{lstlisting}
 
 \begin{itemize}
@@ -458,7 +449,7 @@ TOTAL :                                                30 nains
      \item RTR2 : Si la roche est de type Granite, alors le nain avancera avec une vitesse de 3.
 \end{itemize}
   
-  Les résultats sont cohérents, en effet 4 nains mineurs ayant une vitesse de 3 vont pouvoir creuser 
+  Les résultats sont cohérents, en effet 6 nains mineurs ayant une vitesse de 3 vont pouvoir creuser 18m par jour, donc en deux jours ils auront fini le tunnel.
   
   \newpage
   \section{Chantier réalisable avec une équipe de nuit}
@@ -479,8 +470,6 @@ BDF =
  (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
  (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 4)
  (TYPEDEPIOCHE STANDARD))
-
-
 
 --------------------------------------------------------------------
 --------------     LE CHANTIER EST REALISABLE     ------------------
@@ -508,14 +497,9 @@ Nains Surveillants : 4
 Nains Managers : 2
 Nains Porteurs de lanternes : 4
 
-
 TOTAL :                                                52 nains
 
 --------------------------------------------------------------------
-
-
-
-
 (RN3 RN1 RCR2 RTP4 RTR2)
  \end{lstlisting}
  \begin{itemize}
@@ -537,8 +521,12 @@ TOTAL :                                                52 nains
   Les résultats sont très proches de ceux exposés par John Lang dans la vidéo qui nous a permis de faire la plus grande partie des règles, mais il est normal qu'il
   y ait une légère différence car nous prenons en comptes d'autres données en compte. De plus nous avons correspondu avec John Lang, ce qui nous a forcé à modifier
   des règles. Les règles qui ont été utilisée sont cohérentes et correspondent bien aux données originels du problème (le type de pioche se modifie dans les configurations
-  de l'UI et est mis à standard par défaut)
+  de l'UI et est mis à standard par défaut).
+  Si 3 nains creusent jours et nuit, en deux jours et deux nuits ils auront creusé 3*4*3= 36m dans le granite, donc ils auront fini le tunnel.
    
 \chapter*{Conclusion}
 
+  Le système expert que nous avons réalisé nous a permis de comprendre les mécanismes d'inférence d'un système expert. Nous avons également pu nous rendre compte
+  qu'il est très important de bien structurer ses données de manières à pouvoir les utiliser facilement. Ce système expert pourrait être amélioré en ajoutant 
+  le calcul du coup d'un nain ou encore l'ajout d'autre paramètre pour avoir un résultat plus précis.
   \end{document}
