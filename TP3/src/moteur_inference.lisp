@@ -36,10 +36,8 @@
 
 
 (defun premisseRespecte?(regle)
-  ;;;;(format t "(car (getPremisse regle)) = ~a~%" (car (car (getPremisse regle))))
   (let ((test T))
     (dolist ( x (getPremisse regle) test)
-      ;;;;(print x)
       (setq test (AND test (conditionRespecte? x)))
     )
   )
@@ -51,7 +49,7 @@
         (cond
           ((LISTP x)
             (setq newList (append newList (list (evalOperande x)))))
-          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+) (EQUAL x 'truncate) )
             (setq newList (APPEND newList (list x))))
           ((SYMBOLP x)
             (if (NULL (ASSOC x *BaseFaits*))
@@ -67,7 +65,6 @@
 (defun conditionRespecte?(condition)
 (cond
   ((EQUAL (car condition) 'EGALITE)
-      ;;;;(format t "~a == ~a = ~a~%~%" (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition)) (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition))))
       (return-from conditionRespecte? (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) (cadr (cadr condition)))))
   ((EQUAL (car condition) 'DEFINI)(return-from conditionRespecte? (NOT (NULL (ASSOC (car (cadr condition)) *BaseFaits*)))))
   ((EQUAL (car condition) 'COMPARAISON)
@@ -127,9 +124,6 @@
 
 (defun majBDF(regle)
   (dolist (x (getNouveauxFaits regle) NIL)
-    (if (EQUAL 'RCR1 (getNom regle))
-      (format t "~%~%VALEUR = ~a~%EVALUE = ~a~%~%" (cdr x) (evaluerValeur (cdr x)))
-    )
     (if (listp (evaluerValeur (cdr x)))
       (ajouterFait (list (car x) (eval (evaluerValeur (cdr x)))))
       (ajouterFait (list (car x) (cdr x)))
@@ -149,9 +143,7 @@
                     (setq nouveauxFaits T)                      ;;;; ON NOTIFIE QU'IL Y A EUT UN NOUVEAU FAIT
                     (setq listeRegle (remove (caddr r) listeRegle :key #'third))  ;;;; ON REITIRE LA REGLE DE LA LISTE
                     (majBDF r)
-                    (if (EQUAL (caddr r) 'RCR1) (format t "~%~%DECLENCHEMENT DE RCR1~%~%~%"))
                     (push (caddr r) reglesUtilise)
-
                 )
             )
       )

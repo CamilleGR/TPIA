@@ -232,9 +232,313 @@ RCR1);;;;NOM DE LA REGLE
 Un fois que la condition est vérifiée, on peut tout simplement faire une boucle sur toutes les conditions pour savoir si celles-ci sont toutes vrais, si elles sont 
 toutes vrais on pourra ajouter les nouveaux faits à notre base de fait.\newpage
     \subsection{Calcul des nouvelles valeurs}
+    Dans notre système expert, il est possible qu'une variable soit mises à jour dans certains conditions. Il est aussi possible qu'il faille calculer la valeur 
+    de la variable de notre système expert, donc l'ajout d'un nouveau fait n'est pas si aisé. 
+    \begin{lstlisting}[basicstyle = \footnotesize, language=Lisp]
+(defun ajouterFait(fait)
+  (if (assoc (car fait) *BaseFaits*)
+    (setq *BaseFaits* (remove (car fait) *BaseFaits* :key #'first)))
+    (push fait *BaseFaits*)
+)
+
+(defun evaluerValeur(val)
+  (cond
+    ((OR (EQUAL val T) (NULL val)(NUMBERP val)) val)
+    ((SYMBOLP val) (cadr (ASSOC val *BaseFaits*)))
+    ((LISTP val)
+      (let (newVal)
+          (dolist (x val newVal)
+            (if (OR 
+		  (EQUAL x '+) (EQUAL x '-) (EQUAL x '/) 
+		  (EQUAL x '*) (EQUAL x 'truncate) (EQUAL x 'ceiling)
+		)
+              (setq newVal (APPEND newVal (list x)))
+              (setq newVal (APPEND newVal (list (evaluerValeur x))))
+            )
+          )
+        )
+    )
+  )
+)
+
+(defun majBDF(regle)
+  (dolist (x (getNouveauxFaits regle) NIL)
+    (if (listp (evaluerValeur (cdr x)))
+      (ajouterFait (list (car x) (eval (evaluerValeur (cdr x)))))
+      (ajouterFait (list (car x) (cdr x)))
+    )
+  )
+)
+
+    \end{lstlisting}
+
+    La fonction evaluerValeur va couvrir plusieurs cas : 
+    \begin{itemize}
+     \item Dans le cas où la valeur passée en paramètre est un nombre ou une valeur logique ( T ou NIL ) alors on ne fait rien
+     \item Dans le cas où la valeur est un symbole, on va aller chercher sa valeur dans la base de faits
+     \item Et dans le cas où la valeur est une liste, alors on va créer une nouvelle expression évaluable en allant chercher toutes les valeurs dont on a besoin dans la base de faits.
+    \end{itemize}
+    
+    En suite, la mise à jour de la base de faits se fait en évaluant notre nouvelle expression dans le cas où elle a besoin d'être évaluée.
+
+    \newpage
     \subsection{Moteur à chaînage avant}
+    
+    \begin{lstlisting}[basicstyle = \footnotesize, language=Lisp]
+(defun chainageAvant()
+  (let ((listeRegle *BaseRegles*)(nouveauxFaits T)(reglesUtilise NIL))
+  (loop while nouveauxFaits do
+    (setq nouveauxFaits NIL)
+    (dolist (r listeRegle NIL) ;;;; TANT QU'IL Y A DES RÈGLES À TESTER
+          (format t "~%REGLE=~a~%BDF=~a" (caddr r) *BaseFaits*)
+            (if (premisseRespecte? r) ;;;; SI LES PREMISSES DE LA REGLE SONT RESPECTES
+                (progn
+                    (setq nouveauxFaits T) ;;;; ON NOTIFIE QU'IL Y A EUT UN NOUVEAU FAIT
+                    
+                    ;;;; ON REITIRE LA REGLE DE LA LISTE
+                    (setq listeRegle (remove (caddr r) listeRegle :key #'third))  
+                    (majBDF r)
+                    (push (caddr r) reglesUtilise)
+                )
+            )
+      )
+  )
+  reglesUtilise
+)
+)
+    \end{lstlisting}
+
+    Le moteur d'inférence est un moteur d'inférence en chaînage avant et en profondeur d'abbord car on ajoute les faits directement après qu'ils aient été déterminés
+    par une règle. On notera également que le moteur de chainage avant va renvoyer la liste des règles utilisées, mais la base de fait étant une variable globale 
+    celle-ci est directement mise à jour.
+    \newpage
     \subsection{Test du moteur d'inférences}
+    
+    Pour pouvoir utiliser notre système expert nous avons créé une interface utilisateur, voici un exemple d'utilisation du système expert avec les données du problème
+    exposé par John Lang. On peut remarquer que le résultat est légèrement différent, ceci est dû au fait qu'en correspondant avec lui, nous avons eu de nouvelles 
+    informations qui nous ont permis de d'enrichir le système expert, d'où la petite différence de résultat.
+    
+    \begin{lstlisting}[basicstyle = \footnotesize]
+    
+De quel longueur est votre tunnel ?28
+De quel largeur est votre tunnel ?3
+Quel est la hauteur de votre tunnel ?1
+Dans combien de temps votre tunnel doit être prêt ?2
+Selectionner le type de roche dans lequel vous voulez creuser : GRANITE
+
+... DEROULEMENT DE TOUTES LES REGLES ...
+
+--------------------------------------------------------------------
+--------------     LE CHANTIER EST REALISABLE     ------------------
+--------------------------------------------------------------------
+
+VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE 
+PLUS RAPIDEMENT POSSIBLE : 
+
+VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
+Nains mineurs : 2
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 8
+Nains Plongeurs (Vaisselle) : 2
+
+AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE DE : 
+Nains Mineurs : 2
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 8
+Nains Plongeurs (Vaisselle) : 2
+Nains Surveillants : 4
+Nains Managers : 2
+Nains Porteurs de lanternes : 4
+
+
+TOTAL :                                                40 nains
+
+--------------------------------------------------------------------
+
+
+
+
+(RN3 RN1 RCR2 RTP4 RTR2)
+    \end{lstlisting}
+
 \chapter{Scénarios d'utilisation}
+
+  \section{Chantier non réalisable}
+  
+    Les nains n'apprécient pas qu'on leur marche sur les pieds, donc il faut faire attention de ne pas mettre trop de nain dans un tunnel qui n'est pas assez large.
+    On va faire tourner notre moteur d'inférence avec les données suivantes : 
+    \begin{itemize}
+     \item Largeur du tunnel : 2
+     \item Longueur du tunnel : 100
+     \item Hauteur du tunnel : 1
+     \item Temps maximale : 2
+     \item Type de roche : 
+    \end{itemize}
+    
+    Avec ces données, on a le résultat suivant:
+    \begin{lstlisting}
+BDF = 
+((EQUIPEDENUIT NIL) (CHANTIERRÉALISABLE NIL) (VITESSENAIN 3)
+(TYPEDEPIOCHE STANDARD) (TYPEDEROCHE GABBROS) (HAUTEURTUNNEL 1)
+(NOMBREDEJOURS 2) (LONGUEURTUNNEL 100) (LARGEURTUNNEL 2))
+--------------------------------------------------------------------
+-----------     LE CHANTIER EST N'EST PAS REALISABLE     -----------
+--------------------------------------------------------------------
+
+
+(RCR3 RTP4 RTR3)
+
+    \end{lstlisting}
+
+    On remarque que la vitesse des nains est de 3 à cause de la roche, Mais le chantier n'est pas réalisable. Les trois
+    règles utilisées sont : 
+        \begin{itemize}
+	    \item RCR3 : Si $$LongueurTunnel < LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain*2$$ alors le chantier n'est pas réalisable
+	    \item RTP4 : Si la pioche est standard, alors la vitesse du nain est multipliée par 1
+            \item RTR3 : Si la roche est de type Gabbros, alors le nain avancera avec une vitesse de 3.
+	\end{itemize}
+  
+    Donc il est tout à fait normal que le chantier soit irréalisable, car il faudrait que le tunnel soit beaucoup plus large pour pouvoir y mettre plus de nains.
+  \section{Chantier réalisable sans équipe de nuit}
+  
+  Pour le chantier réalisable sans équipe de nuit il faut un tunnel assez large pour pouvoir accueuillir beaucoup de nain mineurs, donc nous allons tester avec les
+  valeurs suivantes : 
+  \begin{itemize}
+     \item Largeur du tunnel : 6
+     \item Longueur du tunnel : 28
+     \item Hauteur du tunnel : 1
+     \item Temps maximale : 2
+     \item Type de roche : Granite
+    \end{itemize} 
+    
+  \begin{lstlisting}[basicstyle = \footnotesize]
+  BDF = 
+((NAINSCALCULÉ T) (NBNAINTOTAL 30) (NBNAINPLONGUEUR 4)
+ (NBNAINRAVITAILLEMENT 16) (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2)
+ (NBNAINGUERISSEUR 2) (NBNAINMINIER 4) (EQUIPEDENUIT NIL)
+ (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
+ (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 6) (NBNAINMANAGER 2)
+ (NBNAINSURVEILLANT 4) (NBNAINPORTEURLANTERNE 4) (TYPEDEPIOCHE STANDARD))
+
+
+
+--------------------------------------------------------------------
+--------------     LE CHANTIER EST REALISABLE     ------------------
+--------------------------------------------------------------------
+
+VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE 
+PLUS RAPIDEMENT POSSIBLE : 
+
+VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
+Nains mineurs : 4
+Nains Guerisseurs : 2
+Nains Forgerons : 2
+Nains Tourneurs de manche : 2
+Nains Ravitailleurs : 16
+Nains Plongeurs (Vaisselle) : 4
+
+
+TOTAL :                                                30 nains
+
+--------------------------------------------------------------------
+
+(RN2 RN1 RCR1 RTP4 RTR2)
+
+\end{lstlisting}
+
+\begin{itemize}
+     \item RN2 : Si il n'y a pas d'équipe de nuit et que l'équipe de jour est commencée, on complète l'équipe de jour avec les nains de ravitaillement et les nains plongueurs.
+     \item RN1 : Si le chantier est réalisable, alors on crée le début de l'équipe de jour qui sera présente dans tous les cas (nain miniers, nains guérisseurs, nains tourneurs de manche et nains forgeron).
+     \item RCR1 : Si LongueurTunnel inferieur à LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain, le chantier est réalisable et nous n'avons pas besoin d'équipe de nuit
+     \item RTP4 : Si la pioche est standard, alors la vitesse du nain est multipliée par 1
+     \item RTR2 : Si la roche est de type Granite, alors le nain avancera avec une vitesse de 3.
+\end{itemize}
+  
+  Les résultats sont cohérents, en effet 4 nains mineurs ayant une vitesse de 3 vont pouvoir creuser 
+  
+  \newpage
+  \section{Chantier réalisable avec une équipe de nuit}
+  Pour le chantier réalisable avec une équipe de nuit nous allons utiliser les mêmes valeurs que le problème originel et que nous avons utilisé dans le chapitre 2. 
+  \begin{itemize}
+     \item Largeur du tunnel : 4
+     \item Longueur du tunnel : 28
+     \item Hauteur du tunnel : 1
+     \item Temps maximale : 2
+     \item Type de roche : Granite
+    \end{itemize}
+  \begin{lstlisting}[basicstyle = \footnotesize]
+BDF = 
+((NAINSCALCULÉ T) (NBNAINTOTAL 52) (NBNAINPLONGUEUR 6)
+ (NBNAINRAVITAILLEMENT 24) (NBNAINMANAGER 2) (NBNAINSURVEILLANT 4)
+ (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2) (NBNAINGUERISSEUR 2)
+ (NBNAINMINIER 6) (NBNAINPORTEURLANTERNE 4) (EQUIPEDENUIT T)
+ (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
+ (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 4)
+ (TYPEDEPIOCHE STANDARD))
+
+
+
+--------------------------------------------------------------------
+--------------     LE CHANTIER EST REALISABLE     ------------------
+--------------------------------------------------------------------
+
+VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE 
+PLUS RAPIDEMENT POSSIBLE : 
+
+VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
+Nains mineurs : 3
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
+
+AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE DE : 
+Nains Mineurs : 3
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
+Nains Surveillants : 4
+Nains Managers : 2
+Nains Porteurs de lanternes : 4
+
+
+TOTAL :                                                52 nains
+
+--------------------------------------------------------------------
+
+
+
+
+(RN3 RN1 RCR2 RTP4 RTR2)
+ \end{lstlisting}
+ \begin{itemize}
+      \item RN3 : Si une équipe de nuit est nécessaire et que l'équipe de jour est commencé, 
+      on crée l'équipe de nuit (Nains porteur de lanterne, nains surveillant, nains manager), 
+      on double l'effectif de l'équipe de jour pour avoir l'équivalence en équipe de nuit 
+      et on termine par les nains de ravitaillement et les nains plongueurs. 
+
+      \item RN1 : Si le chantier est réalisable, alors on crée le début de l'équipe de jour qui sera présente dans tous les cas 
+      (nain miniers, nains guérisseurs, nains tourneurs de manche et nains forgeron).
+
+      \item RCR2 : Si LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain <= LongueurTunnel <= LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain*2 , 
+	le chantier est réalisable et nous avons besoin d'une équipe de nuit
+
+      \item RTP4 : Si la pioche est standard, alors la vitesse du nain est multipliée par 1
+
+      \item RTR2 : Si la roche est de type Granite, alors le nain avancera avec une vitesse de 3.
+\end{itemize}
+  Les résultats sont très proches de ceux exposés par John Lang dans la vidéo qui nous a permis de faire la plus grande partie des règles, mais il est normal qu'il
+  y ait une légère différence car nous prenons en comptes d'autres données en compte. De plus nous avons correspondu avec John Lang, ce qui nous a forcé à modifier
+  des règles. Les règles qui ont été utilisée sont cohérentes et correspondent bien aux données originels du problème (le type de pioche se modifie dans les configurations
+  de l'UI et est mis à standard par défaut)
+   
 \chapter*{Conclusion}
 
   \end{document}

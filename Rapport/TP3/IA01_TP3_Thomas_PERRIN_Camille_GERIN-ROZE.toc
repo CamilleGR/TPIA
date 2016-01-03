@@ -1,12 +1,17 @@
 \select@language {french}
 \contentsline {chapter}{\numberline {1}Connaissances n\IeC {\'e}cessaires au syst\IeC {\`e}me expert}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Impl\IeC {\'e}mentation du syst\IeC {\`e}me expert}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Choix de la repr\IeC {\'e}sentation Lisp}{4}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Base de r\IeC {\`e}gles}{4}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Base de faits}{5}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}Le moteur d'inf\IeC {\'e}rences}{5}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Validation des pr\IeC {\'e}misses}{6}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Calcul des nouvelles valeurs}{6}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Moteur \IeC {\`a} cha\IeC {\^\i }nage avant}{6}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Test du moteur d'inf\IeC {\'e}rences}{6}{subsection.2.2.4}
-\contentsline {chapter}{\numberline {3}Sc\IeC {\'e}narios d'utilisation}{7}{chapter.3}
+\contentsline {section}{\numberline {1.1}Param\IeC {\`e}tres \IeC {\`a} fournir au syst\IeC {\`e}me}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Traduction des connaissances en r\IeC {\`e}gles}{3}{section.1.2}
+\contentsline {chapter}{\numberline {2}Impl\IeC {\'e}mentation du syst\IeC {\`e}me expert}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Choix de la repr\IeC {\'e}sentation Lisp}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Base de r\IeC {\`e}gles}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Base de faits}{6}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Le moteur d'inf\IeC {\'e}rences}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Validation des pr\IeC {\'e}misses}{7}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Calcul des nouvelles valeurs}{9}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Moteur \IeC {\`a} cha\IeC {\^\i }nage avant}{10}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Test du moteur d'inf\IeC {\'e}rences}{11}{subsection.2.2.4}
+\contentsline {chapter}{\numberline {3}Sc\IeC {\'e}narios d'utilisation}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Chantier non r\IeC {\'e}alisable}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Chantier r\IeC {\'e}alisable sans \IeC {\'e}quipe de nuit}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Chantier r\IeC {\'e}alisable avec une \IeC {\'e}quipe de nuit}{14}{section.3.3}
