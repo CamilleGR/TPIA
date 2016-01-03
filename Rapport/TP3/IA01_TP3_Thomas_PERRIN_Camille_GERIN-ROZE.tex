@@ -66,6 +66,40 @@ Thomas \textsc{Perrin}
 \tableofcontents
 \chapter*{Introduction}
 \chapter{Connaissances nécessaires au système expert}
+ \section{Paramètres à fournir au système}
+ Afin de déterminer le nombre de nains nécessaire à un chantier, plusieurs paramètres seront nécessaire :
+\begin{itemize}
+\item La longueur du tunnel
+\item Sa hauteur
+\item Sa largeur
+\item Le nombre de jours maximum
+\item Le type de roche
+\item Le type de pioche employé
+\end{itemize}
+
+Avec ces paramètres, on va pouvoir déterminer si oui ou non le chantier est réalisable. Si il l’est, on obtiendra un nombre total de nains avec les différents rôles de chacun. Un indicateur sera présent pour dire si une équipe de nuit est nécessaire ou non pour compléter le chantier en temps et en heures.
+
+\section{Traduction des connaissances en règles}
+
+La base de règles est décomposé en plusieurs parties :
+\begin{itemize}
+\item Les règles du type de roche (RTR)
+Ces règles vont permettre, en fonction du type de roche, de fixer la vitesse de travail d’un nain par jour.
+
+\item Les règles du type de pioche (RTP)
+Ces règles vont ajouter un coefficient multiplicateur à la vitesse de base, pour aller plus ou moins vite en fonction des moyens de l’employeur.
+
+\item Les règles concernant la réalisation du chantier (RCR)
+Ces règles vont déterminer si le chantier est réalisable avec les paramètres énoncés. En effet, en fonction de la vitesse des nains, de la hauteur, largeur et longueur du tunnel, on peut d’avance vérifier si cela tiendra avec le nombre de jours énoncé ou non.
+
+\item Les règles calculant le nombre de nains (RN)
+Ces dernières règles vont conclure en calculant le nombre de nains totals.
+\end{itemize}
+
+Toutes les règles ont été déterminés par la vidéo présentés ci-dessus, et par des échanges avec John Lang, le créateur de l’univers du Donjon de Naheulbeuk. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. 
+
+
+
 \chapter{Implémentation du système expert}
   \section{Choix de la représentation Lisp}
     \subsection{Base de règles}
@@ -140,11 +174,7 @@ RCR1);;;;NOM DE LA REGLE
 )    
     \end{lstlisting}
 
-    Pour évaluer un opérande, on va vérifier si celui-ci est une liste, si c'est une liste on va alors appeller notre fonction récursivement sur chaque éléments
-    de la liste. Dans le Cas où c'est un symbole, on va alors aller chercher sa valeur dans la base de faits. Si jamais la valeur n'est pas dans la base de faits,
-    il est important que la fonction renvoie NIL pour qu'on sache que cela ne peut pas être évalué et que la condition n'est pas respectée. À la fin de la fonction,
-    on aura une liste qui pourra être évaluée grâce à un simple eval.\newline
-    
+    Pour évaluer 
     \subsection{Calcul des nouvelles valeurs}
     \subsection{Moteur à chaînage avant}
     \subsection{Test du moteur d'inférences}
