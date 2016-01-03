@@ -22,9 +22,9 @@
   (RCR2 . "Si LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain <= LongueurTunnel <= LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain*2 , le chantier est réalisable et nous avons besoin d'une équipe de nuit")
   (RCR3 . "Si LongueurTunnel > LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain*2, alors le chantier n'est pas réalisable")
   ;;;; Regles des Nains
-  (RN1 . " DESCRIPTION A FAIRE")
-  (RN2 . " DESCRIPTION A FAIRE")
-  (RN3 . " DESCRIPTION A FAIRE")
+  (RN1 . "Si le chantier est réalisable, alors on crée le début de l'équipe de jour qui sera présente dans tous les cas (nain miniers, nains guérisseurs, nains tourneurs de manche et nains forgeron).")
+  (RN2 . "Si il n'y a pas d'équipe de nuit et que l'équipe de jour est commencé, on complète l'équipe de jour avec les nains de ravitaillement et les nains plongueurs.")
+  (RN3 . "Si une équipe de nuit est nécessaire et que l'équipe de jour est commencé, on crée l'équipe de nuit (Nains porteur de lanterne, nains surveillant, nains manager), on double l'effectif de l'équipe de jour pour avoir l'équivalence en équipe de nuit et on termine par les nains de ravitaillement et les nains plongueurs. ")
 
   )
 )
