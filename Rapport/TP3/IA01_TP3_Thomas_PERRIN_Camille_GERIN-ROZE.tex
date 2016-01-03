@@ -14,7 +14,7 @@
 
 
 \renewcommand{\footrulewidth}{1pt}
-\fancyfoot[C]{\textbf{\thepage}} 	
+\fancyfoot[C]{\textbf{\thepage}}
 \fancyfoot[L]{}
 
 \hypersetup{
@@ -33,7 +33,7 @@
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
 \center % Center everything on the page
- 
+
 
 
 %----------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@
 \HRule \\[0.4cm]
 { \LARGE \bfseries  IA01 : Rapport du TP3}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
- 
+
 %----------------------------------------------------------------------------------------
 %	AUTHOR SECTION
 %----------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@
 \begin{flushleft} \large
 \emph{Auteurs:}\\
 Camille \textsc{Gerin-Roze} \newline
-Thomas \textsc{Perrin} 
+Thomas \textsc{Perrin}
 \end{flushleft}
 \end{minipage}
 ~
@@ -69,7 +69,7 @@ Thomas \textsc{Perrin}
 \chapter{Implémentation du système expert}
   \section{Choix de la représentation Lisp}
     \subsection{Base de règles}
-    Pour représenter les règles de notre SE, nous avons choisi d'utiliser une liste qui contiendra 2 sous-listes ( les nouveaux faits et les prémisses ) 
+    Pour représenter les règles de notre SE, nous avons choisi d'utiliser une liste qui contiendra 2 sous-listes ( les nouveaux faits et les prémisses )
     ainsi que le nom de la règle. Par exemple, voici la règle RCR1 qui permet de savoir si un chantier est réalisable:\newline
     \begin{lstlisting}[language=Lisp]
 (
@@ -79,15 +79,15 @@ Thomas \textsc{Perrin}
 	);;;; FIN DES NOUVEAUX FAITS
 		(;;;;DEBUT DES PREMISSES
 		(COMPARAISON (>=
-			(* LargeurTunnel HauteurTunnel 
+			(* LargeurTunnel HauteurTunnel
 			    NombreDeJours VitesseNain)
 			LongueurTunnel
 		))
 	);;;;FIN DES PREMISSES
 RCR1);;;;NOM DE LA REGLE
-     
+
     \end{lstlisting}
-    
+
     On peut noter que les premisses ont un format bien spécial. En effet, chaque condition commence par le type de vérification à faire. Cela peut être une égalité,
     une comparaison, ou encore une définition (savoir si un fait a déjà été défini). Cette étiquette permet de simplifier le traitement lors de la vérification
     des prémisses. Pour les prémisses, une fonction va donc vérifier si LargeurTunnel * HauteurTunnel * NombreDeJours * VitesseNain est bien supérieur ou égale à la
@@ -98,11 +98,11 @@ RCR1);;;;NOM DE LA REGLE
     dans la base de faits.
 
     \subsection{Base de faits}
-      La base de faits a été faites de la manière la plus simple possible, celle-ci est juste une liste donc chaque membre est une sous-liste qui représente un fait. 
+      La base de faits a été faites de la manière la plus simple possible, celle-ci est juste une liste donc chaque membre est une sous-liste qui représente un fait.
       Un fait est tout simplement constitué d'une étiquette, donc le nom du fait, et d'une valeur qui peut être un nombre, un symbole, ou même une valeur booléenne.
       \begin{lstlisting}[language=Lisp]
 (
-  (VitesseNain 3) 
+  (VitesseNain 3)
   (TypeRoche GRANITE)
   (LargeurTunnel 3)
   (LongueurTunnel 28)
@@ -111,14 +111,15 @@ RCR1);;;;NOM DE LA REGLE
       \end{lstlisting}
       Ici on peut voir qu'il y a 4 faits dans notre base de faits : la vitesse des nains, le type de roche, la largeur et la longueur du tunnel, et la hauteur du tunnel.
   \section{Le moteur d'inférences}
-  Le moteur d'inférence est un moteur à chaînage avant avec un fonctionnement simple, mais pour bien comprendre comment il fonctionne, il faut expliciter certaines 
-  fonctions qui permettent de savoir si les prémisses sont satisfaits ou bien d'ajouter les faits à notre base de faits. Nous allons donc commencer par présenter 
+  Le moteur d'inférence est un moteur à chaînage avant avec un fonctionnement simple, mais pour bien comprendre comment il fonctionne, il faut expliciter certaines
+  fonctions qui permettent de savoir si les prémisses sont satisfaits ou bien d'ajouter les faits à notre base de faits. Nous allons donc commencer par présenter
   toutes ces fonctions.\newpage
     \subsection{Validation des prémisses}
     Pour que les prémisses soient validés, il faut que toutes les conditions soient validées. Donc nous allons itérer sur toutes les conditions de la liste
-    des prémisses pour vérifier qu'elles sont toutes validée. Mais certaines conditions sont complexes et demandent d'aller vérifier l'existence ou la valeur 
+    des prémisses pour vérifier qu'elles sont toutes validée. Mais certaines conditions sont complexes et demandent d'aller vérifier l'existence ou la valeur
     de faits dans la base de faits. Pour cela nous avons défini une fonction evalOperande qui va nous permettre d'évaluer la valeur de chaque opérande :
-    \begin{lstlisting}[language=Lisp]
+
+		\begin{lstlisting}[language=Lisp]
 (defun evalOperande(operande)
   (let ((newList (list)))
       (dolist (x operande newList)
@@ -130,27 +131,77 @@ RCR1);;;;NOM DE LA REGLE
           ((SYMBOLP x)
             (if (NULL (ASSOC x *BaseFaits*))
 	      ;;;; SI LE SYMBOLE N'EST PAS DEFINI DANS LA BDF
-                (return-from evalOperande NIL) 
+                (return-from evalOperande NIL)
               (setq newList (APPEND newList (cdr (ASSOC x *BaseFaits*))))
             ))
           (T (setq newList (APPEND newList (list x))))
         )
     )
   )
-)    
+)
     \end{lstlisting}
 
     Pour évaluer un opérande, on va vérifier si celui-ci est une liste, si c'est une liste on va alors appeller notre fonction récursivement sur chaque éléments
     de la liste. Dans le Cas où c'est un symbole, on va alors aller chercher sa valeur dans la base de faits. Si jamais la valeur n'est pas dans la base de faits,
     il est important que la fonction renvoie NIL pour qu'on sache que cela ne peut pas être évalué et que la condition n'est pas respectée. À la fin de la fonction,
     on aura une liste qui pourra être évaluée grâce à un simple eval.\newline
-    
+    Ensuite il y a deux autres fonctions, une qui va vérifier si une condition est respectée, et une qui vérifiera si toutes les conditions sont vérifiées. La fonction
+    qui vérifie si une condition est respectée va d'abbord vérifier l'étiquette placée au début de celle-ci (COMPARAISON, DEFINI, EGALITE) pour savoir comment elle 
+    doit la traiter.\newpage
+		\begin{lstlisting}[basicstyle = \footnotesize, language=Lisp]
+(defun conditionRespecte?(condition)
+(cond
+  ((EQUAL (car condition) 'EGALITE)
+      (return-from conditionRespecte? 
+	  (EQUAL (cadr (ASSOC (car (cadr condition)) *BaseFaits*)) 
+	   (cadr (cadr condition)))))
+  ((EQUAL (car condition) 'DEFINI)
+      (return-from conditionRespecte? 
+	  (NOT (NULL (ASSOC (car (cadr condition)) *BaseFaits*)))))
+  ((EQUAL (car condition) 'COMPARAISON)
+    (return-from conditionRespecte?
+      (eval
+        (let ((expression))
+          (dolist (x (cadr condition) expression)
+            (cond
+              ((estUnComparateur? x)
+                (setq expression (append expression (list x))))
+                ((listp x)
+                  (if (evalOperande x)
+                    (setq expression 
+		      (append expression (list (eval (evalOperande x))))
+		    )
+                      NIL
+                    ))
+                (T
+                  (if (ASSOC x *BaseFaits*)
+                    (setq expression 
+		      (append expression (list (cadr (ASSOC x *BaseFaits*))))
+		     )
+                    NIL
+                    ))
+            )
+          )
+        ))))
+  )
+)		
+
+
+(defun premisseRespecte?(regle)
+  (let ((test T))
+    (dolist ( x (getPremisse regle) test)
+      (setq test (AND test (conditionRespecte? x)))
+    )
+  )
+)
+		\end{lstlisting}
+
+Un fois que la condition est vérifiée, on peut tout simplement faire une boucle sur toutes les conditions pour savoir si celles-ci sont toutes vrais, si elles sont 
+toutes vrais on pourra ajouter les nouveaux faits à notre base de fait.\newpage
     \subsection{Calcul des nouvelles valeurs}
     \subsection{Moteur à chaînage avant}
     \subsection{Test du moteur d'inférences}
 \chapter{Scénarios d'utilisation}
 \chapter*{Conclusion}
 
-  \end{document}          
-
-
+  \end{document}
