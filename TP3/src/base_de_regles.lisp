@@ -196,6 +196,17 @@ Règles :
 								(EGALITE (TypeDePioche Mithril))
 							)
 						RTP3)
+
+            (
+							(
+								(VitesseNain . (* VitesseNain 1))
+							)
+							(
+								(DEFINI (VitesseNain))
+								(EGALITE (TypeDePioche Standard))
+							)
+						RTP4) ;; La règle n'est pas utile, mais elle permet de spécifier l'usage de pioches standard
+
 					;; Chantier OK et equipe de nuit ?
 						(
 							(
@@ -241,38 +252,37 @@ Règles :
 						;; Calcul de nains
 						(
 							(
-								(NbNainMinier . 
-								(car (* 
-										(truncate (/ LargeurTunnel 1.25)) 
+								(NbNainMinier .
+								(*
+										(truncate (/ LargeurTunnel 1.25))
 										HauteurTunnel)
 									)
-								)
-								(NbNainGuerisseur . 
-								(ceiling 
+								(NbNainGuerisseur .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
-								(NbNainForgeron . 
-								(ceiling 
+								(NbNainForgeron .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
-								(NbNainTourneurManche . 
-								(ceiling 
+								(NbNainTourneurManche .
+								(ceiling
 									(/ NbNainMinier 3))
 								)
 								(NbNainTotal .
 								(+ NbNainMinier NbNainGuerisseur NbNainForgeron NbNainTourneurManche)
 								)
 							)
-							
+
 							(
 								(EGALITE (ChantierRéalisable T))
 							)
 						RN1)
-							
+
 						(
 							(
 								(NbNainRavitaillement .
-								(* NbNainTotal 4)
+								(* NbNainMinier 4)
 								)
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
@@ -282,59 +292,75 @@ Règles :
 								)
 								(NainsCalculé . T)
 							)
-							
+
 							(
 								(DEFINI (NbNainMinier))
 								(EGALITE (EquipeDeNuit NIL))
 							)
 						RN2)
-						
+
 						(
 							(
-								(NbNainPorteurLanterne . 
+								(NbNainPorteurLanterne .
 								(* (ceiling (/ NbNainMinier  3)) 4)
 								)
-								(NbNainTotal .
-								(+ NbNainTotal NbNainPorteurLanterne)
+
+								(NbNainMinier .
+								(* NbNainMinier 2)
 								)
-								
+
+								(NbNainGuerisseur .
+								(* NbNainGuerisseur 2)
+								)
+
+								(NbNainForgeron .
+								(* NbNainForgeron 2)
+								)
+
+								(NbNainTourneurManche .
+								(* NbNainTourneurManche 2)
+								)
+
+								(NbNainTotal .
+								(+ (* NbNainTotal 2) NbNainPorteurLanterne)
+								)
+
 								(NbNainSurveillant .
 								(ceiling (/ NbNainTotal 4))
 								)
-								(NbNainManager . 
+								(NbNainManager .
 								(ceiling (/ NbNainSurveillant 3))
 								)
-								(NbNainTotal .
-								(+ NbNainTotal NbNainSurveillant NbNainManager)
-								)
-								
 								(NbNainRavitaillement .
-								(* NbNainTotal 4)
+								(* NbNainMinier 4)
 								)
 								(NbNainPlongueur .
 								(ceiling (/ NbNainRavitaillement 4))
 								)
+
 								(NbNainTotal .
-								(+ NbNainTotal NbNainRavitaillement NbNainPlongueur)
+								(+ NbNainTotal NbNainSurveillant NbNainManager NbNainRavitaillement NbNainPlongueur)
 								)
 								(NainsCalculé . T)
 							)
-							
+
 							(
 								(DEFINI (NbNainMinier))
 								(EGALITE (EquipeDeNuit T))
 							)
 						RN3)
-						
+
+
+#|
 						(
 							(
 								;; TODO
 							)
-							
+
 							(
 								(EGALITE (NainsCalculé T))
 							)
-						RC)
+						RC)|#
 					)
 
 )
