@@ -49,7 +49,7 @@ NbNainTotal : Résultat final du nombre de nains.
 
 // Variables intermédiaires :
 VitesseNain : Vitesse par nain par jour en fonction du type de roche et du type de pioche.
- 
+
 _________________________
 
 Règles :
@@ -367,12 +367,4 @@ Règles :
 
 					;; Il manque : nains ravitaillements / nains surveillants / nains porteurs de lumière
 					;; Le coût
-					;; Règle finale qui calcule le nb de nains total 
-						
-							
-							(
-								(DEFINI (NbNainMinier))
-								(EGALITE (EquipeDeNuit T))
-							)
-						RN3)
-						
+					;; Règle finale qui calcule le nb de nains total
