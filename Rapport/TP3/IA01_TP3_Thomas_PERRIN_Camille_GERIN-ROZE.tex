@@ -156,7 +156,7 @@ RCR1);;;;NOM DE LA REGLE
     dans la base de faits.
 
     \subsection{Base de faits}
-      La base de faits a été faites de la manière la plus simple possible, celle-ci est juste une liste donc chaque membre est une sous-liste qui représente un fait.
+      La base de faits a été faites de la manière la plus simple possible, celle-ci est juste une liste dont chaque membre est une sous-liste qui représente un fait.
       Un fait est tout simplement constitué d'une étiquette, donc le nom du fait, et d'une valeur qui peut être un nombre, un symbole, ou même une valeur booléenne.
       \begin{lstlisting}[language=Lisp]
 (
@@ -183,7 +183,7 @@ RCR1);;;;NOM DE LA REGLE
         (cond
           ((LISTP x)
             (setq newList (append newList (list (evalOperande x)))))
-          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+))
+          ((OR (EQUAL x '*) (EQUAL x '/) (EQUAL x '-) (EQUAL x '+) (EQUAL x 'truncate))
             (setq newList (APPEND newList (list x))))
           ((SYMBOLP x)
             (if (NULL (ASSOC x *BaseFaits*))

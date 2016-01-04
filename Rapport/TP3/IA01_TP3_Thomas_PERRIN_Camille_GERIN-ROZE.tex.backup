@@ -65,6 +65,18 @@ Thomas \textsc{Perrin}
 \end{titlepage}
 \tableofcontents
 \chapter*{Introduction}
+
+Dans tous univers fantaisistes, les nains sont un peuple vivant dans les mines, et ceux-ci sont toujours amené à creuser des tunnels. Il faut donc, pour les différents chantiers, pouvoir déterminer le nombres de nains que l’ont doit mettre sur ces derniers. Nous allons nous baser sur cette vidéo : 
+\newline \url{https://www.youtube.com/watch?v=C75iVDrfy2w}. 
+La conférence fut dirigé par John Lang, créateur du Donjon de Naheulbeuk.
+
+Cette vidéo répond à la question : “Combien faut-il de nain pour creuser en 2 jours un tunnel de 28 mètre dans du granite ?”. Notre système expert va permettre de généraliser le problème à plusieurs types de chantier en faisant varier la longueur, largeur et type du tunnel, mais aussi la durée du chantier. 
+
+Ainsi, en fonction des paramètres donnés, on va déterminer si le délais peut être respecté, avec la présence ou non d’une équipe de nuit pour aboutir sur un nombre total de nains. 
+
+Par exemple, on sait qu’il faut 8 nains de ravitaillement de bière pour deux autres nains, puisque ces derniers sont proches des tonneaux de bières et deviennent ivres rapidement. De même, les nains n’appréciant pas de boire de la bière dans des chopes sales, on rajoute un plongeur pour 4 nains de ravitaillement de bière. 
+
+
 \chapter{Connaissances nécessaires au système expert}
  \section{Paramètres à fournir au système}
  Afin de déterminer le nombre de nains nécessaire à un chantier, plusieurs paramètres seront nécessaire :
@@ -96,8 +108,20 @@ Ces règles vont déterminer si le chantier est réalisable avec les paramètres
 Ces dernières règles vont conclure en calculant le nombre de nains totals.
 \end{itemize}
 
-Toutes les règles ont été déterminés par la vidéo présentés ci-dessus, et par des échanges avec John Lang, le créateur de l’univers du Donjon de Naheulbeuk. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. 
+\section{Origine des règles}
 
+L'idée de ce système expert nous est venu par la vidéo présenté ci-dessus. John Lang, le créateur de l’univers du Donjon de Naheulbeuk nous a également aidé en tant qu'expert dans ce domaine. 
+Les RN sont issus de la vidéo présentant un cas pratique. La première règle va créer l'équipe qui sera présente dans tous les cas, c'est-à-dire l'équipe de jour. Les deux suivantes sont en fonction de la présence d'une équipe de nuit ou non : si une équipe de nuit est présente, on double l'effectif de jour pour qu'il soit présent pendant la nuit, puis on ajoute les nains spécifiques à la nuit et les nains de ravitaillements et plongueurs. Autrement, on complète juste l'équipe de jour avec les nains de ravitaillements et plongueurs correspondant.
+Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. En effet, lorsque John Lang ajoute plus de nains de ravitaillement quand l'effectif augmente, les proportions ne sont pas exactement respectés. Nous avons donc corrigé cela.
+Les RCR sont des calculs mathématiques, de la logique uniquement.
+Les RTP sont issus de notre échange avec John Lang qui nous a indiqué que différentes pioches pourraient influencés la vitesse de chaque nain.
+Enfin, les RTR sont issus également de notre échange avec John Lang. Nous avons extrapôlé les différents types de roches possibles en se renseignant sur les différents types de minerai.
+\newpage
+\section{Arbre de déduction}
+
+\begin{figure}[!htp]
+  \centerline{\includegraphics[scale=1]{arbre_inference}}
+\end{figure}
 
 
 \chapter{Implémentation du système expert}
@@ -321,7 +345,7 @@ toutes vrais on pourra ajouter les nouveaux faits à notre base de fait.\newpage
     \begin{lstlisting}[basicstyle = \footnotesize]
     
 De quel longueur est votre tunnel ?28
-De quel largeur est votre tunnel ?3
+De quel largeur est votre tunnel ?4
 Quel est la hauteur de votre tunnel ?1
 Dans combien de temps votre tunnel doit être prêt ?2
 Selectionner le type de roche dans lequel vous voulez creuser : GRANITE
@@ -336,32 +360,26 @@ VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 PLUS RAPIDEMENT POSSIBLE : 
 
 VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
-Nains mineurs : 2
+Nains mineurs : 3
 Nains Guerisseurs : 1
 Nains Forgerons : 1
 Nains Tourneurs de manche : 1
-Nains Ravitailleurs : 8
-Nains Plongeurs (Vaisselle) : 2
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
 
 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE DE : 
-Nains Mineurs : 2
+Nains Mineurs : 3
 Nains Guerisseurs : 1
 Nains Forgerons : 1
 Nains Tourneurs de manche : 1
-Nains Ravitailleurs : 8
-Nains Plongeurs (Vaisselle) : 2
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
 Nains Surveillants : 4
 Nains Managers : 2
 Nains Porteurs de lanternes : 4
 
-
-TOTAL :                                                40 nains
-
+TOTAL :                                                52 nains
 --------------------------------------------------------------------
-
-
-
-
 (RN3 RN1 RCR2 RTP4 RTR2)
     \end{lstlisting}
 
@@ -402,17 +420,167 @@ BDF =
             \item RTR3 : Si la roche est de type Gabbros, alors le nain avancera avec une vitesse de 3.
 	\end{itemize}
   
+    Donc il est tout à fait normal que le chantier soit irréalisable, car il faudrait que le tunnel soit beaucoup plus large pour pouvoir y mettre plus de nains.
   \section{Chantier réalisable sans équipe de nuit}
+  
+  Pour le chantier réalisable sans équipe de nuit il faut un tunnel assez large pour pouvoir accueuillir beaucoup de nain mineurs, donc nous allons tester avec les
+  valeurs suivantes : 
+  \begin{itemize}
+     \item Largeur du tunnel : 6
+     \item Longueur du tunnel : 28
+     \item Hauteur du tunnel : 1
+     \item Temps maximale : 2
+     \item Type de roche : Granite
+    \end{itemize} 
+    
+  \begin{lstlisting}[basicstyle = \footnotesize]
+BDF = 
+((NAINSCALCULÉ T) (NBNAINTOTAL 42) (NBNAINPLONGUEUR 6)
+ (NBNAINRAVITAILLEMENT 24) (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2)
+ (NBNAINGUERISSEUR 2) (NBNAINMINIER 6) (EQUIPEDENUIT NIL)
+ (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
+ (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 8) (NBNAINMANAGER 2)
+ (NBNAINSURVEILLANT 4) (NBNAINPORTEURLANTERNE 4) (TYPEDEPIOCHE STANDARD))
+
+--------------------------------------------------------------------
+--------------     LE CHANTIER EST REALISABLE     ------------------
+--------------------------------------------------------------------
+
+VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE 
+PLUS RAPIDEMENT POSSIBLE : 
+
+VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
+Nains mineurs : 6
+Nains Guerisseurs : 2
+Nains Forgerons : 2
+Nains Tourneurs de manche : 2
+Nains Ravitailleurs : 24
+Nains Plongeurs (Vaisselle) : 6
+
+
+TOTAL :                                                42 nains
+
+--------------------------------------------------------------------
+
+(RN2 RN1 RCR1 RTP4 RTR2)
+\end{lstlisting}
+
+\begin{itemize}
+     \item RN2 : Si il n'y a pas d'équipe de nuit et que l'équipe de jour est commencée, on complète l'équipe de jour avec les nains de ravitaillement et les nains plongueurs.
+     \item RN1 : Si le chantier est réalisable, alors on crée le début de l'équipe de jour qui sera présente dans tous les cas (nain miniers, nains guérisseurs, nains tourneurs de manche et nains forgeron).
+     \item RCR1 : Si LongueurTunnel inferieur à LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain, le chantier est réalisable et nous n'avons pas besoin d'équipe de nuit
+     \item RTP4 : Si la pioche est standard, alors la vitesse du nain est multipliée par 1
+     \item RTR2 : Si la roche est de type Granite, alors le nain avancera avec une vitesse de 3.
+\end{itemize}
+  
+  Les résultats sont cohérents, en effet 6 nains mineurs ayant une vitesse de 3 vont pouvoir creuser 18m par jour, donc en deux jours ils auront fini le tunnel.
   
   \newpage
   \section{Chantier réalisable avec une équipe de nuit}
+  Pour le chantier réalisable avec une équipe de nuit nous allons utiliser les mêmes valeurs que le problème originel et que nous avons utilisé dans le chapitre 2. 
   \begin{itemize}
-     \item Largeur du tunnel : 2
-     \item Longueur du tunnel : 100
+     \item Largeur du tunnel : 4
+     \item Longueur du tunnel : 28
      \item Hauteur du tunnel : 1
      \item Temps maximale : 2
-     \item Type de roche : 
+     \item Type de roche : Granite
     \end{itemize}
+  \begin{lstlisting}[basicstyle = \footnotesize]
+BDF = 
+((NAINSCALCULÉ T) (NBNAINTOTAL 52) (NBNAINPLONGUEUR 6)
+ (NBNAINRAVITAILLEMENT 24) (NBNAINMANAGER 2) (NBNAINSURVEILLANT 4)
+ (NBNAINTOURNEURMANCHE 2) (NBNAINFORGERON 2) (NBNAINGUERISSEUR 2)
+ (NBNAINMINIER 6) (NBNAINPORTEURLANTERNE 4) (EQUIPEDENUIT T)
+ (CHANTIERRÉALISABLE T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEURTUNNEL 1)
+ (NOMBREDEJOURS 2) (LONGUEURTUNNEL 28) (LARGEURTUNNEL 4)
+ (TYPEDEPIOCHE STANDARD))
+
+--------------------------------------------------------------------
+--------------     LE CHANTIER EST REALISABLE     ------------------
+--------------------------------------------------------------------
+
+VOILÀ LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE 
+PLUS RAPIDEMENT POSSIBLE : 
+
+VOUS AVEZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE DE : 
+Nains mineurs : 3
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
+
+AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE DE : 
+Nains Mineurs : 3
+Nains Guerisseurs : 1
+Nains Forgerons : 1
+Nains Tourneurs de manche : 1
+Nains Ravitailleurs : 12
+Nains Plongeurs (Vaisselle) : 3
+Nains Surveillants : 4
+Nains Managers : 2
+Nains Porteurs de lanternes : 4
+
+TOTAL :                                                52 nains
+
+--------------------------------------------------------------------
+(RN3 RN1 RCR2 RTP4 RTR2)
+ \end{lstlisting}
+ \begin{itemize}
+      \item RN3 : Si une équipe de nuit est nécessaire et que l'équipe de jour est commencé, 
+      on crée l'équipe de nuit (Nains porteur de lanterne, nains surveillant, nains manager), 
+      on double l'effectif de l'équipe de jour pour avoir l'équivalence en équipe de nuit 
+      et on termine par les nains de ravitaillement et les nains plongueurs. 
+
+      \item RN1 : Si le chantier est réalisable, alors on crée le début de l'équipe de jour qui sera présente dans tous les cas 
+      (nain miniers, nains guérisseurs, nains tourneurs de manche et nains forgeron).
+
+      \item RCR2 : Si LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain <= LongueurTunnel <= LargeurTunnel*hauteurTunnel*nbJourMax*VitesseNain*2 , 
+	le chantier est réalisable et nous avons besoin d'une équipe de nuit
+
+      \item RTP4 : Si la pioche est standard, alors la vitesse du nain est multipliée par 1
+
+      \item RTR2 : Si la roche est de type Granite, alors le nain avancera avec une vitesse de 3.
+\end{itemize}
+  Les résultats sont très proches de ceux exposés par John Lang dans la vidéo qui nous a permis de faire la plus grande partie des règles, mais il est normal qu'il
+  y ait une légère différence car nous prenons en comptes d'autres données en compte. De plus nous avons correspondu avec John Lang, ce qui nous a forcé à modifier
+  des règles. Les règles qui ont été utilisée sont cohérentes et correspondent bien aux données originels du problème (le type de pioche se modifie dans les configurations
+  de l'UI et est mis à standard par défaut).
+  Si 3 nains creusent jours et nuit, en deux jours et deux nuits ils auront creusé 3*4*3= 36m dans le granite, donc ils auront fini le tunnel.
+   
 \chapter*{Conclusion}
+
+  Le système expert que nous avons réalisé nous a permis de comprendre les mécanismes d'inférence d'un système expert. Nous avons également pu nous rendre compte
+  qu'il est très important de bien structurer ses données de manière à pouvoir les utiliser facilement. Les échanges avec John Lang ont confirmé la vision que nous avions du calcul du nombre du nains tout en ajoutant quelques paramètres supplémentaire tels que le type de tunnel et le type de pioche. Ainsi, cela confirme l'importance d'avoir un expert du domaine lors d'une application concrète.
+  Ce système expert pourrait être amélioré en ajoutant 
+  le calcul du coup d'un nain ou encore l'ajout d'autre paramètres pour avoir un résultat plus précis.
+  
+\appendix
+\chapter{Mail de John Lang}
+Salutations !
+
+Ah, bah on dirait bien que vous êtes encore plus timbrés que moi, les amis :)
+C'est sans doute une bonne chose !\newline
+
+
+- Quand vous parlez de Tunnel standard, combien mesure en largeur ce tunnel ? Et donc combien faut il de mètre de largeur par nain minier pour que ceux-ci ne se bagarrent pas ? 
+\newline
+Un tunnel standard fait 2,5 m de large, soit l'épaisseur de deux nains en armure. On doit pouvoir y poser des rails de mine et pouvoir circuler sur un côté. Il faut donc deux nains de front pour le creuser, mais si le tunnel est haut, il peut y en avoir quatre à cause de l'échafaudage. Ils ne se battront que si on oublie de leur livrer leur bière.
+\newline
+
+- Quels sont les différents types de pioches pouvant être utilisés par les nains ? Et dans quels mesures l'utilisation de celles-ci permet au nain de creuser plus vite ? 
+\newline
+
+On a parlé de la pioche double et de la pioche simple, pour le moment. Je pense que l'utilisation de matériaux de haut niveau (tel que le Thritil) pourrait augmenter la puissance de la pioche et le rendement du mineur, mais pour un prix d'outil environ 6 fois supérieur.
+\newline
+
+-Peut on supposer qu'en fonction du type de roche les nains iront plus ou moins vite ? \newline
+
+Alors ça, c'est certain... Le granite c'est hyper dur à casser, contrairement à d'autres roches comme le grès ou le calcaire. Là je pense qu'il vous faudra faire appel à un géologue de métier pour faire obtenir une classification exacte ;)
+
+Continuez ce que vous faites :)
+
+Merci
+
 
   \end{document}
