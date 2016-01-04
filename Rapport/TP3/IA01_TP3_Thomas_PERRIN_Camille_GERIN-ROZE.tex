@@ -110,7 +110,8 @@ Ces dernières règles vont conclure en calculant le nombre de nains totals.
 \section{Origine des règles}
 
 L'idée de ce système expert nous est venu par la vidéo présenté ci-dessus. John Lang, le créateur de l’univers du Donjon de Naheulbeuk nous a également aidé en tant qu'expert dans ce domaine. 
-Les RN sont issus de la vidéo présentant un cas pratique. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière.
+Les RN sont issus de la vidéo présentant un cas pratique. La première règle va créer l'équipe qui sera présente dans tous les cas, c'est-à-dire l'équipe de jour. Les deux suivantes sont en fonction de la présence d'une équipe de nuit ou non : si une équipe de nuit est présente, on double l'effectif de jour pour qu'il soit présent pendant la nuit, puis on ajoute les nains spécifiques à la nuit et les nains de ravitaillements et plongueurs. Autrement, on complète juste l'équipe de jour avec les nains de ravitaillements et plongueurs correspondant.
+Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. En effet, lorsque John Lang ajoute plus de nains de ravitaillement quand l'effectif augmente, les proportions ne sont pas exactement respectés. Nous avons donc corrigé cela.
 Les RCR sont des calculs mathématiques, de la logique uniquement.
 Les RTP sont issus de notre échange avec John Lang qui nous a indiqué que différentes pioches pourraient influencés la vitesse de chaque nain.
 Enfin, les RTR sont issus également de notre échange avec John Lang. Nous avons extrapôlé les différents types de roches possibles en se renseignant sur les différents types de minerai.
@@ -542,6 +543,7 @@ TOTAL :                                                52 nains
 \chapter*{Conclusion}
 
   Le système expert que nous avons réalisé nous a permis de comprendre les mécanismes d'inférence d'un système expert. Nous avons également pu nous rendre compte
-  qu'il est très important de bien structurer ses données de manière à pouvoir les utiliser facilement. Ce système expert pourrait être amélioré en ajoutant 
+  qu'il est très important de bien structurer ses données de manière à pouvoir les utiliser facilement. Les échanges avec John Lang ont confirmé la vision que nous avions du calcul du nombre du nains tout en ajoutant quelques paramètres supplémentaire tels que le type de tunnel et le type de pioche. Ainsi, cela confirme l'importance d'avoir un expert du domaine lors d'une application concrète.
+  Ce système expert pourrait être amélioré en ajoutant 
   le calcul du coup d'un nain ou encore l'ajout d'autre paramètres pour avoir un résultat plus précis.
   \end{document}
