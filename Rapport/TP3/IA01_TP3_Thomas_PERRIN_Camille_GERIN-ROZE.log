@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.14)  4 JAN 2016 19:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.14)  4 JAN 2016 19:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -610,7 +610,7 @@ LaTeX Info: Redefining \nameref on input line 25.
 \openout3 = `IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.out'.
 
 
-<logo_utc.jpg, id=76, 709.65125pt x 250.9375pt>
+<logo_utc.jpg, id=80, 709.65125pt x 250.9375pt>
 File: logo_utc.jpg Graphic file (type jpg)
  <use logo_utc.jpg>
 Package pdftex.def Info: logo_utc.jpg used on input line 30.
@@ -642,7 +642,13 @@ $[][]\OT1/cmr/m/n/10 . La conf^^Serence fut dirig^^Se par
 Chapitre 1.
 [3
 
-] [4]
+] [4] <arbre_inference.png, id=130, 579.66562pt x 548.0475pt>
+File: arbre_inference.png Graphic file (type png)
+
+<use arbre_inference.png>
+Package pdftex.def Info: arbre_inference.png used on input line 123.
+(pdftex.def)             Requested size: 579.6642pt x 548.04616pt.
+ [5 <./arbre_inference.png>]
 Chapitre 2.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
@@ -650,95 +656,95 @@ File: lstlang1.sty 2014/03/04 1.5c listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2014/03/04 1.5c listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 123--125
+Underfull \hbox (badness 10000) in paragraph at lines 130--132
 
  []
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 132.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 139.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 132.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 133.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 139.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 133.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
 
-Overfull \hbox (1.9173pt too wide) in paragraph at lines 142--150
+Overfull \hbox (1.9173pt too wide) in paragraph at lines 149--157
 \OT1/cmr/m/n/10 permet ^^Segalement de traiter des conditions complexes qui dem
 andent l'^^Sevaluation
  []
 
-[5
+[6
 
 ]
-Overfull \hbox (0.8339pt too wide) in paragraph at lines 165--167
+Overfull \hbox (0.8339pt too wide) in paragraph at lines 172--174
 []\OT1/cmr/m/n/10 Le moteur d'inf^^Serence est un moteur ^^Ra cha^^^Pnage avant
  avec un fonctionnement
  []
 
-[6]
-Overfull \hbox (3.34053pt too wide) in paragraph at lines 169--172
+[7]
+Overfull \hbox (3.34053pt too wide) in paragraph at lines 176--179
 \OT1/cmr/m/n/10 pour v^^Serifier qu'elles sont toutes valid^^See. Mais certaine
 s conditions sont complexes
  []
 
 
-Overfull \hbox (63.00415pt too wide) in paragraph at lines 178--179
+Overfull \hbox (63.00415pt too wide) in paragraph at lines 185--186
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (57.00409pt too wide) in paragraph at lines 179--180
+Overfull \hbox (57.00409pt too wide) in paragraph at lines 186--187
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.00372pt too wide) in paragraph at lines 183--184
+Overfull \hbox (21.00372pt too wide) in paragraph at lines 190--191
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (93.00446pt too wide) in paragraph at lines 185--186
+Overfull \hbox (93.00446pt too wide) in paragraph at lines 192--193
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[7]
+[8]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 206.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 213.
 
-Overfull \hbox (22.20813pt too wide) in paragraph at lines 222--223
+Overfull \hbox (22.20813pt too wide) in paragraph at lines 229--230
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.7087pt too wide) in paragraph at lines 229--230
+Overfull \hbox (47.7087pt too wide) in paragraph at lines 236--237
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[8]
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 257--258
+[9]
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 264--265
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (6.90779pt too wide) in paragraph at lines 270--271
+Overfull \hbox (6.90779pt too wide) in paragraph at lines 277--278
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 273--274
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 280--281
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[9]
-Overfull \hbox (12.0079pt too wide) in paragraph at lines 306--307
+[10]
+Overfull \hbox (12.0079pt too wide) in paragraph at lines 313--314
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -750,7 +756,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.309 ...gle NIL) ;;;; TANT QU'IL Y A DES RÈGLES 
+l.316 ...gle NIL) ;;;; TANT QU'IL Y A DES RÈGLES 
                                                   À TESTER
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -764,7 +770,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.309 ...gle NIL) ;;;; TANT QU'IL Y A DES RÈGLES 
+l.316 ...gle NIL) ;;;; TANT QU'IL Y A DES RÈGLES 
                                                   À TESTER
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -777,7 +783,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.309 ... NIL) ;;;; TANT QU'IL Y A DES RÈGLES À 
+l.316 ... NIL) ;;;; TANT QU'IL Y A DES RÈGLES À 
                                                   TESTER
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -791,32 +797,32 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.309 ... NIL) ;;;; TANT QU'IL Y A DES RÈGLES À 
+l.316 ... NIL) ;;;; TANT QU'IL Y A DES RÈGLES À 
                                                   TESTER
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (22.20813pt too wide) in paragraph at lines 309--310
+Overfull \hbox (22.20813pt too wide) in paragraph at lines 316--317
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (93.60971pt too wide) in paragraph at lines 311--312
+Overfull \hbox (93.60971pt too wide) in paragraph at lines 318--319
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (103.80994pt too wide) in paragraph at lines 313--315
+Overfull \hbox (103.80994pt too wide) in paragraph at lines 320--322
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (63.00903pt too wide) in paragraph at lines 316--317
+Overfull \hbox (63.00903pt too wide) in paragraph at lines 323--324
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[10]
+[11]
 
 ! Package inputenc Error: Unicode char \u8:�\lst@FillFixed@ not set up for use 
 with LaTeX.
@@ -825,7 +831,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.343 ...combien de temps votre tunnel doit être 
+l.350 ...combien de temps votre tunnel doit être 
                                                   prêt ?2
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -839,7 +845,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.343 ...combien de temps votre tunnel doit être 
+l.350 ...combien de temps votre tunnel doit être 
                                                   prêt ?2
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -852,7 +858,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.343 ...n de temps votre tunnel doit être prêt 
+l.350 ...n de temps votre tunnel doit être prêt 
                                                   ?2
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -866,28 +872,28 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.343 ...n de temps votre tunnel doit être prêt 
+l.350 ...n de temps votre tunnel doit être prêt 
                                                   ?2
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (17.10802pt too wide) in paragraph at lines 344--346
+Overfull \hbox (17.10802pt too wide) in paragraph at lines 351--353
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 348--349
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 355--356
 [][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 349--350
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 356--357
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 350--352
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 357--359
 [][][][] 
  []
 
@@ -899,7 +905,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.352 VOILÀ 
+l.359 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -913,7 +919,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.352 VOILÀ 
+l.359 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -926,7 +932,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.355 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.362 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -940,7 +946,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.355 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.362 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -953,7 +959,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.363 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
+l.370 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
                                                 DE :
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -967,17 +973,17 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.363 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
+l.370 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
                                                 DE :
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 375--376
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 382--383
 [][][][] 
  []
 
-[11]
+[12]
 Chapitre 3.
 
 ! Package inputenc Error: Unicode char \u8:�\expandafter not set up for use wit
@@ -987,7 +993,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.396 ((EQUIPEDENUIT NIL) (CHANTIERRÉALISABLE 
+l.403 ((EQUIPEDENUIT NIL) (CHANTIERRÉALISABLE 
                                                NIL) (VITESSENAIN 3)
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1001,44 +1007,44 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.396 ((EQUIPEDENUIT NIL) (CHANTIERRÉALISABLE 
+l.403 ((EQUIPEDENUIT NIL) (CHANTIERRÉALISABLE 
                                                NIL) (VITESSENAIN 3)
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (21.00372pt too wide) in paragraph at lines 396--397
+Overfull \hbox (21.00372pt too wide) in paragraph at lines 403--404
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (33.00385pt too wide) in paragraph at lines 397--398
+Overfull \hbox (33.00385pt too wide) in paragraph at lines 404--405
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (63.00415pt too wide) in paragraph at lines 399--400
+Overfull \hbox (63.00415pt too wide) in paragraph at lines 406--407
 [][][][] 
  []
 
 
-Overfull \hbox (63.00415pt too wide) in paragraph at lines 400--401
+Overfull \hbox (63.00415pt too wide) in paragraph at lines 407--408
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (63.00415pt too wide) in paragraph at lines 401--404
+Overfull \hbox (63.00415pt too wide) in paragraph at lines 408--411
 [][][][] 
  []
 
 
-Overfull \hbox (49.75351pt too wide) detected at line 411
+Overfull \hbox (49.75351pt too wide) detected at line 418
 \OML/cmm/m/it/10 LongueurTunnel < LargeurTunnel \OMS/cmsy/m/n/10 ^^C \OML/cmm/m
 /it/10 hauteurTunnel \OMS/cmsy/m/n/10 ^^C \OML/cmm/m/it/10 nbJourMax \OMS/cmsy/
 m/n/10 ^^C \OML/cmm/m/it/10 VitesseNain \OMS/cmsy/m/n/10 ^^C \OT1/cmr/m/n/10 2
  []
 
-[12
+[13
 
 ]
 
@@ -1049,7 +1055,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.431 ((NAINSCALCULÉ 
+l.438 ((NAINSCALCULÉ 
                       T) (NBNAINTOTAL 42) (NBNAINPLONGUEUR 6)
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1063,13 +1069,13 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.431 ((NAINSCALCULÉ 
+l.438 ((NAINSCALCULÉ 
                       T) (NBNAINTOTAL 42) (NBNAINPLONGUEUR 6)
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (12.0079pt too wide) in paragraph at lines 432--433
+Overfull \hbox (12.0079pt too wide) in paragraph at lines 439--440
 [][][][][][][][][][][][][][][][][][] 
  []
 
@@ -1081,7 +1087,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.434  (CHANTIERRÉALISABLE 
+l.441  (CHANTIERRÉALISABLE 
                             T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEU...
 
 Your command was ignored.
@@ -1096,39 +1102,39 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.434  (CHANTIERRÉALISABLE 
+l.441  (CHANTIERRÉALISABLE 
                             T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEU...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (63.00903pt too wide) in paragraph at lines 434--435
+Overfull \hbox (63.00903pt too wide) in paragraph at lines 441--442
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (32.40836pt too wide) in paragraph at lines 435--436
+Overfull \hbox (32.40836pt too wide) in paragraph at lines 442--443
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (27.30824pt too wide) in paragraph at lines 436--438
+Overfull \hbox (27.30824pt too wide) in paragraph at lines 443--445
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 438--439
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 445--446
 [][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 439--440
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 446--447
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 440--442
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 447--449
 [][][][] 
  []
 
@@ -1140,7 +1146,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.442 VOILÀ 
+l.449 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1154,7 +1160,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.442 VOILÀ 
+l.449 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -1167,7 +1173,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.445 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.452 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1181,29 +1187,29 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.445 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.452 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 456--458
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 463--465
 [][][][] 
  []
 
 
-Overfull \hbox (3.89268pt too wide) in paragraph at lines 462--463
+Overfull \hbox (3.89268pt too wide) in paragraph at lines 469--470
 []\OT1/cmr/m/n/10 RN2 : Si il n'y a pas d'^^Sequipe de nuit et que l'^^Sequipe 
 de jour est commenc^^See,
  []
 
 
-Overfull \hbox (97.11523pt too wide) in paragraph at lines 464--465
+Overfull \hbox (97.11523pt too wide) in paragraph at lines 471--472
 []\OT1/cmr/m/n/10 RCR1 : Si LongueurTunnel inferieur ^^Ra LargeurTunnel*hauteur
 Tunnel*nbJourMax*VitesseNain,
  []
 
-[13]
+[14]
 
 ! Package inputenc Error: Unicode char \u8:�\expandafter not set up for use wit
 h LaTeX.
@@ -1212,7 +1218,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.483 ((NAINSCALCULÉ 
+l.490 ((NAINSCALCULÉ 
                       T) (NBNAINTOTAL 52) (NBNAINPLONGUEUR 6)
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1226,7 +1232,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.483 ((NAINSCALCULÉ 
+l.490 ((NAINSCALCULÉ 
                       T) (NBNAINTOTAL 52) (NBNAINPLONGUEUR 6)
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -1239,7 +1245,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.487  (CHANTIERRÉALISABLE 
+l.494  (CHANTIERRÉALISABLE 
                             T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEU...
 
 Your command was ignored.
@@ -1254,29 +1260,29 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.487  (CHANTIERRÉALISABLE 
+l.494  (CHANTIERRÉALISABLE 
                             T) (VITESSENAIN 3) (TYPEDEROCHE GRANITE) (HAUTEU...
 
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (63.00903pt too wide) in paragraph at lines 487--488
+Overfull \hbox (63.00903pt too wide) in paragraph at lines 494--495
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 491--492
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 498--499
 [][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 492--493
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 499--500
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 493--495
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 500--502
 [][][][] 
  []
 
@@ -1288,7 +1294,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.495 VOILÀ 
+l.502 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1302,7 +1308,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.495 VOILÀ 
+l.502 VOILÀ 
              LA COMPOSITION DE VOS EQUIPES POUR FAIRE VOTRE CHANTIER LE
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -1315,7 +1321,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.498 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.505 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1329,7 +1335,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.498 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
+l.505 ...EZ BESOIN D'UNE EQUIPE DE JOUR COMPOSÉE 
                                                   DE :
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
@@ -1342,7 +1348,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.506 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
+l.513 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
                                                 DE :
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1356,72 +1362,72 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.506 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
+l.513 AINSI QUE D'UNE EQUPIDE DE NUIT COMPOSÉE 
                                                 DE :
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (1.80768pt too wide) in paragraph at lines 519--520
+Overfull \hbox (1.80768pt too wide) in paragraph at lines 526--527
 [][][][] 
  []
 
 
-Overfull \hbox (26.77852pt too wide) in paragraph at lines 531--533
+Overfull \hbox (26.77852pt too wide) in paragraph at lines 538--540
 \OT1/cmr/m/n/10 LongueurTunnel <= LargeurTunnel*hauteurTunnel*nbJourMax*Vitesse
 Nain*2
  []
 
-[14] [15] [16
+[15] [16] [17
 
 ]
 Annexe A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 555--557
+Underfull \hbox (badness 10000) in paragraph at lines 562--564
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--563
+Underfull \hbox (badness 10000) in paragraph at lines 566--570
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 564--566
+Underfull \hbox (badness 10000) in paragraph at lines 571--573
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 567--569
+Underfull \hbox (badness 10000) in paragraph at lines 574--576
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 570--571
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 579.
-[17
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 586.
+[18
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 579.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 586.
  (./IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 579.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 579.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 586.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 586.
 Package rerunfilecheck Info: File `IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.ou
 t' has not changed.
-(rerunfilecheck)             Checksum: 13BC3CF383563228706BCAC870028D58;1391.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 579.
+(rerunfilecheck)             Checksum: 215FE2D34EA835E787AEA5645205912A;1459.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 586.
  ) 
 Here is how much of TeX's memory you used:
- 9568 strings out of 495025
- 133909 string characters out of 6181515
- 258156 words of memory out of 5000000
- 12371 multiletter control sequences out of 15000+600000
+ 9577 strings out of 495025
+ 134058 string characters out of 6181515
+ 258212 words of memory out of 5000000
+ 12376 multiletter control sequences out of 15000+600000
  11526 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 29i,5n,43p,634b,1619s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,7n,43p,634b,1619s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1435,11 +1441,11 @@ ts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.pdf (18 pages, 2886
-35 bytes).
+Output written on IA01_TP3_Thomas_PERRIN_Camille_GERIN-ROZE.pdf (19 pages, 3139
+22 bytes).
 PDF statistics:
- 567 PDF objects out of 1000 (max. 8388607)
- 526 compressed objects within 6 object streams
- 304 named destinations out of 1000 (max. 500000)
- 150 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 578 PDF objects out of 1000 (max. 8388607)
+ 535 compressed objects within 6 object streams
+ 306 named destinations out of 1000 (max. 500000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
