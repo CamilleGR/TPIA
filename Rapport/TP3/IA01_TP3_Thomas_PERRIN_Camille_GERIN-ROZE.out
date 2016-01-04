@@ -1,16 +1,18 @@
 \BOOKMARK [0][-]{chapter.1}{Connaissances n\351cessaires au syst\350me expert}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Param\350tres \340 fournir au syst\350me}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{Traduction des connaissances en r\350gles}{chapter.1}% 3
-\BOOKMARK [0][-]{chapter.2}{Impl\351mentation du syst\350me expert}{}% 4
-\BOOKMARK [1][-]{section.2.1}{Choix de la repr\351sentation Lisp}{chapter.2}% 5
-\BOOKMARK [2][-]{subsection.2.1.1}{Base de r\350gles}{section.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.1.2}{Base de faits}{section.2.1}% 7
-\BOOKMARK [1][-]{section.2.2}{Le moteur d'inf\351rences}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.2.1}{Validation des pr\351misses}{section.2.2}% 9
-\BOOKMARK [2][-]{subsection.2.2.2}{Calcul des nouvelles valeurs}{section.2.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.3}{Moteur \340 cha\356nage avant}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.4}{Test du moteur d'inf\351rences}{section.2.2}% 12
-\BOOKMARK [0][-]{chapter.3}{Sc\351narios d'utilisation}{}% 13
-\BOOKMARK [1][-]{section.3.1}{Chantier non r\351alisable}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.2}{Chantier r\351alisable sans \351quipe de nuit}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.3}{Chantier r\351alisable avec une \351quipe de nuit}{chapter.3}% 16
+\BOOKMARK [1][-]{section.1.3}{Origine des r\350gles}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Impl\351mentation du syst\350me expert}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Choix de la repr\351sentation Lisp}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.1.1}{Base de r\350gles}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.2}{Base de faits}{section.2.1}% 8
+\BOOKMARK [1][-]{section.2.2}{Le moteur d'inf\351rences}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Validation des pr\351misses}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{Calcul des nouvelles valeurs}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.3}{Moteur \340 cha\356nage avant}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.4}{Test du moteur d'inf\351rences}{section.2.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Sc\351narios d'utilisation}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Chantier non r\351alisable}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Chantier r\351alisable sans \351quipe de nuit}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Chantier r\351alisable avec une \351quipe de nuit}{chapter.3}% 17
+\BOOKMARK [0][-]{appendix.A}{Mail de John Lang}{}% 18
