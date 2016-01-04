@@ -65,6 +65,17 @@ Thomas \textsc{Perrin}
 \end{titlepage}
 \tableofcontents
 \chapter*{Introduction}
+
+Dans tous univers fantaisistes, les nains sont un peuple vivant dans les mines, et ceux-ci sont toujours amené à creuser des tunnels. Il faut donc, pour les différents chantiers, pouvoir déterminer le nombres de nains que l’ont doit mettre sur ces derniers. Nous allons nous baser sur cette vidéo : https://www.youtube.com/watch?v=C75iVDrfy2w. 
+La conférence fut dirigé par John Lang, créateur du Donjon de Naheulbeuk.
+
+Cette vidéo répond à la question : “Combien faut-il de nain pour creuser en 2 jours un tunnel de 28 mètre dans du granite ?”. Notre système expert va permettre de généraliser le problème à plusieurs types de chantier en faisant varier la longueur, largeur et type du tunnel, mais aussi la durée du chantier. 
+
+Ainsi, en fonction des paramètres donnés, on va déterminer si le délais peut être respecté, avec la présence ou non d’une équipe de nuit pour aboutir sur un nombre total de nains. 
+
+Par exemple, on sait qu’il faut 8 nains de ravitaillement de bière pour deux autres nains, puisque ces derniers sont proches des tonneaux de bières et deviennent ivres rapidement. De même, les nains n’appréciant pas de boire de la bière dans des chopes sales, on rajoute un plongeur pour 4 nains de ravitaillement de bière. 
+
+
 \chapter{Connaissances nécessaires au système expert}
  \section{Paramètres à fournir au système}
  Afin de déterminer le nombre de nains nécessaire à un chantier, plusieurs paramètres seront nécessaire :
@@ -96,9 +107,13 @@ Ces règles vont déterminer si le chantier est réalisable avec les paramètres
 Ces dernières règles vont conclure en calculant le nombre de nains totals.
 \end{itemize}
 
-Toutes les règles ont été déterminés par la vidéo présentés ci-dessus, et par des échanges avec John Lang, le créateur de l’univers du Donjon de Naheulbeuk. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière. 
+\section{Origine des règles}
 
-
+L'idée de ce système expert nous est venu par la vidéo présenté ci-dessus. John Lang, le créateur de l’univers du Donjon de Naheulbeuk nous a également aidé en tant qu'expert dans ce domaine. 
+Les RN sont issus de la vidéo présentant un cas pratique. Nous avons seulement modifié une seule règle pour la rendre cohérente, celle des nains de ravitaillements en bière.
+Les RCR sont des calculs mathématiques, de la logique uniquement.
+Les RTP sont issus de notre échange avec John Lang qui nous a indiqué que différentes pioches pourraient influencés la vitesse de chaque nain.
+Enfin, les RTR sont issus également de notre échange avec John Lang. Nous avons extrapôlé les différents types de roches possibles en se renseignant sur les différents types de minerai.
 
 \chapter{Implémentation du système expert}
   \section{Choix de la représentation Lisp}
@@ -527,6 +542,6 @@ TOTAL :                                                52 nains
 \chapter*{Conclusion}
 
   Le système expert que nous avons réalisé nous a permis de comprendre les mécanismes d'inférence d'un système expert. Nous avons également pu nous rendre compte
-  qu'il est très important de bien structurer ses données de manières à pouvoir les utiliser facilement. Ce système expert pourrait être amélioré en ajoutant 
-  le calcul du coup d'un nain ou encore l'ajout d'autre paramètre pour avoir un résultat plus précis.
+  qu'il est très important de bien structurer ses données de manière à pouvoir les utiliser facilement. Ce système expert pourrait être amélioré en ajoutant 
+  le calcul du coup d'un nain ou encore l'ajout d'autre paramètres pour avoir un résultat plus précis.
   \end{document}
